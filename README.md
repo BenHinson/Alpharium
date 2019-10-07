@@ -17,7 +17,9 @@ ISSUES AND FUTURE IMPROVEMENTS -------------------------------
 
 Window Frame Controls on Light-Theme dont show up too clearly.
 
-Random Typing Backgrounds on Browser Webview.
+Randomly Typing backwards on Browser Webview.
+
+Alpha Drive - If folder name is already taken, no warning / message is shown.
 
 Multi-Account support with quick-switch.
 
@@ -43,6 +45,8 @@ Central Box on Homepage can contain 'programs' and File/Folder links.
 
 Alpha Drive - Files of certain types can be opened in native programs (.txt / .png / .mp4).
 
-Add video player / image viewer panels.
+Add Video Player / Image Viewer panels.
+
+Music Player tool.
 
 Odd Issue with rightclick not being removed after closing panel.
