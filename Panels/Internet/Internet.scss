@@ -1,0 +1,103 @@
+$darkTheme: (
+  dark0: rgb(5, 5, 5),
+  dark1: rgb(22, 22, 22),
+  dark2: rgb(30, 30, 30),
+  dark3: rgb(40, 40, 40),
+  dark4: rgb(50, 50, 50),
+  dark5: rgb(70, 70, 70),
+  dark6: rgb(90, 90, 90),
+  dark7: rgb(110, 110, 110),
+
+  darkdropdown: rgb(27, 27, 27)
+);
+
+$lightTheme: (
+  light1: rgb(250, 250, 250),
+  light2: rgb(240, 240, 240),
+  light3: rgb(230, 230, 230),
+  light4: rgb(220, 220, 220),
+  light5: rgb(190, 190, 190),
+  light6: rgb(180, 180, 180),
+  light7: rgb(170, 170, 170),
+  light8: rgb(150, 150, 150)
+);
+
+$colorTheme: (
+  colorBlue: rgb(27, 67, 100),
+  colorYellow: rgba(214, 211, 3, 0.637),
+  colorLightBlue: rgb(64, 130, 184),
+  colorHover: rgb(70, 154, 194),
+);
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- S E A R C H   P A G E      searchpagestyle
+ 
+// #alphaPanelSearch {
+//   background-color: map-get($lightTheme, light3);
+//   margin: 4px 0px;
+//   width: 80px;
+//   border-radius: 15px;
+//   border: 1px solid map-get($darkTheme, dark6);
+//   height: 22px;
+
+//   background-image: url('../assets/searchIconBlack.png');
+//   background-size: 14px;
+//   padding-bottom: 2px;
+//   background-position: center; 
+//   background-repeat: no-repeat;
+//   transition: width 0.3s;
+//   cursor: pointer;
+
+//   .dark-theme & {
+//     background-image: url('../assets/searchIconWhite.png');
+//     background-color: map-get($darkTheme, dark1);
+//     color: map-get($lightTheme, light1);
+//   }
+// }
+// #alphaPanelSearch:hover {
+//   width: 100px;
+//   transition: width 0.3s;
+// }
+
+// -------------------------------------------------------
+
+#searchPageBackgroundMain {
+  background-color: map-get($lightTheme, light3);
+  overflow: hidden;
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark0);
+  }
+}
+#searchLocationSelectorContainer {
+  width: 20vw;
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  background: transparent;
+  left: 38vw;
+  top: calc(50vh + 30px);
+  z-index: 20;
+}
+.searchLocation {
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+  background: transparent;
+  border: none;
+  background-position: 10px;
+  border: 1px solid map-get($lightTheme, light5);
+  border-radius: 24px;
+  cursor: pointer;
+  .dark-theme & {
+    border-color: map-get($darkTheme, dark1);
+  }
+}
+.searchLocation:hover {background-color: #ccc;border: 1px solid map-get($darkTheme, dark0);.dark-theme & {border-color: map-get($lightTheme, light1);}}
+#searchLocationGoogle { background-image: url('../../assets/icons/png/google-favicon-24px.png'); background-position: 11px; background-repeat: no-repeat;}
+#searchLocationDuckDuckGo { background-image: url('../../assets/icons/png/duckduckgo-favicon-28px.png'); background-repeat: no-repeat;}
+#searchLocationBing { background-image: url('../../assets/icons/png/icons8-bing-28.png'); background-repeat: no-repeat;}
+
+#searchLocationSelectorContainer .checked {
+  border-color: #2196F3;
+}

@@ -1,0 +1,175 @@
+#databaseBackgroundMain {
+  height: calc(100vh - 52px);
+  width: 100vw;
+  background-color: #bebebe;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-theme #databaseBackgroundMain {
+  background-color: #161616;
+}
+
+#directoryLocation {
+  padding: 8px;
+  width: 100vw;
+  height: 35px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #1e1e1e;
+  color: #1e1e1e;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Segoe UI';
+  letter-spacing: 1px;
+  resize: none;
+  overflow: hidden;
+}
+
+.dark-theme #directoryLocation {
+  letter-spacing: 1.5px;
+  font-weight: 100;
+  color: #fafafa;
+  border-bottom: 1px solid #fafafa;
+}
+
+#commandLineBox {
+  bottom: 0;
+  padding: 4px;
+  width: 100vw;
+  height: 24px;
+  position: absolute;
+  border: none;
+  background-color: #bebebe;
+  color: #1e1e1e;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: 'Segoe UI';
+  letter-spacing: 1px;
+  resize: none;
+  overflow: hidden;
+}
+
+.dark-theme #commandLineBox {
+  font-weight: 100;
+  color: #fafafa;
+  background-color: #161616;
+}
+
+#userCommandLineBox {
+  display: none;
+  bottom: 0;
+  left: 20vw;
+  padding: 6px;
+  width: 58vw;
+  height: 34px;
+  position: absolute;
+  border: none;
+  background-color: #bebebe;
+  color: #1e1e1e;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Segoe UI';
+  letter-spacing: 1px;
+  resize: none;
+  overflow: hidden;
+}
+
+.dark-theme #userCommandLineBox {
+  font-weight: 100;
+  color: #fafafa;
+  background-color: #161616;
+}
+
+#submitUserCommand {
+  display: none;
+  position: absolute;
+  width: 40px;
+  height: 34px;
+  bottom: 0;
+  right: 20vw;
+  background: transparent;
+  border: none;
+  color: #161616;
+  cursor: pointer;
+}
+
+.dark-theme #submitUserCommand {
+  color: #fafafa;
+}
+
+#fileContainer {
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - 124px);
+}
+
+.alphariumFolder {
+  float: left;
+  display: block;
+  margin: 4px;
+  width: 70px;
+  max-height: 100px;
+  color: #161616;
+  font-size: 36px;
+  line-height: 40px;
+  padding-left: 8px;
+  font-family: 'Segoe UI';
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 200;
+}
+
+.dark-theme .alphariumFolder {
+  font-weight: 100;
+  color: #e6e6e6;
+}
+
+.alphariumFolder:hover {
+  background: #919191be;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.alphariumFolder:hover .folderName {
+  max-height: 80px;
+  overflow: visible;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.dark-theme .alphariumFolder:hover {
+  background: #616161be;
+}
+
+.folderName {
+  position: relative;
+  width: 60px;
+  max-height: 40px;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  color: black;
+}
+
+.dark-theme .folderName {
+  color: #27ce8e;
+}
+
+.folderSize {
+  position: relative;
+  width: 60px;
+  font-size: 12px;
+  line-height: 20px;
+  overflow: hidden;
+}
+/*# sourceMappingURL=alphaDrive.css.map */

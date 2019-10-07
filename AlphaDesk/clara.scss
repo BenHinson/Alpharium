@@ -1,0 +1,512 @@
+$darkTheme: (
+  dark0: rgb(5, 5, 10),
+  dark1: rgb(22, 22, 27),
+  dark2: rgb(32, 32, 37),
+  dark3: rgb(50, 50, 55),
+  dark4: rgb(61, 61, 66),
+  dark5: rgb(82, 82, 87),
+  dark6: rgb(97, 97, 102),
+  dark7: rgb(110, 110, 115),
+
+  darkdropdown: rgb(27, 27, 32)
+);
+
+$lightTheme: (
+  light1: rgb(255, 255, 250),
+  light2: rgb(236, 236, 231),
+  light3: rgb(224, 224, 219),
+  light4: rgb(209, 209, 204),
+  light5: rgb(189, 189, 184),
+  light6: rgb(173, 173, 168),
+  light7: rgb(168, 168, 163)
+);
+
+$colorTheme: (
+  colorBlue: rgb(27, 67, 100),
+  colorYellow: rgba(214, 211, 3, 0.637),
+);
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- W I N D O W S   F R A M E      windowstyle
+
+
+// #backBlurTriangle {position: absolute;fill: rgba(10, 10, 10, 0.4);filter: blur(5px);bottom: -55px;left: -150px;}
+
+// html {
+//   background: rgba(255, 255, 255, 0.2);
+//   // backdrop-filter: blur(5px);
+//   // filter: blur(5px);
+// }
+html {
+  overflow: hidden;
+}
+
+
+.title-bar {
+  -webkit-app-region: drag;
+  position: absolute;
+  display: flex;
+  background-color: transparent;
+  width: 100px;
+  height: 22px;
+  border-radius: 10px;
+
+  top: 105px;
+  left: 80px;
+}
+
+.window-controls-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+}
+#colorTheme {
+  -webkit-app-region: no-drag;
+  background-color: map-get($lightTheme, light3);
+  border: none;
+  text-align: center;
+  vertical-align: bottom;
+  position: flex;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 14px;
+  line-height: 23px;
+  color: map-get($darkTheme, dark3);
+  // padding-left: 1px;
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light3);
+  }
+}
+#colorTheme:hover {
+  background-color: grey;
+  color: white;
+}
+.drag-button {
+  // -webkit-app-region: drag;
+  background-color: map-get($lightTheme, light3);
+  border: none;
+  text-align: center;
+  vertical-align: bottom;
+  position: flex;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+  line-height: 23px;
+  color: map-get($darkTheme, dark3);
+  // padding-left: 1px;
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light3);
+  }
+}
+
+.minimize-button {
+  -webkit-app-region: no-drag;
+  background-color: map-get($lightTheme, light3);
+  border: none;
+  text-align: center;
+  vertical-align: bottom;
+  position: flex;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+  color: map-get($darkTheme, dark3);
+  // padding-left: 1px;
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light3);
+  }
+}
+.minimize-button:hover {
+  background-color: grey;
+  color: white;
+}
+.close-button {
+  -webkit-app-region: no-drag;
+  background-color: map-get($lightTheme, light3);
+  border: none;
+  text-align: center;
+  vertical-align: bottom;
+  position: flex;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  line-height: 23px;
+  color: map-get($darkTheme, dark3);
+  // padding-left: 1px;
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light3);
+  }
+}
+.close-button:hover {
+  background-color: rgb(201, 0, 0);
+  color: white;
+}
+
+
+
+
+
+
+.title-bar-search {
+  position: absolute;
+  display: flex;
+  background-color: map-get($lightTheme, light3);
+  width: 175px;
+  height: 22px;
+  border-radius: 10px;
+
+  top: 105px;
+  left: -105px;
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light3);
+  }
+}
+
+#searchNavigator {
+  -webkit-app-region: no-drag;
+  position: absolute;
+  width: 125px;
+  border: none;
+  margin-left: 10px;
+  background-color: map-get($lightTheme, light3);
+
+  color: map-get($darkTheme, dark1);
+
+  font-family: 'Segoe UI';
+  letter-spacing: 1px;
+  font-size: 15px;
+  padding-left: 25px;
+  word-wrap: auto;
+  outline: none;
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light3);
+  }
+}
+
+.placeholder::placeholder {
+  color: map-get($darkTheme, dark5);
+  .dark-theme & {
+    color: map-get($lightTheme, light5);
+  }
+}
+
+#searchSearchIcon {
+  position: relative;
+  left: 10px;
+  top: 3px;
+  font-size: 16px;
+  color: map-get($darkTheme, dark1);
+
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- T R I A N G L E   S H A P E
+
+
+#triangleContainer{
+  position: relative;
+  left: 45vw;
+  top: 40vh;
+  background: black;
+  width: 100px;
+  height: 100px;
+}
+
+.centerTriangle {position: absolute;fill: map-get($lightTheme, light5);bottom: 0;left: -150px;z-index: 1; 
+  .dark-theme & {fill: map-get($darkTheme, dark2);}}
+
+.leftTriangle {position: absolute;fill: map-get($lightTheme, light7);border-right: 1px solid rgb(128, 128, 128);bottom: 0;right: 110px;z-index: 3; 
+  .dark-theme & {fill: map-get($darkTheme, dark3);}}
+
+.leftTriangle2{position: absolute;fill: map-get($lightTheme, light6);border-right: 1px solid rgb(128, 128, 128);bottom: 0;right: 90px;z-index: 2; 
+  .dark-theme & {fill: map-get($darkTheme, dark4);}}
+
+.rightTriangle{position: absolute;fill: map-get($lightTheme, light7);border-left: 1px solid rgb(128, 128, 128);bottom: 0;left: 110px;z-index: 3; 
+  .dark-theme & {fill: map-get($darkTheme, dark3);}}
+
+.rightTriangle2{position: absolute;fill: map-get($lightTheme, light6);border-left: 1px solid rgb(128, 128, 128);bottom: 0;left: 90px;z-index: 2; 
+  .dark-theme & {fill: map-get($darkTheme, dark4);}}
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- N A V I G A T O R   M A I N 
+
+#shortcutMain {
+  position: absolute;
+  background: transparent;
+  width: 200px;
+  height: 300px;
+  left: -150px;
+  top: -200px;
+}
+
+.shortcutItem {
+  position: inherit;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  background: map-get($lightTheme, light5);
+  border: 1px solid map-get($darkTheme, dark4);
+  text-align: center;
+  vertical-align: bottom;
+  font-size: 26px;
+  line-height: 36px;
+  color: map-get($darkTheme, dark4);
+  z-index: 5;
+  outline: none;
+
+  .dark-theme & {
+    background: map-get($darkTheme, dark2);
+    border: 1px solid map-get($lightTheme, light5);
+    color: map-get($lightTheme, light7);
+  }
+
+}
+.shortcutItem:hover{
+  width: 44px;
+  height: 44px;
+  line-height: 40px;
+    
+  .shortcutControl {
+    display: block;
+  }
+}
+
+
+.shortcutControl {
+  display: none;
+  position: relative;
+  right: 20px;
+  width: 20px;
+  height: 34px;
+}
+.removeShortcut {
+  position: absolute;
+  font-size: 20px;
+  line-height: 26px;
+  right: 20px;
+  top: 2px;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  border: 1px solid map-get($darkTheme, dark2);
+  color: map-get($lightTheme, light3);
+  background: transparent;
+  cursor: pointer;
+
+  .dark-theme & {
+    border: 1px solid map-get($lightTheme, light5);
+    color: map-get($darkTheme, dark1);
+  }
+}
+.removeShortcut:hover {
+  background: map-get($lightTheme, light7);
+  .dark-theme & {
+    background: map-get($darkTheme, dark6);
+  }
+}
+
+
+
+#shortcutItemCreate {
+  bottom: 0;
+  left: 0;
+}
+#shortcutItemCreate:hover {
+  bottom: -2px;
+  left: -2px;
+  background: map-get($lightTheme, light5);
+  color: map-get($darkTheme, dark0);
+  border: 1px solid map-get($darkTheme, dark0);
+  .dark-theme & {
+    background: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light3);
+    border: 1px solid map-get($lightTheme, light3);
+  }
+
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- N A V I G A T O R   C R E A T O R
+
+
+#createShortcutSettings {
+  display: none;
+
+  position: absolute;
+  width: 360px;
+  height: 30px;
+  background: map-get($lightTheme, light5);
+  // border: 1px solid map-get($darkTheme, dark4);
+  border-radius: 20px;
+  color: map-get($darkTheme, dark4);
+  left: -130px;
+  top: 140px;
+
+  .dark-theme & {
+    background: map-get($darkTheme, dark2);
+    // border: 1px solid map-get($lightTheme, light5);
+    color: map-get($lightTheme, light7);
+  }
+}
+
+#dropdownArrow {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  font-size: 18px;
+  color: map-get($darkTheme, dark2);
+
+  .dark-theme & {
+    color: map-get($lightTheme, light7);
+  }
+}
+#shortcutDropdownType {
+  width: 85px;
+  height: 30px;
+  border-right: 1px solid map-get($darkTheme, dark3);
+  padding-left: 35px;
+  background: map-get($lightTheme, light3);
+  color: map-get($darkTheme, dark4);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+
+  font-size: 15px;
+  line-height: 28px;
+  font-family: 'Segoe UI';
+
+  .dark-theme & {
+    border-right: 1px solid map-get($lightTheme, light3);
+    background: map-get($darkTheme, dark1);
+    color: map-get($lightTheme, light7);
+  }
+}
+#shortcutDropdownType:hover{
+  background-color: map-get($lightTheme, light1);
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark4);
+  }
+}
+
+#shortcutDropdownType:hover .dropdownContent {
+  display: block;
+}
+
+.dropdownContent {
+  display: none;
+  position: relative;
+  left: -25px;
+  top: 2px;
+  background-color: map-get($lightTheme, light2);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark2);
+  }
+}
+.dropdownItem{
+  display: block;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  .dark-theme & {
+    background: map-get($darkTheme, dark1);
+    color: map-get($lightTheme, light7);
+  }
+}
+.dropdownItem:hover{
+  background-color:  map-get($lightTheme, light3);
+  border-radius: 5px;
+
+  .dark-theme & {
+    background: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light7);
+  }
+}
+
+
+#shortcutLink {
+  position: absolute;
+  left: 121px;
+  width: 200px;
+  height: 28px;
+  padding-left: 10px;
+  outline: none;
+  border: none;
+  border-right: 1px solid map-get($darkTheme, dark3);
+  background-color: map-get($lightTheme, light4);
+  color: map-get($darkTheme, dark4);
+
+  font-size: 16px;
+  line-height: 28px;
+  font-family: 'Segoe UI';
+
+  .dark-theme & {
+    background: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light4);
+    border-right: 1px solid map-get($lightTheme, light3);
+  }
+}
+#shortcutLink:hover{
+  background-color: map-get($lightTheme, light1);
+  .dark-theme & {
+    background: map-get($darkTheme, dark3);
+  }
+}
+
+#shortcutAdd {
+  position: absolute;
+  left: 332px;
+  width: 30px;
+  height: 30px;
+  padding-left: 5px;
+  outline: none;
+  border: none;
+  background-color: map-get($lightTheme, light2);
+  color: map-get($darkTheme, dark4);
+
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  .dark-theme & {
+    background: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light4);
+  }
+}
+#shortcutAdd:hover{
+  background-color: map-get($lightTheme, light1);
+  .dark-theme & {
+    background: map-get($darkTheme, dark4);
+  }
+}

@@ -1,0 +1,543 @@
+html {
+  overflow: hidden;
+}
+
+.title-bar {
+  -webkit-app-region: drag;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+  width: 100px;
+  height: 22px;
+  border-radius: 10px;
+  top: 105px;
+  left: 80px;
+}
+
+.window-controls-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+#colorTheme {
+  -webkit-app-region: no-drag;
+  background-color: #e0e0db;
+  border: none;
+  text-align: center;
+  vertical-align: bottom;
+  position: flex;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 14px;
+  line-height: 23px;
+  color: #323237;
+}
+
+.dark-theme #colorTheme {
+  background-color: #202025;
+  color: #e0e0db;
+}
+
+#colorTheme:hover {
+  background-color: grey;
+  color: white;
+}
+
+.drag-button {
+  background-color: #e0e0db;
+  border: none;
+  text-align: center;
+  vertical-align: bottom;
+  position: flex;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+  line-height: 23px;
+  color: #323237;
+}
+
+.dark-theme .drag-button {
+  background-color: #202025;
+  color: #e0e0db;
+}
+
+.minimize-button {
+  -webkit-app-region: no-drag;
+  background-color: #e0e0db;
+  border: none;
+  text-align: center;
+  vertical-align: bottom;
+  position: flex;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+  color: #323237;
+}
+
+.dark-theme .minimize-button {
+  background-color: #202025;
+  color: #e0e0db;
+}
+
+.minimize-button:hover {
+  background-color: grey;
+  color: white;
+}
+
+.close-button {
+  -webkit-app-region: no-drag;
+  background-color: #e0e0db;
+  border: none;
+  text-align: center;
+  vertical-align: bottom;
+  position: flex;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  line-height: 23px;
+  color: #323237;
+}
+
+.dark-theme .close-button {
+  background-color: #202025;
+  color: #e0e0db;
+}
+
+.close-button:hover {
+  background-color: #c90000;
+  color: white;
+}
+
+.title-bar-search {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #e0e0db;
+  width: 175px;
+  height: 22px;
+  border-radius: 10px;
+  top: 105px;
+  left: -105px;
+}
+
+.dark-theme .title-bar-search {
+  background-color: #202025;
+  color: #e0e0db;
+}
+
+#searchNavigator {
+  -webkit-app-region: no-drag;
+  position: absolute;
+  width: 125px;
+  border: none;
+  margin-left: 10px;
+  background-color: #e0e0db;
+  color: #16161b;
+  font-family: 'Segoe UI';
+  letter-spacing: 1px;
+  font-size: 15px;
+  padding-left: 25px;
+  word-wrap: auto;
+  outline: none;
+}
+
+.dark-theme #searchNavigator {
+  background-color: #202025;
+  color: #e0e0db;
+}
+
+.placeholder::-webkit-input-placeholder {
+  color: #525257;
+}
+
+.placeholder:-ms-input-placeholder {
+  color: #525257;
+}
+
+.placeholder::-ms-input-placeholder {
+  color: #525257;
+}
+
+.placeholder::placeholder {
+  color: #525257;
+}
+
+.dark-theme .placeholder::-webkit-input-placeholder {
+  color: #bdbdb8;
+}
+
+.dark-theme .placeholder:-ms-input-placeholder {
+  color: #bdbdb8;
+}
+
+.dark-theme .placeholder::-ms-input-placeholder {
+  color: #bdbdb8;
+}
+
+.dark-theme .placeholder::placeholder {
+  color: #bdbdb8;
+}
+
+#searchSearchIcon {
+  position: relative;
+  left: 10px;
+  top: 3px;
+  font-size: 16px;
+  color: #16161b;
+}
+
+.dark-theme #searchSearchIcon {
+  color: #e0e0db;
+}
+
+#triangleContainer {
+  position: relative;
+  left: 45vw;
+  top: 40vh;
+  background: black;
+  width: 100px;
+  height: 100px;
+}
+
+.centerTriangle {
+  position: absolute;
+  fill: #bdbdb8;
+  bottom: 0;
+  left: -150px;
+  z-index: 1;
+}
+
+.dark-theme .centerTriangle {
+  fill: #202025;
+}
+
+.leftTriangle {
+  position: absolute;
+  fill: #a8a8a3;
+  border-right: 1px solid gray;
+  bottom: 0;
+  right: 110px;
+  z-index: 3;
+}
+
+.dark-theme .leftTriangle {
+  fill: #323237;
+}
+
+.leftTriangle2 {
+  position: absolute;
+  fill: #adada8;
+  border-right: 1px solid gray;
+  bottom: 0;
+  right: 90px;
+  z-index: 2;
+}
+
+.dark-theme .leftTriangle2 {
+  fill: #3d3d42;
+}
+
+.rightTriangle {
+  position: absolute;
+  fill: #a8a8a3;
+  border-left: 1px solid gray;
+  bottom: 0;
+  left: 110px;
+  z-index: 3;
+}
+
+.dark-theme .rightTriangle {
+  fill: #323237;
+}
+
+.rightTriangle2 {
+  position: absolute;
+  fill: #adada8;
+  border-left: 1px solid gray;
+  bottom: 0;
+  left: 90px;
+  z-index: 2;
+}
+
+.dark-theme .rightTriangle2 {
+  fill: #3d3d42;
+}
+
+#shortcutMain {
+  position: absolute;
+  background: transparent;
+  width: 200px;
+  height: 300px;
+  left: -150px;
+  top: -200px;
+}
+
+.shortcutItem {
+  position: inherit;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  background: #bdbdb8;
+  border: 1px solid #3d3d42;
+  text-align: center;
+  vertical-align: bottom;
+  font-size: 26px;
+  line-height: 36px;
+  color: #3d3d42;
+  z-index: 5;
+  outline: none;
+}
+
+.dark-theme .shortcutItem {
+  background: #202025;
+  border: 1px solid #bdbdb8;
+  color: #a8a8a3;
+}
+
+.shortcutItem:hover {
+  width: 44px;
+  height: 44px;
+  line-height: 40px;
+}
+
+.shortcutItem:hover .shortcutControl {
+  display: block;
+}
+
+.shortcutControl {
+  display: none;
+  position: relative;
+  right: 20px;
+  width: 20px;
+  height: 34px;
+}
+
+.removeShortcut {
+  position: absolute;
+  font-size: 20px;
+  line-height: 26px;
+  right: 20px;
+  top: 2px;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  border: 1px solid #202025;
+  color: #e0e0db;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dark-theme .removeShortcut {
+  border: 1px solid #bdbdb8;
+  color: #16161b;
+}
+
+.removeShortcut:hover {
+  background: #a8a8a3;
+}
+
+.dark-theme .removeShortcut:hover {
+  background: #616166;
+}
+
+#shortcutItemCreate {
+  bottom: 0;
+  left: 0;
+}
+
+#shortcutItemCreate:hover {
+  bottom: -2px;
+  left: -2px;
+  background: #bdbdb8;
+  color: #05050a;
+  border: 1px solid #05050a;
+}
+
+.dark-theme #shortcutItemCreate:hover {
+  background: #202025;
+  color: #e0e0db;
+  border: 1px solid #e0e0db;
+}
+
+#createShortcutSettings {
+  display: none;
+  position: absolute;
+  width: 360px;
+  height: 30px;
+  background: #bdbdb8;
+  border-radius: 20px;
+  color: #3d3d42;
+  left: -130px;
+  top: 140px;
+}
+
+.dark-theme #createShortcutSettings {
+  background: #202025;
+  color: #a8a8a3;
+}
+
+#dropdownArrow {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  font-size: 18px;
+  color: #202025;
+}
+
+.dark-theme #dropdownArrow {
+  color: #a8a8a3;
+}
+
+#shortcutDropdownType {
+  width: 85px;
+  height: 30px;
+  border-right: 1px solid #323237;
+  padding-left: 35px;
+  background: #e0e0db;
+  color: #3d3d42;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  font-size: 15px;
+  line-height: 28px;
+  font-family: 'Segoe UI';
+}
+
+.dark-theme #shortcutDropdownType {
+  border-right: 1px solid #e0e0db;
+  background: #16161b;
+  color: #a8a8a3;
+}
+
+#shortcutDropdownType:hover {
+  background-color: #fffffa;
+}
+
+.dark-theme #shortcutDropdownType:hover {
+  background-color: #3d3d42;
+}
+
+#shortcutDropdownType:hover .dropdownContent {
+  display: block;
+}
+
+.dropdownContent {
+  display: none;
+  position: relative;
+  left: -25px;
+  top: 2px;
+  background-color: #ecece7;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dark-theme .dropdownContent {
+  background-color: #202025;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dark-theme .dropdownItem {
+  background: #16161b;
+  color: #a8a8a3;
+}
+
+.dropdownItem:hover {
+  background-color: #e0e0db;
+  border-radius: 5px;
+}
+
+.dark-theme .dropdownItem:hover {
+  background: #202025;
+  color: #a8a8a3;
+}
+
+#shortcutLink {
+  position: absolute;
+  left: 121px;
+  width: 200px;
+  height: 28px;
+  padding-left: 10px;
+  outline: none;
+  border: none;
+  border-right: 1px solid #323237;
+  background-color: #d1d1cc;
+  color: #3d3d42;
+  font-size: 16px;
+  line-height: 28px;
+  font-family: 'Segoe UI';
+}
+
+.dark-theme #shortcutLink {
+  background: #202025;
+  color: #d1d1cc;
+  border-right: 1px solid #e0e0db;
+}
+
+#shortcutLink:hover {
+  background-color: #fffffa;
+}
+
+.dark-theme #shortcutLink:hover {
+  background: #323237;
+}
+
+#shortcutAdd {
+  position: absolute;
+  left: 332px;
+  width: 30px;
+  height: 30px;
+  padding-left: 5px;
+  outline: none;
+  border: none;
+  background-color: #ecece7;
+  color: #3d3d42;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.dark-theme #shortcutAdd {
+  background: #202025;
+  color: #d1d1cc;
+}
+
+#shortcutAdd:hover {
+  background-color: #fffffa;
+}
+
+.dark-theme #shortcutAdd:hover {
+  background: #3d3d42;
+}
+/*# sourceMappingURL=clara.css.map */

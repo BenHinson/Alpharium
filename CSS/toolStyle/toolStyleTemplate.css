@@ -1,0 +1,44 @@
+.boxFrameTemplate {
+  overflow: hidden;
+  margin-top: 14px;
+  border: 1px solid #5a5a5a;
+  width: calc(20vw-8px);
+  border-radius: 20px;
+}
+
+.dark-theme .boxFrameTemplate {
+  border-color: #aaaaaa;
+}
+
+.toolBarTemplate {
+  -ms-flex-line-pack: center;
+      align-content: center;
+  display: -ms-grid;
+  display: grid;
+  float: right;
+  width: 20px;
+  margin-right: 6px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.moveToolTemplate {
+  z-index: 10;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  padding: 4px;
+  margin: 4px 8px 4px 0;
+  border-radius: 20px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  color: #1e1e1e;
+  background: #f0f0f0;
+}
+
+.dark-theme .moveToolTemplate {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+/*# sourceMappingURL=toolStyleTemplate.css.map */

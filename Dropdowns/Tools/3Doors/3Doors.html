@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script href="/JS/tools.js"></script>
+  <script src="../../Dropdowns/Tools/3Doors/3Doors.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../CSS/toolStyle/toolStyleTemplate.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+</head>
+<body>
+  <div class="boxFrameTemplate" style="height: 400px;">
+    <div class="toolBarTemplate" style="height: 400px;">
+      <span onclick="closeThisTool(this)" class="moveToolTemplate" title="Close"><i class="fas fa-times"></i></span>
+      <span onclick="moveTool(this)" class="moveToolTemplate" title="Up"><i class="fas fa-sort-up"></i></span>
+      <span onclick="moveTool(this)" class="moveToolTemplate" title="Down"><i class="fas fa-sort-down"></i></span>
+    </div>
+
+    <div style="width: 100%; height: 100%; font-size: 20px; border: none; border-radius: 20px;">
+      <button style=" background-color: transparent; border: none; width: 340px; height: 100px;"><i onclick="run3Doors()" class="fas fa-play" style="cursor: pointer; font-size: 30px; padding: 10px; background-color: transparent; color:rgb(9, 136, 9);"></i></button>
+      <p style="position: relative; width: 100%; text-align: center; color: black;font-size: 14px; padding: 20px; font-family: 'Segoe UI'; text-overflow: clip;">The Monty Hall Problem<br> Better to switch doors, than stay?<br>Runs: 1,000,000 Times</p>
+      <input id="resultEntry" style="position: relative; margin-top: 60px; width: 100%; color: lightblue; background-color: transparent; font-size: 30px; text-align: center; border: none;">
+    </div>
+  </div>
+</body>
+</html>

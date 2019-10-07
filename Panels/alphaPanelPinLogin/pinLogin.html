@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script> window.$ = window.jQuery = require('jquery');</script>
+  </head>
+  <body>
+
+  <div class="pinPageBackground">
+    <video id="backgroundPinVideo" type="video/mp4" muted="muted" loop autoplay="true"  width="100%" style="z-index: 0; position: absolute;"></video>
+    <h2 id="pinFirstMessage" class="pinMessage"></h2>
+    <h2 id="pinSecondMessage" class="pinMessage"></h2>
+    <input id="pinEntryBox" class="pageEntryBox" type="password" placeholder=">"></input>
+    <button id="pinEntryAccept" class="pageEntryAccept" >ENTER</button>
+  </div>
+
+  </body>
+</html>
+
+<script>
+  let videoPinNum = Math.floor(Math.random() * 6 + 1);
+  document.getElementById("backgroundPinVideo").src = "../../Assets/Natural Beauty/"+videoPinNum+".mp4";
+</script>
+

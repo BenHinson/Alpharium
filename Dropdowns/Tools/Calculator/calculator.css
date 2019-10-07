@@ -1,0 +1,103 @@
+/* --------------------- CALCULATOR ------------------------- */
+
+
+.calcContainer {
+  /* background: #00ccff; */
+  padding-left: 50px;
+  height: 350px;
+  max-width: 18vw;
+  position: absolute;
+  top: 250px;
+}
+
+input[type=textfield] {
+  max-width:16vw;
+  height: 50px;
+  padding: 15px;
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: 100;
+  text-align: right;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #757575;
+  color: white;
+  letter-spacing: 2px;
+}
+input[type=button]{
+  width:70px;
+  height: 55px;
+  font-size: 22px;
+  font-weight: 100;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+input[id=clear]{
+  width:70px;
+  height: 55px;
+  font-size: 22px;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+input[id=btn1]{
+  width:70px;
+  height: 55px;
+  font-size: 22px;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+}
+
+input[class=btn2]{
+  border-left: 1px solid darkgrey;
+  border-right: 1px solid darkgrey;
+}
+input[class=btn3]{
+  border-top: 1px solid darkgrey;
+  border-bottom: 1px solid darkgrey;
+}
+input[class=btn4]{
+  border: 1px solid darkgrey;
+}
+input[class=btn5]{
+  border-left: 1px solid white;
+}
+input[class=btn6]{
+  border-top: 1px solid darkgrey;
+  border-bottom: 1px solid darkgrey;
+  border-left: 1px solid white;
+}
+
+input[id=answ]{
+  width:210px;
+  border: none;
+  border-left: 1px solid darkgrey;
+  border-bottom: 1px solid darkgrey;
+  border-right: 1px solid darkgrey;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  height: 55px;
+}
+
+#answ:hover {
+  background-color: #acacac;
+}
+input:hover {
+  background-color: #474747;
+}
+
+
+ul{
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}

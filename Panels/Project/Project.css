@@ -1,0 +1,77 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+#tableBackground {
+  background: #1c2029;
+  width: 100vw;
+  height: calc(100vh - 52px);
+  overflow-y: scroll;
+}
+
+.container * {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  line-height: 14px;
+  color: #e6e6e6;
+  border-radius: 4px;
+}
+
+.container {
+  text-align: left;
+  padding: 20px 0 20px 0;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.container th h1 {
+  font-weight: bold;
+  font-size: 14px;
+  text-align: left;
+  color: #4e7688;
+}
+
+.container td {
+  font-weight: normal;
+  font-size: 12px;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+          box-shadow: 0 2px 2px -2px #0E1119;
+  overflow: visible;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.container td, .container th {
+  padding: 2% 0 2% 1%;
+}
+
+.container td:nth-child(-n+3) {
+  max-width: 100px;
+  min-width: 80px;
+}
+
+.container tr:nth-child(odd) {
+  background-color: #323C50;
+}
+
+.container tr:nth-child(even) {
+  background-color: #2C3446;
+}
+
+.container tr:hover {
+  background-color: #464A52;
+  -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+          box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.container th {
+  background-color: #1F2739;
+}
+
+@media (max-width: 900px) {
+  .container td:nth-child(-n+2),
+  .container th:nth-child(-n+2) {
+    display: none;
+  }
+  .container {
+    width: 95%;
+  }
+}
+/*# sourceMappingURL=Project.css.map */

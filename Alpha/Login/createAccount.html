@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script> window.$ = window.jQuery = require('jquery');</script>
+    <link href="http://allfont.net/allfont.css?fonts=agency-fb" rel="stylesheet" type="text/css" />
+
+    <script src="login.js"></script>
+    <script src="../../JS/properties.js"></script>
+
+  </head>
+  <body style="overflow: hidden;">
+
+    <script> 
+      $(function(){
+        $("#windowsFrame").load("../WinFrame/windowsFrame.html"); 
+      });
+    </script> 
+    <div id="windowsFrame"></div>
+
+
+    <div id="loginPage">
+      <div id="createAccountPage">
+        <h1 id="companyTitle2">ALPHARIUM</h1>
+        <h1 id="createAccountTitle">CREATE ACCOUNT</h1>
+        <div id="centralContainerBox">
+          <input id="signupUsername" class="signupBox" type="text" name="uid" placeholder="Username" autofocus="true">
+          <input id="signupEmail" class="signupBox" type="text" name="mail" placeholder="Email">
+          <input id="signupPassword" class="signupBox" type="password" name="pwd" placeholder="Password">
+          <input id="signupPasswordConf" class="signupBox" type="password" name="pwd-repeat" placeholder="Confirm Password">
+          <input id="signupPin" class="signupBox" type="password" placeholder="Login Pin">
+          <p id="signupErrorMessage"></p>
+          <button id="signupBtn" onclick="createAccountProperties()">SIGNUP</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,25 @@
+<!-- <link rel="stylesheet" href="../ElectronWinFrame/windowsFrame.css"> -->
+<link rel="stylesheet" href="../AlphaDesk/clara.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link href="http://allfont.net/allfont.css?fonts=agency-fb" rel="stylesheet" type="text/css" />
+<script> window.$ = window.jQuery = require('jquery');</script>
+<script src="../AlphaDesk/colorTheme.js"></script>
+
+<div class="title-bar-search">
+  <input type="text" id="searchNavigator" class="placeholder" placeholder="Search..." autofocus="true" tabindex="1"><i id="searchSearchIcon" class="fas fa-search"></i></input>
+</div>
+
+<div class="title-bar">
+    <div class="window-controls-container">
+      <div id="colorTheme" onclick="changeTheme()"><i class="fas fa-adjust"></i></div>
+      <div id="drag-button" class="drag-button"><i class="fas fa-arrows-alt"></i></div>
+
+      <div id="minimize-button" class="minimize-button"><i class="far fa-window-minimize"></i></div>
+      <div id="close-button" class="close-button" ><i class="fas fa-times"></i></div>
+    </div>
+</div>
+
+
+<script>
+    require('../AlphaDesk/renderer.js')
+</script>

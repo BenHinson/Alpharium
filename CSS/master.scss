@@ -1,0 +1,1371 @@
+$darkTheme: (
+  dark0: rgb(5, 5, 5),
+  dark1: rgb(22, 22, 22),
+  dark2: rgb(30, 30, 30),
+  dark3: rgb(40, 40, 40),
+  dark4: rgb(50, 50, 50),
+  dark5: rgb(70, 70, 70),
+  dark6: rgb(90, 90, 90),
+  dark7: rgb(110, 110, 110),
+
+  darkdropdown: rgb(27, 27, 27)
+);
+
+$lightTheme: (
+  light1: rgb(250, 250, 250),
+  light2: rgb(240, 240, 240),
+  light3: rgb(230, 230, 230),
+  light4: rgb(220, 220, 220),
+  light5: rgb(190, 190, 190),
+  light6: rgb(180, 180, 180),
+  light7: rgb(170, 170, 170),
+  light8: rgb(150, 150, 150)
+);
+
+$colorTheme: (
+  colorBlue: rgb(27, 67, 100),
+  colorYellow: rgba(214, 211, 3, 0.637),
+  colorLightBlue: rgb(64, 130, 184),
+  colorHover: rgb(90, 110, 120),
+  colorError: rgb(255, 88, 88),
+  colorGreen: rgb(17, 94, 17),
+);
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- W I N D O W S   F R A M E      windowstyle
+
+html {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#windowsFrame {
+  background-color: map-get($lightTheme, light2);
+  z-index: 999;
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark1);
+  }
+}
+
+.title-bar {
+  -webkit-app-region: drag;
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 24px;
+}
+#windowTitleUsername {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  user-select: none;
+  -webkit-app-region: drag;
+  margin: 1px 0 1px 10px;
+  max-width: 100px;
+
+  text-overflow: ellipsis;
+  white-space: normal;
+
+  font-weight: 100;
+  letter-spacing: 1px;
+  font-size: 17px;
+  font-family: 'Agency FB', arial;
+
+  color: map-get($darkTheme, dark1);
+
+  .dark-theme & {
+    color: map-get($lightTheme, light2);
+  }
+}
+.controlsFade:hover {
+  transition: all 0.5s;
+}
+.window-controls-container {
+  display: flex;
+  position: absolute;
+  justify-content: flex-end;
+  align-items: center;
+  right: 0;
+  cursor: pointer;
+}
+#colorTheme {
+  -webkit-app-region: no-drag;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  font-size: 18;
+  position: flex;
+  vertical-align: middle;
+  right: 0;
+  padding-right: 20px;
+  cursor: pointer;
+  color: map-get($darkTheme, dark7);
+  .dark-theme & {
+    color: map-get($lightTheme, light6);
+  }
+}
+#colorTheme:hover {
+  color: map-get($darkTheme, dark2);
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#claraAccess {
+  -webkit-app-region: no-drag;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  font-size: 18;
+  position: flex;
+  vertical-align: middle;
+  right: 0;
+  padding-right: 20px;
+  cursor: pointer;
+  color: map-get($darkTheme, dark7);
+  .dark-theme & {
+    color: map-get($lightTheme, light6);
+  }
+}
+#claraAccess:hover {
+  color: map-get($darkTheme, dark2);
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
+.minimize-button {
+  -webkit-app-region: no-drag;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  position: flex;
+  right: 0;
+  width: 34px;
+  height: 24px;
+  padding-top: 1px;
+  color: map-get($darkTheme, dark1);
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+
+.minimize-button:hover {
+  background-color: map-get($lightTheme, light4);
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark6);
+  }
+}
+
+.min-max-button {
+  -webkit-app-region: no-drag;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  position: flex;
+  right: 0;
+  width: 34px;
+  height: 24px;
+  padding-top: 1px;
+  color: map-get($darkTheme, dark1);
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+
+.min-max-button:hover {
+  background-color: map-get($lightTheme, light4);
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark6);
+  }
+}
+
+.close-button {
+  -webkit-app-region: no-drag;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  position: flex;
+  right: 0;
+  width: 34px;
+  height: 24px;
+  padding-top: 1px;
+  color: map-get($darkTheme, dark1);
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+
+.close-button:hover {
+  background-color: red;
+}
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- T O O L T I P S      tooltips
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltipText {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+  width: 120px;
+  height: 24px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 0;
+  z-index: 999;
+  // bottom: 170%;
+  bottom: 31px;
+  left: 50%;
+  margin-left: -60px;
+  color: white;
+  background-color: map-get($darkTheme, dark3);
+  .dark-theme & {
+    color: black;
+    background-color: map-get($lightTheme, light4);
+  }
+}
+
+.tooltip .tooltipText::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: map-get($darkTheme, dark3) transparent transparent transparent;
+  .dark-theme & {
+    border-color: map-get($lightTheme, light4) transparent transparent transparent;
+  }
+}
+.tooltip:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
+}
+.tooltipLeft .tooltipText {
+  margin-left: -105px;
+  bottom: 31px;
+}
+.tooltipLeft .tooltipText::after {
+  left: 13%;
+}
+.tooltipRight .tooltipText {
+  margin-left: -100px;
+  bottom: 37px;
+}
+.tooltipRight .tooltipText::after {
+  left: 83%;
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- B U T T O N   S T Y L E S   buttonstyle
+
+#panelLocationChild {
+  position: fixed;
+}
+
+.homeShortcutCircle {
+  position: relative;
+  width: 50px;
+  height: 28px;
+  margin: 0px 0px 1px 0px;
+  color: map-get($darkTheme, dark1);
+  text-align: center;
+  font-size: 16px;
+  padding-top: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 1;
+  .dark-theme & {
+    color: map-get($lightTheme, light4);
+  }
+}
+.homeShortcutCircle:hover {
+  transition: all 0.3s;
+  background: map-get($lightTheme, light6);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- M A I N   S T Y L E S   mainpage
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.placeholder::placeholder {
+  color: rgb(85, 85, 85);
+  // color: map-get($lightTheme, light5);
+  font-size: 14px;
+}
+
+.homepageBox {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  grid-template-columns: repeat( 100, auto);
+  max-width: 100vw;
+  height: calc(100vh - 52px);
+  scroll-snap-type: x proximity;
+  z-index: 1;
+
+  background:transparent url(../assets/background/crosshatchBackgroundLighter.png) top center;
+
+  .dark-theme & {
+    background:transparent url(../assets/background/crosshatchBackgroundDarker.png) top center;
+  }
+}
+.homepageBox::-webkit-scrollbar-track {
+  background: transparent;
+}
+.homepageBox::-webkit-scrollbar {
+  height: 14px;
+}
+.homepageBox::-webkit-scrollbar-thumb {
+  background-color: #999999;
+  border-radius: 5px;
+  border-bottom: 3px solid map-get($lightTheme, light5);
+  
+  .dark-theme & {
+    border-bottom-color: map-get($darkTheme, dark2);
+  }
+}
+.homepageBox::-webkit-scrollbar-thumb:hover {
+  background-color: #666666;
+}
+
+
+
+
+.centralContentBoxFullscreenMaster {
+  position: absolute;
+  width: 100vw;
+  height:  calc(100vh - 52px);
+}
+
+
+
+
+.box {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  width: 30vw;
+  min-width: 350px;
+  padding: 0 14px 0 14px;
+  scroll-behavior: smooth;
+  z-index: 1;
+  height: 100%;
+  overflow-y: scroll;
+  box-orient: vertical;
+}
+.box::-webkit-scrollbar-track {background: transparent;}
+.box::-webkit-scrollbar {width: 8px;}
+.box::-webkit-scrollbar-thumb {background-color: map-get($lightTheme, light8);border-radius: 5px;.dark-theme & {background-color: map-get($darkTheme, dark6)}}
+.box::-webkit-scrollbar-thumb:hover {background-color: #808080;}
+
+
+.boxCenter {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 60vw;
+  // max-width: calc(100vw - (30vw * 2));
+  // min-width: calc(100vw - 700px);
+  z-index: 2;
+}
+
+::placeholder {
+  // color: rgb(206, 206, 206);
+  color: red;
+}
+
+.dropdownMain {
+  height: 20px;
+  position: relative;
+  display: flex;
+  user-select: none;
+  -webkit-app-region: no-drag;
+}
+.dropdownButton {
+  background: transparent;
+  border: none;
+  padding-left: 6px;
+  cursor: pointer;
+}
+
+.quickAccessInfo {
+  vertical-align: text-bottom;
+  font-size: 14px;
+  font-family: 'Segoe UI';
+  letter-spacing: 0.5px;
+  color: map-get($darkTheme, dark1);
+  background-color: transparent;
+  user-select: none;
+  overflow: hidden;
+  font-weight: 100;
+  padding-left: 5px;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+    font-weight: 100;
+  }
+}
+.dropdownIcon {
+  height: 21px;
+  width: 20px;
+  font-size: 20px;
+  margin: 2px 0 0 10px;
+}
+@media (max-width: 600px) {
+  .dropdownMain .quickAccessInfo { display: none; }
+}
+
+
+
+#bottomnav {
+  background-color: map-get($lightTheme, light2);
+  overflow: hidden; 
+  width: 100vw;
+  height: 28px;
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark4);
+  }
+}
+
+#bottomuni {
+  z-index: 100;
+  left: 20vw;
+  width: 60vw;
+  height: 28px;
+  background-color: map-get($lightTheme, light3);
+  display: flex;
+  justify-content: left;
+  bottom: 0;
+  margin: 0 auto;
+  position: absolute;
+  border: 1px solid transparent;
+  color: map-get($colorTheme, colorError);
+  font-family: 'Arial';
+  font-size: 14px;
+  overflow: hidden;
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark5);
+  }
+}
+
+#logoutBtn {
+  position: fixed;
+  left: 10px;
+  bottom: 3px;
+  z-index: 15;
+  width: 20px;
+  height: 20px;
+  color: map-get($darkTheme, dark1);
+  font-size: 18px;
+  background-color: transparent;
+  border: 0 solid transparent;
+  cursor: pointer;
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+#logoutBtn:hover {
+  color: map-get($colorTheme, colorHover);
+}
+
+
+#closeCollumnContent {
+  position: fixed;
+  left: calc((100vw / 2) - 30vw - 28px);
+  bottom: 3px;
+  z-index: 15;
+  width: 20px;
+  height: 20px;
+  color: map-get($darkTheme, dark1);
+  font-size: 18px;
+  background-color: transparent;
+  border: 0 solid transparent;
+  cursor: pointer;
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+#closeCollumnContent:hover {
+  color: map-get($colorTheme, colorHover);
+}
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- D R O P D O W N S   S T Y L I N G    dropdownstyle
+
+
+.closeBoxBtn {
+  // position: absolute;       ARCHIVE 26.06
+  position: relative;            
+  top: 0;
+  right: 0;
+  height: 25px;
+  width: 25px;
+  background-color: transparent;
+  border: none;
+  color: map-get($darkTheme, dark3);
+  font-size: 18px;
+
+  z-index: 999;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+
+#objectDropdown {
+  width: 200px;
+  height: 40px;
+  position: absolute;
+  left: 15px;
+  z-index: 80;
+  border: none;
+  top: 24px;
+  background: transparent;
+  border-right: #c4c4c4;
+  border-left: #c4c4c4;
+}
+// ---------------------------------------------------------------------
+.objectSearchColumnSelect {
+  position: relative;
+  float: right;
+  z-index: 101;
+  margin: 9px;
+  width: 40px;
+  height: 20px;
+  background: transparent;
+}
+.objectSearchColumnSelect input {opacity: 0;}
+.sideSelectorSlider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 2px;
+  background: map-get($lightTheme, light7);
+  .dark-theme & {
+   background: map-get($darkTheme, dark5);
+  }
+}
+.sideSelectorSlider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 8px;
+  left: 2px;
+  bottom: 2px;
+  border-radius: 2px;
+  background-color: rgb(236, 236, 236);
+  transition: .2s;
+}
+#objectSearchColumnCheckbox:checked + .sideSelectorSlider:before {transform: translateX(28px);}
+// ---------------------------------------------------------------------------------------
+
+#objectSearch {
+  width: 200px;
+  height: 40px;
+  position: absolute;
+  left: 0px;
+  z-index: 100;
+  background-color: map-get($lightTheme, light3);
+  color: map-get($darkTheme, dark1);
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+
+  padding: 12px 60px 12px 40px;
+  background-image: url('../assets/searchicon.png');
+  background-size: 16px;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light2);
+    background-color: map-get($darkTheme, darkdropdown);
+  }
+}
+
+#objectSearch::placeholder {
+  color: map-get($darkTheme, dark7);
+  .dark-theme & {
+    color: map-get($lightTheme, light2);
+  }
+}
+
+#dropItemsOL {
+  position: absolute;
+  list-style-type: none;
+  padding: 0;
+  left: 15px;
+  margin-top: 64px;
+  width: 200px;
+  background-color: map-get($lightTheme, light3);
+  color: map-get($darkTheme, dark1);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 100;
+  .dark-theme & {
+    color: map-get($lightTheme, light2);
+    background-color: map-get($darkTheme, darkdropdown);
+  }
+}
+
+#dropItemsA{
+  width: 200px;
+  height: 23px;
+  padding: 10px 20px 24px 40px;
+  text-decoration: none;
+  color: map-get($darkTheme, dark4);
+  display: block;
+  text-align: left;
+  position: relative;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  cursor: pointer;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+
+#dropItemsOL li a:hover:not(.header) {
+  background-color: map-get($lightTheme, light7);
+  text-decoration: underline;
+  color: map-get($darkTheme, dark0)
+}
+
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- F I L E   P A G E      alphadrivestyle
+
+#AlphaDrive {
+  position: fixed;
+  right: 0;
+  width: 50px;
+  height: 28px;
+  color: map-get($darkTheme, dark1);
+  text-align: center;
+  font-size: 18px;
+  padding-top: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+#AlphaDrive:hover {
+  transition: all 0.3s;
+  background: map-get($lightTheme, light6);
+}
+
+
+//////////////////////////////// RIGHTCLICK rightclick /////////////////////////////////
+
+
+
+#rightClickContainer {
+  z-index: 999;
+  display:none;
+  position: fixed;
+  width:180px;
+  background:map-get($lightTheme, light2);
+  border: 1px solid map-get($darkTheme, dark7);
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  .dark-theme & {
+    border: 1px solid map-get($lightTheme, light8);
+    background: map-get($darkTheme, dark2);
+    color: map-get($lightTheme, light1);
+  }
+  li {
+    font-size: 13px;
+    font-family: 'Segoe UI';
+    list-style: none;
+    padding: 4px 10px 4px 10px;
+  }
+}
+#rightClickContainer li:hover {
+  border-radius: 4px;
+  background: #c4c4c4;
+  .dark-theme & {
+    background: map-get($colorTheme, colorBlue);
+  }
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- L O G I N   P A G E      loginpage
+
+
+
+#loginPage {
+  height: calc(100vh - 24px);
+  width: 100vw;
+  background-color: map-get($lightTheme, light5);
+    // background-color: map-get($darkTheme, dark0);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark0);
+  }
+}
+
+#loginContainer {
+  position: relative;
+  top: calc((100vh / 2) - 105px);
+  width: 130px;
+  border-color: transparent;
+  height: 120px;
+  background-color: transparent;
+}
+
+#loginLeft {
+  position: absolute;
+  left: -48px;
+  width: 82px;
+  height: 120px;
+  border: 1px solid map-get($darkTheme, dark3);
+  // border: 1px solid map-get($lightTheme, light1);
+  border-right: none;
+  background-color: transparent;
+  transform: perspective(10px) rotateY(-6deg);
+
+  .dark-theme & {
+    border-color:  map-get($lightTheme, light3)
+  }
+}
+
+#loginRight {
+  position: absolute;
+  right: -48px;
+  width: 82px;
+  height: 120px;
+  border: 1px solid map-get($darkTheme, dark3);
+  // border: 1px solid map-get($lightTheme, light1);
+  border-left: none;
+  background-color: transparent;
+  transform: perspective(10px) rotateY(6deg);
+
+  .dark-theme & {
+    border-color:  map-get($lightTheme, light3)
+  }
+}
+
+#companyTitle {
+  font-family: 'Agency FB', arial;
+  letter-spacing: 3px;
+  top: calc((100vh / 2) - 200px);
+  position: absolute;
+  color: map-get($darkTheme, dark0);
+  // color: map-get($lightTheme, light1);
+  text-align: center;
+  font-size: 20px;
+  visibility: hidden;
+  opacity: 0;
+  font-weight: 100;
+  overflow: hidden;
+  user-select: none;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#loginHelp {
+  font-family: Arial, Helvetica, sans-serif;
+  top: 90vh;
+  position: absolute;
+  color: map-get($darkTheme, dark0);
+  // color: map-get($lightTheme, light1);
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  visibility: hidden;
+  background-color: transparent;
+  border: none;
+  opacity: 0;
+  font-weight: 100;
+  cursor: pointer;
+  overflow: hidden;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#pressanyKey {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 85vh;
+  position: absolute;
+  color: map-get($darkTheme, dark0);
+  // color: map-get($lightTheme, light1);
+  text-align: center;
+  font-size: 12px;
+  visibility: visible;
+  border: none;
+  opacity: 0;
+  font-weight: 100;
+  user-select: none;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
+
+#loginHelp:hover {
+  color: map-get($darkTheme, dark6);
+  // color: map-get($lightTheme, light2);
+
+  .dark-theme & {
+    color: map-get($lightTheme, light2);
+  }
+}
+#loginHelp:focus {
+  color: map-get($darkTheme, dark6);
+  // color: map-get($lightTheme, light2);
+
+  .dark-theme & {
+    color: map-get($lightTheme, light2);
+  }
+}
+
+#usernameLogin {
+  margin-top: 20px;
+  margin-left: 150px;
+  position: absolute;
+  width: 200px;
+  height: 25px;
+  background: transparent;
+  color: map-get($darkTheme, dark0);
+  border: 1px solid map-get($darkTheme, dark3);
+  // color: map-get($lightTheme, light1);
+  // border: 1px solid map-get($lightTheme, light2);
+  text-align: center;
+  font-size: 14px;
+  border-radius: 10px; 
+  visibility: hidden;
+  opacity: 0;
+  font-weight: 100;
+  letter-spacing: 1px;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+    border: 1px solid map-get($lightTheme, light2);
+  }
+}
+
+#passwordLogin {
+  margin-top: 75px;
+  margin-left: 150px;
+  position: absolute;
+  width: 200px;
+  height: 25px;
+  background: transparent;
+  color: map-get($darkTheme, dark0);
+  border: 1px solid map-get($darkTheme, dark3);
+  // color: map-get($lightTheme, light1);
+  // border: 1px solid map-get($lightTheme, light2);
+  text-align: center;
+  font-size: 14px;
+  border-radius: 10px; 
+  visibility: hidden;
+  opacity: 0;
+  font-weight: 100;
+  letter-spacing: 1px;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+    border: 1px solid map-get($lightTheme, light2);
+  }
+}
+
+#loginErrorMessage {
+  font-family: 'Segoe UI';
+  letter-spacing: 2px;
+  top: calc((100vh / 2) + 90px);
+  width: 240px;
+  position: absolute;
+  color: rgb(194, 37, 37);
+  text-align: center;
+  font-size: 14px;
+}
+
+#loginBtn {
+  font-family: 'Agency FB', arial;
+  letter-spacing: 2px;
+  top: calc((100vh / 2) + 140px);
+  width: 80px;
+  height: 40px;
+  position: absolute;
+  color: map-get($darkTheme, dark0);
+  border: 1px solid map-get($darkTheme, dark4);
+  // color: map-get($lightTheme, light1);
+  // border: 1px solid map-get($lightTheme, light3);
+  text-align: center;
+  font-size: 14px;
+  visibility: hidden;
+  background-color: transparent;
+  border-radius: 5px;
+  opacity: 0;
+  cursor: pointer;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+    border-color: map-get($lightTheme, light3);
+  }
+}
+#loginBtn:focus {
+  background-color: map-get($lightTheme, light7);
+  color: map-get($darkTheme, dark3);
+    // color: map-get($lightTheme, light1);
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark4);
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#loginBtn:hover {
+  background-color: map-get($lightTheme, light7);
+  color: map-get($darkTheme, dark3);
+    // color: map-get($lightTheme, light1);
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark4);
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#welcomeUser {
+  font-family: 'Agency FB', arial;
+  letter-spacing: 3px;
+  font-weight: 100;
+  color: map-get($darkTheme, dark0);
+  // color: map-get($lightTheme, light1);
+  font-size: 16px;
+  z-index: 5;
+  position: absolute;
+  margin-top: 40vh;
+  visibility: hidden;
+  opacity: 0;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#welcomeUsername {
+  font-family: 'Agency FB', arial;
+  letter-spacing: 1px;
+  font-weight: 100;
+  text-align: center;
+  color: map-get($darkTheme, dark0);
+  // color: map-get($lightTheme, light1);
+  font-size: 16px;
+  z-index: 5;
+  position: absolute;
+  margin-top: 50vh;
+  visibility: hidden;
+  opacity: 0;
+  user-select: none;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+.loginHelpOption {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  background-color: transparent;
+  border: none;
+  color: map-get($darkTheme, dark0);
+    // color: map-get($lightTheme, light1);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  top: 84vh;
+  cursor: pointer;
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+.loginHelpOption:focus,.loginHelpOption:hover {
+  color: map-get($darkTheme, dark6);
+    // color: map-get($lightTheme, light2);
+  text-decoration: underline;
+  .dark-theme & {
+    color: map-get($lightTheme, light2);
+  }
+}
+#createAccount {left: 30vw;}
+#addHelp {right: 30vw;}
+
+
+/* SIGNUP PAGE ---------------------------------------- */
+
+#createAccountPage {
+  height: calc(100vh - 24px);
+  width: 100vw;
+  background-color: map-get($lightTheme, light3);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark0);
+  }
+}
+
+#companyTitle2 {
+  font-family: 'Agency FB', arial;
+  letter-spacing: 3px;
+  top: calc((100vh / 2) - 220px);
+  position: absolute;
+  color: map-get($darkTheme, dark0);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 100;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#createAccountTitle {
+  font-family: 'Agency FB', arial;
+  letter-spacing: 2px;
+  top: calc((100vh / 2) - 180px);
+  position: absolute;
+  color: map-get($darkTheme, dark0);
+  text-align: center;
+  font-size: 18px;
+  font-weight: 100;
+  overflow: hidden;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
+.signupBox {
+  position: absolute;
+  left: calc((100vw - 200px) / 2);
+  width: 200px;
+  height: 25px;
+  background: transparent;
+  color: map-get($darkTheme, dark0);
+  text-align: center;
+  font-size: 14px;
+  border: 1px solid map-get($darkTheme, dark3);
+  border-radius: 10px; 
+  font-weight: 100;
+
+  .dark-theme & {
+    border-color: map-get($lightTheme, light3);
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#signupUsername {
+  top: calc((100vh / 2) - 120px);
+}
+#signupEmail {
+  top: calc((100vh / 2) - 60px);
+}
+#signupPassword {
+  top: calc((100vh / 2) - 0vh);
+}
+#signupPasswordConf {
+  top: calc((100vh / 2) + 60px);
+}
+#signupPin {
+  top: calc((100vh / 2) + 120px);
+}
+
+#signupErrorMessage {
+  font-family: 'Segoe UI';
+  letter-spacing: 2px;
+  top: calc((100vh / 2) + 160px);
+  width: 200px;
+  left: calc((100vw - 200px) / 2);
+  position: absolute;
+  color: rgb(194, 37, 37);
+  text-align: center;
+  font-size: 14px;
+}
+
+#signupBtn {
+  font-family: 'Agency FB', arial;
+  letter-spacing: 2px;
+  top: calc((100vh / 2) + 200px);
+  left: calc((100vw - 100px) / 2);
+  width: 100px;
+  height: 40px;
+  position: absolute;
+  color: map-get($darkTheme, dark0);
+  text-align: center;
+  font-size: 14px;
+  background-color: transparent;
+  border: 1px solid map-get($darkTheme, dark3);
+  border-radius: 5px;
+  cursor: pointer;
+
+  .dark-theme & {
+    border-color: map-get($lightTheme, light3);
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#signupBtn:hover {
+  background-color: map-get($lightTheme, light7);
+  color: map-get($darkTheme, dark3);
+
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark4);
+    color: map-get($lightTheme, light1);
+  }
+}
+
+::placeholder {
+  color: map-get($darkTheme, dark6);
+  // color: map-get($lightTheme, light4);
+
+  .dark-theme & {
+    color: map-get($lightTheme, light4);
+  }
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------      pinpage
+
+.pageEntryBox {
+  position: absolute;
+  left: calc(50vw - 200px);
+  top: calc(50vh - 80px);
+  background-color: transparent;
+  color: map-get($darkTheme, dark2);
+  border: 1px solid map-get($darkTheme, dark4);
+  resize: none;
+  height: 40px;
+  width: 300px;
+  padding: 20px;
+  padding-left: 18px;
+
+  font-family: 'Segoe UI';
+  letter-spacing: 1px;
+  font-size: 14px;
+  line-height: 1px;
+
+  .dark-theme & {
+    color:  map-get($lightTheme, light2);
+    border-color: map-get($lightTheme, light6);
+  }
+}
+.pageEntryBox:hover {
+  border-color: black;
+  .dark-theme & {
+    border-color: white;
+  }
+}
+
+.pageEntryAccept {
+  position: absolute;
+  left: calc(50vw + 100px);
+  top: calc(50vh - 80px);
+  background-color: transparent;
+  color: map-get($darkTheme, dark2);
+  border: 1px solid map-get($darkTheme, dark4);
+  height: 42px;
+  width: 100px;
+  margin-left: 2vw;
+  padding: 10px;
+  cursor: pointer;
+
+  font-family: 'Segoe UI';
+  letter-spacing: 1px;
+  font-size: 12px;
+  line-height: 1px;
+  
+  .dark-theme & {
+    color: map-get($lightTheme, light2);
+    border-color:map-get($lightTheme, light6);
+  }
+}
+.pageEntryAccept:hover {
+  border-color: black;
+  color: black;
+  background-color: #a0a0a0be;
+  .dark-theme & {
+    border-color: white;
+    color: white;
+    background-color: #58585862;
+  }
+}
+
+.pinPageBackground {
+  background-color: map-get($lightTheme, light5);
+  width: 100vw;
+  height: calc(100vh - 24px);
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark0);
+  }
+}
+#pinEntryBox {
+  top: calc((110vh / 2) - 80px);
+}
+#pinEntryAccept {
+  top: calc((110vh / 2) - 80px);
+}
+.pinMessage {
+  width: 100vw;
+  position: absolute;
+  top: calc((110vh / 2) - 220px);
+  text-align: center;
+  font-family: 'Segoe UI';
+  letter-spacing: 1px;
+  font-weight: 100;
+  font-size: 16px;
+  user-select: none;
+  color: map-get($darkTheme, dark0);
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+#pinSecondMessage {
+  top: 85vh;
+  font-size: 12px;
+  cursor: pointer;
+}
+#pinSecondMessage:hover {
+  text-decoration: underline;
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- W A R N I N G   B O X      warningboxstyle
+
+#panelCodeWarning {
+  height: 25px;
+  width: 35px;
+  margin: 5px;
+  border-radius: 50px;
+  padding: 1px;
+  background-color: transparent;
+  position: absolute;
+  right: 50px;
+  bottom: 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#warningBackground {
+  width: 100vw;
+  height: calc(100vh - 52px);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#warningBoxContainer {
+  position: fixed;
+  top: calc(50vh - 24px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 150px;
+  background-color: map-get($lightTheme, light3);
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark2);
+  }
+}
+#warningBoxTitle {
+  display: flex;
+  top: 0;
+  width: 100%;
+  height: 25%;
+  color: black;
+  font-size: 20px;
+  padding: 4px;
+  padding-left: 20px;
+  font-family: 'Segoe UI';
+  border-bottom: 1px solid map-get($darkTheme, dark7);
+  background-color: map-get($lightTheme, light3);
+  .dark-theme & {
+    color: white;
+    background-color: map-get($darkTheme, dark2);
+    border-bottom: 1px solid map-get($lightTheme, light7);
+  }
+}
+#warningBoxClose {
+  position: absolute;
+  right: 14px;
+  top: 7%;
+  cursor: pointer;
+  color: black;
+  .dark-theme & {
+    color: white;
+  }
+}
+#warningBoxMessage {
+  font-size: 16px;
+  padding: 25px;
+  font-family: 'Segoe UI';
+  color: black;
+  height: 50%;
+  width: 100%;
+  background-color: map-get($lightTheme, light4);
+  .dark-theme & {
+    color: white;
+    background-color: map-get($darkTheme, dark3);
+  }
+}
+.warningAcceptDecline {
+  position: relative;
+  float: right;
+  width: 25%;
+  height: 16%;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 6px;
+  padding: 1px;
+  text-align: center;
+  font-family: 'Segoe UI';
+  cursor: pointer;
+  background: rgb(140, 140, 140);
+  .dark-theme & {
+    background: rgb(200, 200, 200);
+  }
+}
+.warningAcceptDecline:hover {
+  opacity: 0.7;
+}
+#warningBoxDecline {
+  background: rgb(200, 200, 200);
+  .dark-theme & {
+    background: rgb(140, 140, 140);
+  }
+}

@@ -1,0 +1,61 @@
+#fileTitle {
+  position: absolute;
+  top: 0;
+  height: 30px;
+  width: 100vw;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 16px;
+  padding: 5px 0 0 40px;
+  outline: none;
+  border: none;
+  resize: none;
+  color: #1e1e1e;
+  background-color: #bebebe;
+}
+
+.dark-theme #fileTitle {
+  color: #e6e6e6;
+  background-color: #323232;
+}
+
+#sideMenu {
+  position: absolute;
+  left: 0;
+  top: 30px;
+  height: calc(100vh - 82px);
+  width: 30px;
+  border-right: 1px solid #585858;
+  background-color: #969696;
+}
+
+.dark-theme #sideMenu {
+  background-color: #1e1e1e;
+}
+
+#centralNotePad {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 16px;
+  color: #161616;
+  background-color: #aaaaaa;
+  width: calc(100vw - 30px);
+  height: calc(100vh - 82px);
+  padding: 15px;
+  word-wrap: break-word;
+  resize: none;
+  border: none;
+  line-height: 22px;
+  outline: none;
+}
+
+.dark-theme #centralNotePad {
+  background-color: #161616;
+  color: #fafafa;
+}
+/*# sourceMappingURL=notesDesign.css.map */

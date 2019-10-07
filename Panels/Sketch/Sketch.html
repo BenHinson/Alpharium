@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sketch</title>
+    <link rel="stylesheet" href="../../Panels/Sketch/draw.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="../../Panels/Sketch/Sketch.js"></script>
+    <script src="../../JS/windowManager.js"></script>
+    <script src="../../JS/rightclick.js"></script>
+
+
+</head>
+<body>
+  <div id="overflowBackground">
+    <div id="drawToolBar" style="position: fixed">
+        <span><button class="toolBtn" id="clearBtn"><i class="fas fa-chalkboard"></i></button></span>
+        <span><button class="toolBtn" id="eraserBtn"><i class="fas fa-eraser"></i></button></span>
+        <span><button class="toolBtn" id="toolBtnBlack" style="background: black"></button></span>
+        <span><button class="toolBtn" id="toolBtnWhite" style="background: white"></button></span>
+        <span><button class="toolBtn" id="toolBtnBlue" style="background: blue"></button></span>
+        <span><button class="toolBtn" id="toolBtnRed" style="background: red"></button></span>
+        <span><button class="toolBtn" id="toolBtnGreen" style="background: green"></button></span>
+    </div>
+
+    <canvas id="canvas" style="position: fixed;background-color: white;"></canvas>
+  </div>
+</body>
+</html>

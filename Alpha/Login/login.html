@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Alpha Drive</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <link href="http://allfont.net/allfont.css?fonts=agency-fb" rel="stylesheet" type="text/css" />
+
+    <script> window.$ = window.jQuery = require('jquery');</script>
+    <script src="login.js"></script>
+    <script src="../../JS/properties.js"></script>
+
+  </head>
+  <body style="overflow: hidden;">
+
+  <script> 
+    $(function(){
+      $("#windowsFrame").load("../WinFrame/windowsFrame.html"); 
+    });
+  </script> 
+  <div id="windowsFrame"></div>
+
+  <div id="containerLogin">
+    <div id="loginPage"> 
+      <!-- <video id="backgroundLoginVideo" type="video/mp4" muted="muted" loop autoplay="true" width="100%" style="z-index: 0; position: absolute;"></video> -->
+      <h2 id="welcomeUser">WELCOME</h2>
+      <h2 id="welcomeUsername"></h2>
+      <h2 id="companyTitle">ALPHARIUM</h2>
+      <h2 id="pressanyKey">CLICK ANYWHERE</h2>
+      <button id="loginHelp" onclick="showHelp()" tabindex="4">HELP</button>
+      <button id="createAccount" class="loginHelpOption" onclick="createAccount()">CREATE ACCOUNT</button>
+      <button id="forgotPw" class="loginHelpOption">FORGOT PASSWORD</button>
+      <button id="addHelp" class="loginHelpOption">ADDITIONAL HELP</button>
+      <p id="loginErrorMessage"></p>
+      <button id="loginBtn"tabindex="3">LOGIN</button>
+      <div id="loginContainer">
+          <span>
+              <div id="loginLeft"> </div>
+          </span>
+          <form>
+            <input type="text" id="usernameLogin" class="placeholder" placeholder="Username" autofocus="true" tabindex="1"></input>
+            <input type="password" id="passwordLogin" class="placeholder" placeholder="Password" tabindex="2"></input>
+          </form>
+          <span>
+              <div id="loginRight"> </div>
+          </span>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
+
+<script>
+  // let videoLoginNum = Math.floor(Math.random() * 6 + 1);
+  // document.getElementById("backgroundLoginVideo").src = "../../Assets/Natural Beauty/"+videoLoginNum+".mp4";
+</script>

@@ -1,0 +1,90 @@
+$darkTheme: (
+  dark0: rgb(5, 5, 5),
+  dark1: rgb(22, 22, 22),
+  dark2: rgb(30, 30, 30),
+  dark3: rgb(40, 40, 40),
+  dark4: rgb(50, 50, 50),
+  dark5: rgb(70, 70, 70),
+  dark6: rgb(90, 90, 90),
+  dark7: rgb(110, 110, 110),
+
+  darkdropdown: rgb(27, 27, 27)
+);
+
+$lightTheme: (
+  light1: rgb(250, 250, 250),
+  light2: rgb(240, 240, 240),
+  light3: rgb(230, 230, 230),
+  light4: rgb(220, 220, 220),
+  light5: rgb(190, 190, 190),
+  light6: rgb(180, 180, 180),
+  light7: rgb(170, 170, 170),
+  light8: rgb(150, 150, 150)
+);
+
+$colorTheme: (
+  colorBlue: rgb(27, 67, 100),
+  colorYellow: rgba(214, 211, 3, 0.637),
+  colorLightBlue: rgb(64, 130, 184),
+  colorHover: rgb(70, 154, 194),
+);
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- T E X T E D I T   P A G E      texteditorstyle
+
+#fileTitle {
+  position: absolute;
+  top: 0;
+  height: 30px;
+  width: 100vw;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 16px;
+  padding: 5px 0 0 40px;
+  outline: none;
+  border: none;
+  resize: none;
+  color: map-get($darkTheme, dark2);
+  background-color: map-get($lightTheme, light5);
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+    background-color: map-get($darkTheme, dark4);
+  }
+}
+
+#sideMenu {
+  position: absolute;
+  left: 0;
+  top: 30px;
+  height: calc(100vh - 82px);
+  width: 30px;
+  border-right: 1px solid rgb(88, 88, 88);
+  background-color: map-get($lightTheme, light8);
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark2);
+  }
+}
+
+
+#centralNotePad {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 16px;
+  color: map-get($darkTheme, dark1);
+  background-color: map-get($lightTheme, light7);
+  width: calc(100vw - 30px);
+  height: calc(100vh - 82px);
+  padding: 15px;
+  word-wrap: break-word;
+  resize: none;
+  border: none;
+  line-height: 22px;
+  outline: none;
+  .dark-theme & {
+    background-color: map-get($darkTheme, dark1);
+    color: map-get($lightTheme, light1);
+  }
+}

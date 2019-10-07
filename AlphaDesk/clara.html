@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Clara</title>
+    <link rel="stylesheet" href="clara.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script> window.$ = window.jQuery = require('jquery');</script>
+    <link href="http://allfont.net/allfont.css?fonts=agency-fb" rel="stylesheet" type="text/css" />
+    <script src="clara.js"></script>
+
+    <script>
+      $(function(){
+        $("#windowsFrame").load("../AlphaDesk/windowsFrameClara.html"); 
+      });
+    </script> 
+    
+<!-- ------------------------------------------------------------ -->
+
+</head>
+<body>
+
+  <div id="triangleContainer">
+
+    <!-- <div id="backBlurTriangle"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width='500' height='400'><polygon points="200,0 400,400 0,400"/></svg></div> -->
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="centerTriangle" width='400' height='300'>
+      <polygon points="200,0 400,400 0,400"/>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="leftTriangle" width='200' height='180'>
+      <polygon points="200,0 400,400 0,400"/>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="leftTriangle2" width='220' height='220'>
+      <polygon points="220,0 400,400 0,440"/>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="rightTriangle" width='200' height='180'>
+      <polygon points="200,400 0,400 0,0"/>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="rightTriangle2" width='220' height='220'>
+      <polygon points="220,440 0,400 0,0"/>
+    </svg>
+
+    
+    <div id="windowsFrame"></div>
+
+
+    <div id="createShortcutSettings">
+
+      <input type="text" id="shortcutLink" placeholder="www.example.com">
+      <button id="shortcutAdd"><i class="fas fa-plus"></i></button>
+
+      <div id="shortcutDropdownType"><i id="dropdownArrow" class="fas fa-chevron-down"></i><i id="selectedDropdown">Web-Link</i>
+        <div class="dropdownContent">
+          <a class="dropdownItem" onclick="weblinkChosen()">Web Link</a>
+          <a class="dropdownItem" onclick="applicationChosen()">Application</a>
+          <a class="dropdownItem" onclick="filelinkChosen()">File Link</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="shortcutMain">
+      <button class="shortcutItem" id="shortcutItemCreate" onclick="createNewShortcut()"><i class="fas fa-plus"></i></button>
+    </div>
+</div>
+
+</body>
+</html>
