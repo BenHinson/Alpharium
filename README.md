@@ -26,7 +26,7 @@ Long hover at side of page displays slice of next panel along, when clicked, pan
 On Login, open previous panels/tools etc from last logout.
 Panel View - Displays all open panel in a line, with controls to close / duplicate etc.
 Add Tabs to panels for quick switching between same panel.
-Tool Dropdown glitch when creating tool, white flash at top of page
+Tool Dropdown glitch when creating tool, white flash at top of page.
 Central Box on Homepage can contain 'programs' and File/Folder links.
-Alpha Drive - Files of certain types can be opened in native programs (.txt / .png / .mp4)
-Add video player / image viewer panels
+Alpha Drive - Files of certain types can be opened in native programs (.txt / .png / .mp4).
+Add video player / image viewer panels.
