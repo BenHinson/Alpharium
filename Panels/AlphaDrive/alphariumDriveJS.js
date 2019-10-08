@@ -6,7 +6,7 @@
 // // RETURN BUTTON ------------------------------------------------------------------------
 var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader(__dirname + '/../../Alpha/Properties/user.properties');
-const getSize = require('get-folder-size');
+var getSize = require('get-folder-size');
 
 var fs = require('fs');
 var path = require('path');
@@ -18,7 +18,6 @@ var folderPath;
 
 
 function initBaseFolder() {
-
   if (!fs.existsSync(baseAlphariumFolder)){
     fs.mkdir(baseAlphariumFolder, function() {
       initBaseFolder();
@@ -47,9 +46,10 @@ function listDirectory() {
 
       var folderName = items.id;
       newFolder = path.join(folderPath, items[i]);
+      var isFile = fs.lstatSync(newFolder).isFile();
 
       var thisFolderContainer = document.getElementById('fileContainer');
-      var thisFolder = document.createElement('div');thisFolder.setAttribute("id", items[i]);thisFolder.setAttribute("class", "alphariumFolder");thisFolder.setAttribute("type", "file");thisFolder.setAttribute("rc-name", "alphariumFolder");
+      var thisFolder = document.createElement('div');thisFolder.setAttribute("id", items[i]);thisFolder.setAttribute("class", "alphariumFolder");thisFolder.setAttribute("type", "folder");thisFolder.setAttribute("rc-name", "alphariumFolder,alphaDrive");thisFolder.setAttribute("ondblclick", "alphariumFolderOpen(this)")
       thisFolderContainer.appendChild(thisFolder);
       var newThisFolder = document.getElementById(items[i]);
       var thisFolderIcon = document.createElement('i');thisFolderIcon.setAttribute("class", "far fa-folder");
@@ -58,8 +58,11 @@ function listDirectory() {
       newThisFolder.appendChild(thisFolderName);
       var thisFolderSize = document.createElement('div'); thisFolderSize.setAttribute("class", "folderSize");
       newThisFolder.appendChild(thisFolderSize);
-
+      if (isFile == true) {
+        thisFolder.setAttribute("type", "file");thisFolder.setAttribute("rc-name", "alphariumFile,alphaDrive");thisFolder.setAttribute("ondblclick", "alphariumFileOpen(this)");thisFolderIcon.setAttribute("class", "far fa-file-alt");
+      }
       getFileSize(thisFolderSize);
+      initRightClick();
     }
   });
 }
@@ -89,25 +92,8 @@ function hideInputBox(){
 
 // ---------------------------------------------------------------------
 
-function alphariumFolderRename(e, Caller) {
-  document.getElementById("commandLineBox").innerHTML = Caller;
-  showInputBox("New Folder Name...");
-  $("#userCommandLineBox").keydown(function(event) {
-    if (event.keyCode === 13) {submitThisRename(e);}})
-  $('#submitUserCommand').on('click', function() {submitThisRename(e);})
-  function submitThisRename(e) {
-    var thisFolder = e.currentTarget.id;
-    var newFolderPath = path.join(folderPath, thisFolder);
-    var child = e.currentTarget.children;
-    var newFolderName = document.getElementById("userCommandLineBox").value;
-    if (fs.existsSync(folderPath + '/' + newFolderName)) {
-      fs.rename(newFolderPath, folderPath+'/'+newFolderName, function() {});
-      child[1].innerHTML = newFolderName;
-      hideInputBox();
-    } else {
-      document.getElementById("commandLineBox").innerHTML = ('Folder ' + newFolderName + ' already exists.');
-    }
-  }
+function fileContainerRefresh() {
+  listDirectory();
 }
 
 // ----------------------------------------------------------------
@@ -125,18 +111,77 @@ function fileContainerNewFolder(thisObject, Caller, key, Command) {
       listDirectory();
       hideInputBox();
     } else {
-      document.getElementById("commandLineBox").innerHTML = ('Folder ' + folderName + ' already exists.');
+      document.getElementById("commandLineBox").innerHTML = ('"' + folderName + '" already exists.');
     }
   }
 }
 
 // ----------------------------------------------------------------
 
-// function alphariumFolderOpen(thisObject, Caller, key, Command) {
+function fileContainerNewFile(thisObject, Caller, key, Command) {
+  document.getElementById("commandLineBox").innerHTML = Caller;
+  showInputBox("File Name...");
+  $("#userCommandLineBox").keydown(function(event) {
+    if (event.keyCode === 13) {newFile();}})
+  $('#submitUserCommand').on('click', function() {newFile();})
+  function newFile() {
+    fileName = document.getElementById("userCommandLineBox").value;
+    if (!fs.existsSync(folderPath + '\\' + fileName)) {
+      fs.writeFileSync(folderPath + '\\' + fileName,"");
+      listDirectory();
+      hideInputBox();
+    } else {
+      document.getElementById("commandLineBox").innerHTML = ('"' + fileName + '" already exists.');
+    }
+  }
+}
 
-// }
+// ---------------------------------------------------------------------
 
+function fileContainerPaste() {};
 
+// ---------------------------------------------------------------------
+
+function alphariumFolderCopy() {};
+
+// ---------------------------------------------------------------------
+
+function alphariumFolderRename(e, Caller) {
+  document.getElementById("commandLineBox").innerHTML = Caller;
+  showInputBox("New Folder Name...");
+  $("#userCommandLineBox").keydown(function(event) {
+    if (event.keyCode === 13) {submitThisRename(e);}})
+  $('#submitUserCommand').on('click', function() {submitThisRename(e);})
+  function submitThisRename(e) {
+    var thisFolder = e.currentTarget.id;
+    var currentFolder = path.join(folderPath, thisFolder);
+    var child = e.currentTarget.children;
+    var newFolderName = document.getElementById("userCommandLineBox").value;
+    futureFolderPath = path.join(folderPath, newFolderName);
+    if (!fs.existsSync(futureFolderPath)) {
+      fs.rename(currentFolder, futureFolderPath, function() {});
+      child[1].innerHTML = newFolderName;
+      hideInputBox();
+    } else {
+      document.getElementById("commandLineBox").innerHTML = ('"' + newFolderName + '" already exists.');
+    }
+  }
+}
+
+// ----------------------------------------------------------------
+
+function alphariumFolderOpen(folder, fromRC) {
+  if (!fromRC) {
+    thisFolder = folder.id;
+  } else {
+    thisFolder = folder.currentTarget.id;
+  }
+  window.folderPath = path.join(folderPath, thisFolder);
+  if (fs.existsSync(folderPath)) {
+    document.getElementById("directoryLocation").innerHTML = (folderPath);
+    listDirectory();
+  }
+}
 
 
 
@@ -237,124 +282,6 @@ function openfileCommand() {
       }
     }
   )};
-
-
-
-function openfolderCommand() {
-
-  document.getElementById("userOpenFolderCommandArea").value = ("");
-  document.getElementById("commandLineBox").innerHTML += ('\nPlease Enter the Folder you want to open or type "cancel" to return.');
-  $("#userCommandArea").css("visibility", "hidden");
-  $("#userOpenFolderCommandArea").css("visibility", "visible");
-
-  $("#userOpenFolderCommandArea").keypress(function(event) {
-    if (event.keyCode === 13) {
-      var openDirName = $("#userOpenFolderCommandArea").val();
-      if (openDirName === ("cancel")) {
-        $("#userCommandArea").css("visibility", "visible");
-        $("#userOpenFolderCommandArea").css("visibility", "hidden");
-        document.getElementById("commandLineBox").innerHTML += ('\nAction Canceled');
-        // return;
-      }
-      // else if (!fs.access(openDirName)) {
-      //   document.getElementById("commandLineBox").innerHTML += ('\nNo such folder.');
-      //   return;
-      // }
-      else {
-        newFolderPath = oldFolderPath + '\\' + openDirName;
-        document.getElementById("commandLineBox").innerHTML += ('\n'+ newFolderPath);
-        document.getElementById("directoryLocation").innerHTML = ('Alpha Drive\\' + newFolderPath);
-        $("#userCommandArea").css("visibility", "visible");
-        $("#userOpenFolderCommandArea").css("visibility", "hidden");
-        }
-      }
-    }
-)};
-
-function newfolderCommand() {
-  document.getElementById("commandLineBox").innerHTML += ('\nEnter the Folder Name you want to create or type "cancel" to return.');
-  $("#userCommandArea").css("visibility", "hidden");
-  $("#userNewFolderCommandArea").css("visibility", "visible");
-
-  $("#userNewFolderCommandArea").keypress(function(event) {
-    if (event.keyCode === 13) {
-      var newFolderName = $("#userNewFolderCommandArea").val();
-      document.getElementById("userNewFolderCommandArea").value = ('');
-
-      if (newFolderName === ("cancel")) {
-        $("#userCommandArea").css("visibility", "visible");
-        $("#userNewFolderCommandArea").css("visibility", "hidden");
-        document.getElementById("commandLineBox").innerHTML += ('\nAction Canceled');
-        return;
-      }
-      else {
-// I AM TRYING TO CREATE A FOLDER WITHIN A FOLDER, CURRENTLY IT JUST MAKES A NEW FOLDER IN THE BASE DIRECTORY. IE WITH CENTRAL/DRAW ETC, AND NOT WITHIN THE SELECTED DIRECTORY, SUCH AS 'USERDATA' OR 'SUBFOLDER' ITS AN ISSUE WITH 'NEWFOLDERPATH'
-// ALSO WHEN CREATING A NEW FOLDER IT NAMES IT 'UserData + the name...' and it is unable to search the current directory for existing folders ie, if you made a folder called 'subfolder' it would just create the folder 'userdatasubfolder' in the base directory.
-        if (!fs.existsSync(newFolderPath + '\\' + newFolderName)){
-          fs.mkdirSync(newFolderPath + '\\' + newFolderName)
-          document.getElementById("commandLineBox").innerHTML += ('\n'+ newFolderName + ' has been created within ' + newFolderPath);
-          newFolderPath = folderPath +'\\'+ newFolderName;
-          document.getElementById("directoryLocation").innerHTML = ('Alpha Drive\\' + newFolderPath);
-          $("#userCommandArea").css("visibility", "visible");
-          $("#userNewFolderCommandArea").css("visibility", "hidden");
-          return(newFolderPath);
-        }
-        else {
-          document.getElementById("commandLineBox").innerHTML += ('\nFile ' + newFolderName + ' already exists.');
-        }
-      }
-    }
-    }
-  );
-}
-
-
-
-
-
-function newfileCommand() {
-  document.getElementById("commandLineBox").innerHTML += ('\nEnter the File Name you want to create or type "cancel" to return.');
-  $("#userCommandArea").css("visibility", "hidden");
-  $("#userNewFileCommandArea").css("visibility", "visible");
-
-  $("#userNewFileCommandArea").keypress(function(event) {
-    if (event.keyCode === 13) {
-      var newFileName = $("#userNewFileCommandArea").val();
-      document.getElementById("userNewFileCommandArea").value = ('');
-
-      if (newFileName === ("cancel")) {
-        $("#userCommandArea").css("visibility", "visible");
-        $("#userNewFileCommandArea").css("visibility", "hidden");
-        document.getElementById("commandLineBox").innerHTML += ('\nAction Canceled');
-        return;
-      }
-      else {
-        fs.writeFileSync(newFolderPath + '\\' + newFileName, newFileName);
-        document.getElementById("commandLineBox").innerHTML += ('\nFile ' + newFileName + ' has been created within ' + newFolderPath);
-        $("#userCommandArea").css("visibility", "visible");
-        $("#userNewFileCommandArea").css("visibility", "hidden");
-        return;
-      }
-    }
-    }
-  );
-}
-
-
-
-// NOTE TO SELF. DOES EXISTSSYNC ONLY INCLUDE DIRECTORIES OR IS IT FILES TOO???
-// IF ITS FILES TOO THEN I CAN DO A TEST FOR IF THE FILE NAME EXISTS ALREADY
-
-
-  // if (!fs.existsSync(userDirectoryName)){
-  //   fs.mkdirSync(userDirectoryName, function() {
-  //     document.getElementById("commandLineBox").innerHTML += ('\n' + "Directory '" + userDirectoryName + "' has been created within " + usersBaseFilePath);
-  //   });
-  // }
-  // else {
-  //   document.getElementById("commandLineBox").innerHTML += ('\n' + "Directory '" + userDirectoryName + "' already exists.");
-  // }
-
 
 
 $(document).ready(initBaseFolder);

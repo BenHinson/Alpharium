@@ -68,7 +68,7 @@ function rightClickCreator(e, thisObject) {
   $("#rightClickContainer > li").click(function() {
     var RCCommand = ($(this).text().split(' ').join('')); // Right Click Command
     var key = $(this).attr("key");
-    console.log(key+RCCommand);
+    // console.log(key+RCCommand);
     window[key+RCCommand](e, RCCommand, thisObject, key);
     // Calls the function that has the same name (with spaces removed) as the list in the rightclick.config file + command ie:'homepageBoxDemo(e, command, object)' as long as the file is linked.
   });
