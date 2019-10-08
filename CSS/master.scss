@@ -65,10 +65,11 @@ html {
   text-overflow: ellipsis;
   white-space: normal;
 
-  font-weight: 100;
-  letter-spacing: 1px;
-  font-size: 17px;
-  font-family: 'Agency FB', arial;
+  // font-weight: 100;
+  // letter-spacing: 1px;
+  // font-size: 17px;
+  // font-family: 'Agency FB', arial;
+  font-family: apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
 
   color: map-get($darkTheme, dark1);
 
@@ -210,7 +211,7 @@ html {
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.4s;
   width: 120px;
   height: 24px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1362,6 +1363,7 @@ html {
 }
 .warningAcceptDecline:hover {
   opacity: 0.7;
+  transition: opacity 0.2s;
 }
 #warningBoxDecline {
   background: rgb(200, 200, 200);

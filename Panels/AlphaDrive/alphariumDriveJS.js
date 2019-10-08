@@ -41,6 +41,7 @@ function initBaseFolder() {
 
 
 function listDirectory() {
+  $("#fileContainer").empty();
   fs.readdir(folderPath, function(err, items) {
     for (var i=0; i<items.length; i++) {
 
@@ -70,38 +71,70 @@ function getFileSize(thisFolderSize) {
   });
 }
 
+// ---------------------------------------------------------------------
 
-function alphariumFolderRename(e, folderCommand) {
-  document.getElementById("commandLineBox").innerHTML = folderCommand;
-
+function showInputBox(placeholder) {
   $('#userCommandLineBox').css("display", "block");
   $('#submitUserCommand').css("display", "block");
-  $('#userCommandLineBox').attr("placeholder", "New Folder Name...");
-
+  $('#userCommandLineBox').attr("placeholder", placeholder);
   $("#userCommandLineBox").unbind();        // THIS STOPS EVENT LISTENERS FROM STACKING / BEING ADDED
   $('#submitUserCommand').unbind();         // WHEN YOU ADD A .ON OR .KEYDOWN IT DOESNT REPLACE THE OLD ONES
-                                            // MEANING THAT THE EVEN IS CALLED AS MANY TIMES AS THEIR ARE EVENT LISTENERS
-  $("#userCommandLineBox").keydown(function(event) {
-    if (event.keyCode === 13) {submitThisRename(e);}})
-  $('#submitUserCommand').on('click', function() {submitThisRename(e);})
+                                            // MEANING THAT THE EVEN IS CALLED AS MANY TIMES AS THERE ARE EVENT LISTENERS
 }
-
-function submitThisRename(e) {
-  var thisFolder = e.currentTarget.id;
-  var newFolderPath = path.join(folderPath, thisFolder);
-  var child = e.currentTarget.children;
-  var newFolderName = document.getElementById("userCommandLineBox").value;
-  child[1].innerHTML = newFolderName;
-  fs.rename(newFolderPath, folderPath+'/'+newFolderName, function() {});
+function hideInputBox(){
   $('#userCommandLineBox').css("display", "none");
   $('#submitUserCommand').css("display", "none");
   document.getElementById("userCommandLineBox").value = "";
 }
 
+// ---------------------------------------------------------------------
 
+function alphariumFolderRename(e, Caller) {
+  document.getElementById("commandLineBox").innerHTML = Caller;
+  showInputBox("New Folder Name...");
+  $("#userCommandLineBox").keydown(function(event) {
+    if (event.keyCode === 13) {submitThisRename(e);}})
+  $('#submitUserCommand').on('click', function() {submitThisRename(e);})
+  function submitThisRename(e) {
+    var thisFolder = e.currentTarget.id;
+    var newFolderPath = path.join(folderPath, thisFolder);
+    var child = e.currentTarget.children;
+    var newFolderName = document.getElementById("userCommandLineBox").value;
+    if (fs.existsSync(folderPath + '/' + newFolderName)) {
+      fs.rename(newFolderPath, folderPath+'/'+newFolderName, function() {});
+      child[1].innerHTML = newFolderName;
+      hideInputBox();
+    } else {
+      document.getElementById("commandLineBox").innerHTML = ('Folder ' + newFolderName + ' already exists.');
+    }
+  }
+}
 
+// ----------------------------------------------------------------
 
+function fileContainerNewFolder(thisObject, Caller, key, Command) {
+  document.getElementById("commandLineBox").innerHTML = Caller;
+  showInputBox("Folder Name...");
+  $("#userCommandLineBox").keydown(function(event) {
+    if (event.keyCode === 13) {newFolder();}})
+  $('#submitUserCommand').on('click', function() {newFolder();})
+  function newFolder() {
+    folderName = document.getElementById("userCommandLineBox").value;
+    if (!fs.existsSync(folderPath + '\\' + folderName)) {
+      fs.mkdirSync(folderPath + '\\' + folderName);
+      listDirectory();
+      hideInputBox();
+    } else {
+      document.getElementById("commandLineBox").innerHTML = ('Folder ' + folderName + ' already exists.');
+    }
+  }
+}
 
+// ----------------------------------------------------------------
+
+// function alphariumFolderOpen(thisObject, Caller, key, Command) {
+
+// }
 
 
 
@@ -204,14 +237,6 @@ function openfileCommand() {
       }
     }
   )};
-
-
-
-
-
-
-
-
 
 
 
