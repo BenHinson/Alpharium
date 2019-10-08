@@ -1,6 +1,4 @@
 #fileTitle {
-  position: absolute;
-  top: 0;
   height: 30px;
   width: 100vw;
   font-family: 'Segoe UI';
@@ -23,7 +21,7 @@
 #sideMenu {
   position: absolute;
   left: 0;
-  top: 30px;
+  bottom: 0px;
   height: calc(100vh - 82px);
   width: 30px;
   border-right: 1px solid #585858;
@@ -37,7 +35,7 @@
 #centralNotePad {
   position: absolute;
   left: 30px;
-  top: 30px;
+  bottom: 0px;
   font-family: 'Segoe UI';
   font-weight: 400;
   letter-spacing: 1px;

@@ -33,21 +33,21 @@ $colorTheme: (
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #databaseBackgroundMain {
-  height: calc(100vh - 52px);
-  width: 100vw;
   background-color: map-get($lightTheme, light5);
-  position: relative;
   overflow: hidden;
+  width: 100vw;
+  height: calc(100% - 52px);
+  position: fixed;
   .dark-theme & {
     background-color: map-get($darkTheme, dark1);
   }
 }
 
 #directoryLocation {
-  padding: 8px;
-  width: 100vw;
-  height: 35px;
   position: relative;
+  padding: 8px;
+  width: calc(100vw - 150px);
+  height: 35px;
   box-sizing: border-box;
   background-color: transparent;
   border: none;
@@ -59,6 +59,27 @@ $colorTheme: (
   letter-spacing: 1px;
   resize: none;
   overflow: hidden;
+  .dark-theme & {
+    letter-spacing: 1.5px;
+    font-weight: 100;
+    color: map-get($lightTheme, light1);
+    border-bottom: 1px solid map-get($lightTheme, light1);
+  }
+}
+.directoryControls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: none;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI';
+  border-bottom: 1px solid map-get($darkTheme, dark2);
+  cursor: pointer;
   .dark-theme & {
     letter-spacing: 1.5px;
     font-weight: 100;

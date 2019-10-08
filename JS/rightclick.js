@@ -54,8 +54,7 @@ function rightClickCreator(e, thisObject) {
   thisObjectSplit.forEach(function(thisObject) {
     var properties = PropertiesReader(__dirname + '/../../Alpha/Properties/rightclick.config');
     var rightClickItemsRaw = properties.get(thisObject);
-    window.rightClickItems = rightClickItemsRaw.split(','); //Splits properties after each ,
-    // var dropContainer = document.getElementById('rightClickContainer');
+    window.rightClickItems = rightClickItemsRaw.split(','); //Splits properties after each ','
     rightClickItems.forEach(function(item) {
       var newOption = document.createElement('li'); newOption.innerHTML = item;
       newOption.setAttribute("key", thisObject);
@@ -91,7 +90,7 @@ function panelShortcutOpen(thisObject, Caller, key, Command) {
   openThisPanel(thisPanelShortcut);
 }
 
-function panelShortcutOpenNewWindow(Caller, RCCommand, thisObject) {
+function panelShortcutOpeninNewWindow(Caller, RCCommand, thisObject) {
   var thisPanelName = Caller.target.id;
   var fullscreenPanelLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
   setTimeout(function() {

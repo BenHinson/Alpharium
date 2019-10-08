@@ -1,9 +1,11 @@
-// // RETURN BUTTON ------------------------------------------------------------------------
-// function goBack() {
-//   TweenMax.to("#return", 0.5, {rotation: 360});
-//   setTimeout(function(){ window.history.back(); }, 500);
-// }
-// // RETURN BUTTON ------------------------------------------------------------------------
+// PAGE SETUP FOR NEW WINDOW
+if (!document.getElementById('bottomnav')) {
+  $("#fileContainer").css("height", "calc(100vh - 95px)");
+  $("#databaseBackgroundMain").css("height", "calc(100vh - 24px)");
+  $(".rightClickContainer").attr('id', 'rightClickContainer');
+}
+// PAGE SETUP FOR NEW WINDOW
+
 var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader(__dirname + '/../../Alpha/Properties/user.properties');
 var getSize = require('get-folder-size');
@@ -90,8 +92,26 @@ function hideInputBox(){
   document.getElementById("userCommandLineBox").value = "";
 }
 
+// ------------------Nav Menu Control Listeners-------------------------
+  document.getElementById("directoryControlBack").addEventListener("click", function(){fileContainerBack()});
+  document.getElementById("directoryControlForward").addEventListener("click", function(){});
+  document.getElementById("directoryControlRefresh").addEventListener("click", function(){fileContainerRefresh()});
+  document.getElementById("directoryControlNewFile").addEventListener("click", function(){fileContainerNewFile()});
+  document.getElementById("directoryControlNewFolder").addEventListener("click", function(){fileContainerNewFolder()});
+  document.getElementById("directoryControlAddToDrop").addEventListener("click", function(){});
 // ---------------------------------------------------------------------
-
+function fileContainerBack() {
+  window.folderPath = folderPath.slice(0, folderPath.lastIndexOf("\\"));
+  if(folderPath == "C:\\Alpharium") {
+    document.getElementById("commandLineBox").innerHTML = ('Access Restricted');
+  } else {
+    if (fs.existsSync(folderPath)) {
+      document.getElementById("directoryLocation").innerHTML = (folderPath);
+      listDirectory();
+    }
+  }
+}
+// ----------------------------------------------------------------
 function fileContainerRefresh() {
   listDirectory();
 }
@@ -99,7 +119,6 @@ function fileContainerRefresh() {
 // ----------------------------------------------------------------
 
 function fileContainerNewFolder(thisObject, Caller, key, Command) {
-  document.getElementById("commandLineBox").innerHTML = Caller;
   showInputBox("Folder Name...");
   $("#userCommandLineBox").keydown(function(event) {
     if (event.keyCode === 13) {newFolder();}})
@@ -119,7 +138,6 @@ function fileContainerNewFolder(thisObject, Caller, key, Command) {
 // ----------------------------------------------------------------
 
 function fileContainerNewFile(thisObject, Caller, key, Command) {
-  document.getElementById("commandLineBox").innerHTML = Caller;
   showInputBox("File Name...");
   $("#userCommandLineBox").keydown(function(event) {
     if (event.keyCode === 13) {newFile();}})
@@ -146,8 +164,7 @@ function alphariumFolderCopy() {};
 
 // ---------------------------------------------------------------------
 
-function alphariumFolderRename(e, Caller) {
-  document.getElementById("commandLineBox").innerHTML = Caller;
+function alphaDriveRename(e, Caller) {
   showInputBox("New Folder Name...");
   $("#userCommandLineBox").keydown(function(event) {
     if (event.keyCode === 13) {submitThisRename(e);}})
