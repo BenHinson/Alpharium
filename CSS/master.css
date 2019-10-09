@@ -333,7 +333,7 @@ html {
 }
 
 .dark-theme .homepageBox {
-  background: transparent url(../assets/background/crosshatchBackgroundDarker.png) top center;
+  background: transparent url(../assets/background/crosshatchBackgroundDarker.png) top left;
 }
 
 .homepageBox::-webkit-scrollbar-track {

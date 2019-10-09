@@ -110,5 +110,37 @@ function newPanel() {
 }
 
 
+// ---------------- RIGHT CLICK CONTROLS ----------------------
+
+
+function panelShortcutOpen(thisObject, Caller, key, Command) {
+  thisPanelShortcut = thisObject.target;
+  openThisPanel(thisPanelShortcut);
+}
+
+function panelShortcutOpeninNewWindow(Caller, RCCommand, thisObject) {
+  var thisPanelName = Caller.target.id;
+  var fullscreenPanelLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
+  setTimeout(function() {
+    let thisNewPanelWindow = window.open(fullscreenPanelLoad, "", "height=650px,width=850px");
+  }, 300);
+}
+
+function panelShortcutClose(Caller, RCCommand, thisObject) {
+  var panelToRemove = Caller.target.id;
+  var PanelParent = document.querySelector("#centralContentBoxFullscreenMaster");
+  var PanelChild = document.querySelector("#generated"+panelToRemove);
+  PanelParent.removeChild(PanelChild);
+  openPanels.pop(panelToRemove);
+  if (displayedPanelId == panelToRemove) {
+    displayedPanelId = undefined;
+    displayedPanel = undefined;
+  }
+  panelCount--;
+  document.getElementById(panelToRemove).style.cssText = "color:";
+}
+
+
+
 
 $(document).ready(readPanelFolder)

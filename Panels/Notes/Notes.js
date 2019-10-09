@@ -1,9 +1,11 @@
 
 var fs = require('fs');
 var path = require('path');
-var thinkTankPath = 'E://ThinkTank/ThinkTank.txt';
+// var thinkTankPath = 'E://ThinkTank/ThinkTank.txt';
+var selectedFilePath;
+var selectedFileName;
 var saveTimout;
-var saveCount = 1;
+var saveCount = 0;
 
 function objectSize() {
   window.bottomnav = document.getElementById('bottomnav');
@@ -13,36 +15,39 @@ function objectSize() {
   }
 }
 
-// function openThinkTank() {
-//   fs.readFile(thinkTankPath, 'utf8', function(err, data) {
-//     if (err) throw err;
-//     else {
-//       document.getElementById("centralNotePad").innerHTML += (data);
-//     }
-//   });
-// }
+function openThisFile(selectedFilePath) {
+  window.selectedFilePath = selectedFilePath;
+  fs.readFile(selectedFilePath, 'utf8', function(err, data) {
+    if (err) throw err;
+    else {
+      document.getElementById("centralNotePad").innerHTML += (data);
+      window.selectedFileName = (selectedFilePath.split("\\"))[(selectedFilePath.split("\\")).length - 1];
+      document.getElementById("fileTitle").innerHTML = selectedFileName;
+      startAutoSave();
+    }
+  });
+}
+function startAutoSave() {
+  $('#centralNotePad').keydown(function() {
+    resetSaveTimeout();
+    startSaveTimeout();
+  })
+}
+function startSaveTimeout() {
+  saveTimout = setTimeout(saveThisFile, 5000);
+}
+function resetSaveTimeout() {
+  clearTimeout(saveTimout);
+}
+function saveThisFile() {
+  content = $('#centralNotePad').val();
+  fs.writeFile(selectedFilePath, content, function(err) {
+    if (err) throw err;
+    saveCount++;
+    document.getElementById('fileTitle').innerHTML = selectedFileName+' - Saved (' + saveCount + ')';
+  });
+}
 
-// $('#centralNotePad').keydown(function() {
-//   resetSaveTimeout();
-//   startSaveTimeout();
-// })
-// function startSaveTimeout() {
-//   saveTimout = setTimeout(saveThisFile, 5000);
-// }
-// function resetSaveTimeout() {
-//   clearTimeout(saveTimout);
-// }
-// function saveThisFile() {
-//   content = $('#centralNotePad').val();
-//   fs.writeFile(thinkTankPath, content, function(err) {
-//     if (err) throw err;
-//     saveCount++;
-//     document.getElementById('fileTitle').innerHTML = 'ALPHARIUM THINK TANK - Saved (' + saveCount + ')';
-//   });
-// }
-
-
-// $(document).ready(openThinkTank);
 $(document).ready(objectSize);
 
 

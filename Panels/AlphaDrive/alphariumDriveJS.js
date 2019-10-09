@@ -17,7 +17,7 @@ var baseAlphariumFolder = 'C://Alpharium'
 var baseUsersFolder = properties.get('alphariumproperties.loggedin');
 
 var folderPath;
-
+var previousFolder;
 
 function initBaseFolder() {
   if (!fs.existsSync(baseAlphariumFolder)){
@@ -61,7 +61,7 @@ function listDirectory() {
       var thisFolderSize = document.createElement('div'); thisFolderSize.setAttribute("class", "folderSize");
       newThisFolder.appendChild(thisFolderSize);
       if (isFile == true) {
-        thisFolder.setAttribute("type", "file");thisFolder.setAttribute("rc-name", "alphariumFile,alphaDrive");thisFolder.setAttribute("ondblclick", "alphariumFileOpen(this)");thisFolderIcon.setAttribute("class", "far fa-file-alt");
+        thisFolder.setAttribute("type", "file");thisFolder.setAttribute("rc-name", "alphariumFile,alphaDrive");thisFolder.setAttribute("ondblclick", "alphariumFileOpeninNotes(this)");thisFolderIcon.setAttribute("class", "far fa-file-alt");
       }
       getFileSize(thisFolderSize);
       initRightClick();
@@ -94,13 +94,14 @@ function hideInputBox(){
 
 // ------------------Nav Menu Control Listeners-------------------------
   document.getElementById("directoryControlBack").addEventListener("click", function(){fileContainerBack()});
-  document.getElementById("directoryControlForward").addEventListener("click", function(){});
+  document.getElementById("directoryControlForward").addEventListener("click", function(){fileContainerForward()});
   document.getElementById("directoryControlRefresh").addEventListener("click", function(){fileContainerRefresh()});
   document.getElementById("directoryControlNewFile").addEventListener("click", function(){fileContainerNewFile()});
   document.getElementById("directoryControlNewFolder").addEventListener("click", function(){fileContainerNewFolder()});
   document.getElementById("directoryControlAddToDrop").addEventListener("click", function(){});
 // ---------------------------------------------------------------------
 function fileContainerBack() {
+  window.previousFolder = folderPath;
   window.folderPath = folderPath.slice(0, folderPath.lastIndexOf("\\"));
   if(folderPath == "C:\\Alpharium") {
     document.getElementById("commandLineBox").innerHTML = ('Access Restricted');
@@ -111,11 +112,17 @@ function fileContainerBack() {
     }
   }
 }
+function fileContainerForward() {
+  if (fs.existsSync(previousFolder)) {
+    document.getElementById("directoryLocation").innerHTML = (previousFolder);
+    window.folderPath = previousFolder;
+    listDirectory();
+  }
+}
 // ----------------------------------------------------------------
 function fileContainerRefresh() {
   listDirectory();
 }
-
 // ----------------------------------------------------------------
 
 function fileContainerNewFolder(thisObject, Caller, key, Command) {
@@ -193,12 +200,25 @@ function alphariumFolderOpen(folder, fromRC) {
   } else {
     thisFolder = folder.currentTarget.id;
   }
+  window.previousFolder = folderPath;
   window.folderPath = path.join(folderPath, thisFolder);
   if (fs.existsSync(folderPath)) {
     document.getElementById("directoryLocation").innerHTML = (folderPath);
     listDirectory();
   }
 }
+
+// ----------------------------------------------------------------
+
+function alphariumFileOpeninNotes(file) {
+  let fileLocation = path.join(folderPath, file.id);
+  thisPanelShortcut = document.getElementById("Notes");
+  openThisPanel(thisPanelShortcut);
+  setTimeout(function() {
+    openThisFile(fileLocation);
+  },100)
+}
+
 
 
 

@@ -321,7 +321,7 @@ html {
   background:transparent url(../assets/background/crosshatchBackgroundLighter.png) top center;
 
   .dark-theme & {
-    background:transparent url(../assets/background/crosshatchBackgroundDarker.png) top center;
+    background:transparent url(../assets/background/crosshatchBackgroundDarker.png) top left;
   }
 }
 .homepageBox::-webkit-scrollbar-track {
