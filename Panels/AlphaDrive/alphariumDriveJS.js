@@ -10,7 +10,7 @@ var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader(__dirname + '/../../Alpha/Properties/user.properties');
 var getSize = require('get-folder-size');
 
-var fs = require('fs');
+var fs = require('fs-extra');
 var path = require('path');
 
 var baseAlphariumFolder = 'C://Alpharium'

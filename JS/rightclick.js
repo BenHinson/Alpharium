@@ -46,6 +46,7 @@ function startFocusOut() {
 
 
 function rightClickCreator(e, thisObject) {
+  console.log("rightclick creator");
   var thisObjectSplit = thisObject.split(',');
   var removeDropdown = $("#rightClickContainer").children();
   removeDropdown.remove();

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "file-system": "^2.2.2",
+    "fs-extra": "^8.1.0",
     "get-folder-size": "^2.0.1",
     "get-google-fonts": "^1.2.0",
     "gsap": "^2.1.3",
