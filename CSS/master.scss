@@ -58,8 +58,7 @@ html {
   align-items: center;
   overflow: hidden;
   user-select: none;
-  -webkit-app-region: drag;
-  margin: 1px 0 1px 10px;
+  padding-left: 10px;
   max-width: 100px;
 
   text-overflow: ellipsis;
@@ -429,6 +428,17 @@ html {
 @media (max-width: 600px) {
   .dropdownMain .quickAccessInfo { display: none; }
 }
+.userDropIcon {
+  height: 21px;
+  width: 10px;
+  font-size: 16px;
+  margin: 2px 0 0 6px;
+  color: map-get($darkTheme, dark2);
+  .dark-theme & {
+    color: map-get($lightTheme, light2);
+  }
+}
+
 
 
 
@@ -534,7 +544,6 @@ html {
   width: 200px;
   height: 40px;
   position: absolute;
-  left: 15px;
   z-index: 80;
   border: none;
   top: 24px;
@@ -584,7 +593,6 @@ html {
   width: 200px;
   height: 40px;
   position: absolute;
-  left: 0px;
   z-index: 100;
   background-color: map-get($lightTheme, light3);
   color: map-get($darkTheme, dark1);
@@ -616,8 +624,6 @@ html {
   position: absolute;
   list-style-type: none;
   padding: 0;
-  left: 15px;
-  margin-top: 64px;
   width: 200px;
   background-color: map-get($lightTheme, light3);
   color: map-get($darkTheme, dark1);

@@ -25,11 +25,11 @@ function searchLocation() {
   var location = document.getElementsByClassName("checked")[0].getAttribute("id").replace("searchLocation", "");
   var searchInput = $("#searchPageSearchBox").val();
   if (location == "Google") {
-    var userSearch = ('https://www.Google.co.uk/search?q='+searchInput);
+    var userSearch = (`https://www.Google.co.uk/search?q=`+searchInput);
   } else {
-    var userSearch = ('https://www.'+location+'.com/?q='+searchInput);
+    var userSearch = (`https://www.`+location+`.com/?q=`+searchInput);
   }
-  $("#searchPageBackgroundMain").html('<webview partition="persist:googlepluswidgets" autosize="on" style="width:100vw;height:calc(100vh - 24px);" src='+userSearch+'/>');
+  $("#searchPageBackgroundMain").html('<webview partition="persist:googlepluswidgets" autosize="on" style="width:100vw;height:calc(100vh - 24px);" src="'+userSearch+'"/>');
 }
 
 $(document).ready(listeners)

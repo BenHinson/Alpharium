@@ -5,6 +5,13 @@ var passwordHash = require('object-hash');
 $("#loginPage").on('click', startLoginSequence)
 $("#loginBtn").on('click', loginAccountProperties)
 
+function displayLoggedAccount() {
+  if (document.getElementById('windowTitleUsername')) {
+    document.getElementById('windowTitleUsername').innerHTML = (alreadyLoggedIn);
+  }
+}
+
+
 function alreadyLoggedIn() {
   setTimeout(function() {
     // window.loginPageTest = document.getElementById('loginErrorMessage');
@@ -16,7 +23,7 @@ function alreadyLoggedIn() {
         document.getElementById('windowTitleUsername').innerHTML = (alreadyLoggedIn);
       }
     } else {
-      document.getElementById('windowTitleUsername').innerHTML = (alreadyLoggedIn);
+      displayLoggedAccount();
       if (document.getElementById('usersName')) {
         var firstUserLetter = alreadyLoggedIn.substr(0, 1).toUpperCase();
         document.getElementById('usersName').innerHTML = (firstUserLetter);
@@ -38,7 +45,7 @@ function startLoginSequence() {
           // quickCloseLogin(alreadyLoggedIn);
         }, 300);
       }
-      document.getElementById('windowTitleUsername').innerHTML = (alreadyLoggedIn);
+      displayLoggedAccount();
     }
   }, 80)
 }
@@ -58,7 +65,9 @@ function loginAccountProperties() {
       if (hashedClientPassword === checkHashedPassword) {
         properties.set('alphariumproperties.loggedin', clientUsername);
         properties.save(__dirname + '/../../Alpha/Properties/user.properties', function then (err, data) {});
-        document.getElementById('windowTitleUsername').innerHTML = (clientUsername);
+        if (document.getElementById('windowTitleUsername')){
+          document.getElementById('windowTitleUsername').innerHTML = (clientUsername);
+        }
         closeLogin();
         windowOpen();
       } else {
@@ -190,7 +199,8 @@ function logoutBtnLogouttoPin() {
 function accountLogout() {
   properties.set('alphariumproperties.loggedin', '');
   properties.save(__dirname + '/../../Alpha/Properties/user.properties', function then (err, data) {});
-  document.getElementById('windowTitleUsername').innerHTML = ("");
+  if (document.getElementById('windowTitleUsername')){
+    document.getElementById('windowTitleUsername').innerHTML = ("");}
   setTimeout(function() {location.href='../Login/login.html'}, 200)
 }
 

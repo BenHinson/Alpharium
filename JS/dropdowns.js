@@ -8,31 +8,43 @@ function readDropdownFolder() {
   window.dropdownFileLocation = path.join(__dirname, '../../Dropdowns');
   fs.readdir(dropdownFileLocation, function(err, items) {
     for (var i=0; i<items.length; i++) {
-      // Loading the Colour from the properties file
+      // Loading from the properties file
       var properties = PropertiesReader(dropdownFileLocation+'/'+items[i]+"/"+items[i]+".properties");
       window.dropdownColour = properties.get('properties.colour');
+      window.dropdownLocation = properties.get('properties.location');
+      window.dropdownIconClass = properties.get('properties.iconClass');
+      window.dropdownIcon = properties.get('properties.icon');
 
-      var dropLocationParent = document.getElementById('dropdownMain');
-      var dropLocationChild = document.createElement('span');
-      dropLocationChild.setAttribute("id", "dropLocationChild");
-      dropLocationParent.appendChild(dropLocationChild);
       var dropDownParent = document.getElementById('dropLocationChild');
       var dropDownChild = document.createElement('a');
       dropDownChild.setAttribute("id", items[i]);
       dropDownChild.setAttribute("class", "dropdownButton");
       dropDownChild.setAttribute("onclick", "openDropdown(this)");
       dropDownParent.appendChild(dropDownChild);
+      if (dropdownLocation == "first") {
+        firstDropItem = dropDownParent.firstChild;
+        dropDownParent.insertBefore(dropDownChild, firstDropItem);
+      }
       var iconParent = document.getElementById(items[i]);
       var iconChild = document.createElement('i');
       iconChild.setAttribute("id", items[i]+"Icon");
-      iconChild.setAttribute("class", "fas fa-chevron-down dropdownIcon");
+      if(dropdownIcon && dropdownIconClass) {
+        iconChild.setAttribute("class", "fas "+dropdownIcon+" "+dropdownIconClass);
+      } else {
+        iconChild.setAttribute("class", "fas fa-chevron-down dropdownIcon");
+      }
       iconChild.style.color = dropdownColour;
       iconChild.style.borderBottom = "1px solid "+dropdownColour;
       iconParent.appendChild(iconChild);
       var dropInfoParent = document.getElementById(items[i]);
       var dropInfoChild = document.createElement('a');
       dropInfoChild.setAttribute("class", "quickAccessInfo");
-      dropInfoChild.innerHTML = items[i];
+      if (items[i] == "UserControl") {
+        var userProperties = PropertiesReader(__dirname + '/../../Alpha/Properties/user.properties');
+        dropInfoChild.innerHTML = userProperties.get('alphariumproperties.loggedin');
+      } else {
+        dropInfoChild.innerHTML = items[i];
+      }
       dropInfoChild.style.borderBottom = "1px solid "+dropdownColour;
       dropInfoParent.appendChild(dropInfoChild);
     }
@@ -48,31 +60,40 @@ function openDropdown(dropdown) {
     var dropTypeProperties = PropertiesReader(dropdownFileLocation+'/'+thisDropDown+"/"+thisDropDown+".properties");
     window.dropdownSide = dropTypeProperties.get('properties.side');
     window.dropdownType = dropTypeProperties.get('properties.type');
+    window.dropdownSearch = dropTypeProperties.get('properties.search');
+    window.dropdownOrder = dropTypeProperties.get('properties.order');
 
     var ObjectDropdownParent = document.getElementById('dropdownLocation');
     var ObjectDropdownChild = document.createElement('div');
     ObjectDropdownChild.setAttribute("id", "objectDropdown");
     ObjectDropdownParent.appendChild(ObjectDropdownChild);
 
-    var searchBarParent = document.getElementById('objectDropdown');
-    var searchBarChild = document.createElement('input');
-    searchBarChild.setAttribute("type", "text");
-    searchBarChild.setAttribute("id", "objectSearch");
-    searchBarChild.setAttribute("class", "fas fas-search");
-    searchBarChild.setAttribute("placeholder", thisDropDown+"...");
-    searchBarChild.setAttribute("onkeyup", "searchingFunction()");
-    searchBarChild.setAttribute("dontClose", "true");
-    dropdownBorderColour = dropdown.children[0].style.color;
-    searchBarChild.style.borderBottom = "1px solid "+dropdownBorderColour;
-    searchBarParent.appendChild(searchBarChild);
-
-    var sideSelectorParent = document.getElementById('objectDropdown');
-    var sideSelectorChild = document.createElement('label');
-    sideSelectorChild.setAttribute("class", "objectSearchColumnSelect");
-    sideSelectorChild.setAttribute("id", "objectSearchColumnSelect");
-    sideSelectorParent.appendChild(sideSelectorChild);
+    var dropdownPosition = dropdown.getBoundingClientRect();
+    if (dropdownSearch) {
+      $("#dropItemsOL").css({"margin-top": "64px", "left":dropdownPosition.left});
+      $("#objectDropdown").css({"left": "64px", "left":dropdownPosition.left});
+      var searchBarParent = document.getElementById('objectDropdown');
+      var searchBarChild = document.createElement('input');
+      searchBarChild.setAttribute("type", "text");
+      searchBarChild.setAttribute("id", "objectSearch");
+      searchBarChild.setAttribute("class", "fas fas-search");
+      searchBarChild.setAttribute("placeholder", thisDropDown+"...");
+      searchBarChild.setAttribute("onkeyup", "searchingFunction()");
+      searchBarChild.setAttribute("dontClose", "true");
+      dropdownBorderColour = dropdown.children[0].style.color;
+      searchBarChild.style.borderBottom = "1px solid "+dropdownBorderColour;
+      searchBarParent.appendChild(searchBarChild);
+    } else {
+      $("#dropItemsOL").css({"margin-top": "24px", "left":dropdownPosition.left});
+    }
 
     if (dropdownSide == "both") {
+      var sideSelectorParent = document.getElementById('objectDropdown');
+      var sideSelectorChild = document.createElement('label');
+      sideSelectorChild.setAttribute("class", "objectSearchColumnSelect");
+      sideSelectorChild.setAttribute("id", "objectSearchColumnSelect");
+      sideSelectorParent.appendChild(sideSelectorChild);
+
       var SideSelectorCheckboxParent = document.getElementById('objectSearchColumnSelect');
       var SideSelectorCheckboxChild = document.createElement('input');
       SideSelectorCheckboxChild.setAttribute("type", "checkbox");
@@ -124,13 +145,10 @@ function openDropdown(dropdown) {
           })
         }
       }
-
-      sortList();
       dropdownOpen = !dropdownOpen;
-      var rotateDropdownIcon = document.getElementById(thisDropDown+"Icon");
-      rotateDropdownIcon.removeAttribute("class", "fas fa-chevron-down dropdownIcon");
-      rotateDropdownIcon.setAttribute("class", "fas fa-chevron-up dropdownIcon");
-      sortList();
+      if (dropdownOrder == "alphabetical") {
+        sortListAlphabetical();
+      }
       dropdownOpenCloser();
     })
   } else {
@@ -140,11 +158,6 @@ function openDropdown(dropdown) {
     while (removeDropNode2.firstChild) {
       removeDropNode2.removeChild(removeDropNode2.firstChild);
     }
-
-    var rotateDropdownIcon = document.getElementById(thisDropDown+"Icon")
-    rotateDropdownIcon.removeAttribute("class", "fas fa-chevron-up dropdownIcon")
-    rotateDropdownIcon.setAttribute("class", "fas fa-chevron-down dropdownIcon")
-
     dropdownOpen = !dropdownOpen;
   }
 }
@@ -165,9 +178,6 @@ function dropdownOpenCloser() {
       while (removeDropNode2.firstChild) {
         removeDropNode2.removeChild(removeDropNode2.firstChild);
       }
-      var rotateDropdownIcon = document.getElementById(thisDropDown+"Icon")
-      rotateDropdownIcon.removeAttribute("class", "fas fa-chevron-up dropdownIcon")
-      rotateDropdownIcon.setAttribute("class", "fas fa-chevron-down dropdownIcon")
       dropdownOpen = !dropdownOpen;
     }
   });
@@ -191,7 +201,7 @@ function searchingFunction() {
   }
 }
 
-function sortList() {
+function sortListAlphabetical() {
   var list, i, switching, b, shouldSwitch, c;
   list = document.getElementById("dropItemsOL");
   switching = true;
@@ -218,7 +228,7 @@ function sortList() {
 
 
 function dropdownMainRefresh() {
-  $("#dropdownMain").empty();
+  $("#dropLocationChild").empty();
   readDropdownFolder();
 }
 
@@ -294,6 +304,7 @@ function moveTool (thisTool) {
 };
 
 // -----------------------------------------------------------------------------
+
 function WebpagesSelected(weblink) {
   let link = weblink.innerHTML;
   // require('electron').shell.openExternal('www.'+link);
