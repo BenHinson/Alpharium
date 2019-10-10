@@ -119,6 +119,8 @@ function pinReader () {
 
 // CREATE ACCOUNT
 // ------------------------------------------------------------------------------------
+$("#signupPin").keypress(function(event) {
+  if (event.keyCode === 13) {createAccountProperties()}});
 
 function createAccountProperties() {
   createAccountClientUsername = document.getElementById('signupUsername').value;

@@ -45,6 +45,10 @@ function openDropdown(dropdown) {
   thisDropDown = dropdown.id;
   selectedColumn = false;
   if (!dropdownOpen) {
+    var dropTypeProperties = PropertiesReader(dropdownFileLocation+'/'+thisDropDown+"/"+thisDropDown+".properties");
+    window.dropdownSide = dropTypeProperties.get('properties.side');
+    window.dropdownType = dropTypeProperties.get('properties.type');
+
     var ObjectDropdownParent = document.getElementById('dropdownLocation');
     var ObjectDropdownChild = document.createElement('div');
     ObjectDropdownChild.setAttribute("id", "objectDropdown");
@@ -68,26 +72,25 @@ function openDropdown(dropdown) {
     sideSelectorChild.setAttribute("id", "objectSearchColumnSelect");
     sideSelectorParent.appendChild(sideSelectorChild);
 
-    var SideSelectorCheckboxParent = document.getElementById('objectSearchColumnSelect');
-    var SideSelectorCheckboxChild = document.createElement('input');
-    SideSelectorCheckboxChild.setAttribute("type", "checkbox");
-    SideSelectorCheckboxChild.setAttribute("id", "objectSearchColumnCheckbox");
-    SideSelectorCheckboxChild.setAttribute("onclick", "changeColumn()");
-    SideSelectorCheckboxChild.setAttribute("dontClose", "true");
-    SideSelectorCheckboxParent.appendChild(SideSelectorCheckboxChild);
-
-    var SideSelectorSliderParent = document.getElementById('objectSearchColumnSelect');
-    var SideSelectorSliderChild = document.createElement('span');
-    SideSelectorSliderChild.setAttribute("id", "sideSelectorSlider");
-    SideSelectorSliderChild.setAttribute("class", "sideSelectorSlider");
-    SideSelectorSliderChild.setAttribute("dontClose", "true");
-    SideSelectorSliderParent.appendChild(SideSelectorSliderChild);
+    if (dropdownSide == "both") {
+      var SideSelectorCheckboxParent = document.getElementById('objectSearchColumnSelect');
+      var SideSelectorCheckboxChild = document.createElement('input');
+      SideSelectorCheckboxChild.setAttribute("type", "checkbox");
+      SideSelectorCheckboxChild.setAttribute("id", "objectSearchColumnCheckbox");
+      SideSelectorCheckboxChild.setAttribute("onclick", "changeColumn()");
+      SideSelectorCheckboxChild.setAttribute("dontClose", "true");
+      SideSelectorCheckboxParent.appendChild(SideSelectorCheckboxChild);
+  
+      var SideSelectorSliderParent = document.getElementById('objectSearchColumnSelect');
+      var SideSelectorSliderChild = document.createElement('span');
+      SideSelectorSliderChild.setAttribute("id", "sideSelectorSlider");
+      SideSelectorSliderChild.setAttribute("class", "sideSelectorSlider");
+      SideSelectorSliderChild.setAttribute("dontClose", "true");
+      SideSelectorSliderParent.appendChild(SideSelectorSliderChild);
+    }
 
 
     fs.readdir(dropdownFileLocation+'/'+thisDropDown, function(err, items) {
-
-      var dropTypeProperties = PropertiesReader(dropdownFileLocation+'/'+thisDropDown+"/"+thisDropDown+".properties");
-      window.dropdownType = dropTypeProperties.get('properties.type');
       if (dropdownType == "text") {
         var dropdownContent = dropTypeProperties.get('properties.content');
         dropdownContentSplit = dropdownContent.split(',');
@@ -211,6 +214,13 @@ function sortList() {
 }
 
 
+// ------------------------------------------------------------
+
+
+function dropdownMainRefresh() {
+  $("#dropdownMain").empty();
+  readDropdownFolder();
+}
 
 // PLACEMENT OF THE TOOLS EITHER LEFT OR RIGHT
 
@@ -220,21 +230,19 @@ var leftToolOrder = 0;
 var rightToolOrder = 0;
 
 function ToolsSelected(tool) {
-  boxL = document.getElementById("boxL");
-  boxR = document.getElementById("boxR");
   toolName = tool.innerHTML;
   var toolLoad   = '../../Dropdowns/Tools/'+toolName+'/'+toolName+'.html';
 
-  if (!selectedColumn) {designatedColumn = boxL; addThisLeftTool();}
-  else {designatedColumn = boxR; addThisRightTool();}
+  if (!selectedColumn) {addThisLeftTool();}
+  else {addThisRightTool();}
 
   function addThisLeftTool() {
-    $(designatedColumn).append($('<div id="toolOrderL'+leftToolOrder+'" class="toolBox"></div>').load(toolLoad));
+    $("#boxL").append($('<div id="toolOrderL'+leftToolOrder+'" class="toolBox"></div>').load(toolLoad));
     document.getElementById("toolOrderL"+leftToolOrder).style.order = leftToolOrder;
     leftToolOrder++;
   }
   function addThisRightTool() {
-    $(designatedColumn).append($('<div id="toolOrderR'+rightToolOrder+'" class="toolBox"></div>').load(toolLoad));
+    $("#boxR").append($('<div id="toolOrderR'+rightToolOrder+'" class="toolBox"></div>').load(toolLoad));
     document.getElementById("toolOrderR"+rightToolOrder).style.order = rightToolOrder;
     rightToolOrder++;
   }

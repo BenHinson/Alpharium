@@ -19,11 +19,7 @@ Window Frame Controls on Light-Theme dont show up too clearly.
 
 Randomly Typing backwards on Browser Webview.
 
-Alpha Drive - If folder name is already taken, no warning / message is shown.
-
 Multi-Account support with quick-switch.
-
-Pressing enter on create-account page to act same as button.
 
 Dropdown menu for User, containing: Logout Options/User Switch/Settings/User Info/Startup Settings.
 
@@ -39,11 +35,7 @@ Panel View - Displays all open panel in a line, with controls to close / duplica
 
 Add Tabs to panels for quick switching between same panel.
 
-Tool Dropdown glitch when creating tool, white flash at top of page.
-
 Central Box on Homepage can contain 'programs' and File/Folder links.
-
-Alpha Drive - Files of certain types can be opened in native programs (.txt / .png / .mp4).
 
 Add Video Player / Image Viewer panels.
 

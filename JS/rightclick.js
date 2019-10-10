@@ -84,8 +84,3 @@ function homepageBoxDemo(thisObject, Caller, key, Command) {
   console.log(key)      // The key caller, (key in prop file)
   console.log(Command);  // The Option Selected
 }
-
-function dropdownMainRefresh() {
-  $("#dropdownMain").empty();
-  readDropdownFolder();
-}
