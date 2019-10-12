@@ -167,11 +167,17 @@ function createAccountProperties() {
 function UserControlListener(e) {
   $("#dropItemsA").unbind();
   $("[ddcommand]").on("click", function(e) {
-    var userControlOption = e.currentTarget.innerHTML;
-    console.log(userControlOption);
+    var userControlOption = e.currentTarget.innerHTML.split(' ').join('');
+    window["Dropdown"+userControlOption](e, userControlOption);
   })
 }
 
+function DropdownAccountInfo(e) {
+  console.log(e)
+}
+function DropdownLogouttoPin(e) {
+  console.log("dropdown child");
+}
 
 
 $("#logoutBtn").on('click', logoutBtnLogout)

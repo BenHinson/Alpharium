@@ -714,7 +714,7 @@ html {
   color: #f0f0f0;
 }
 
-#dropItemsOL {
+.ItemsOL {
   position: absolute;
   list-style-type: none;
   padding: 0;
@@ -728,7 +728,7 @@ html {
   z-index: 100;
 }
 
-.dark-theme #dropItemsOL {
+.dark-theme .ItemsOL {
   -webkit-box-shadow: 2px 3px 3px #0a0a0a;
           box-shadow: 2px 3px 3px #0a0a0a;
   color: #f0f0f0;
@@ -756,12 +756,12 @@ html {
   color: #e6e6e6;
 }
 
-#dropItemsOL li a:hover:not(.header) {
+.ItemsOL li a:hover:not(.header) {
   background-color: gainsboro;
   color: #050505;
 }
 
-.dark-theme #dropItemsOL li a:hover:not(.header) {
+.dark-theme .ItemsOL li a:hover:not(.header) {
   color: #e6e6e6;
   background-color: #1e567c;
 }

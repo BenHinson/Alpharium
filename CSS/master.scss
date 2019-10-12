@@ -622,7 +622,7 @@ html {
   }
 }
 
-#dropItemsOL {
+.ItemsOL {
   position: absolute;
   list-style-type: none;
   padding: 0;
@@ -662,7 +662,7 @@ html {
   }
 }
 
-#dropItemsOL li a:hover:not(.header) {
+.ItemsOL li a:hover:not(.header) {
   background-color: map-get($lightTheme, light4);
   color: map-get($darkTheme, dark0);
   .dark-theme & {
