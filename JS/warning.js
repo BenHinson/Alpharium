@@ -38,5 +38,3 @@ function warningPanelSetup(title, message, decline, accept) {
 
 
 // --------------------------------------------------------------------
-
-

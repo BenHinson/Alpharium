@@ -125,7 +125,6 @@ function pinReader () {
 }
 
 
-
 // CREATE ACCOUNT
 // ------------------------------------------------------------------------------------
 $("#signupPin").keypress(function(event) {
@@ -160,8 +159,20 @@ function createAccountProperties() {
   }
 }
 
+// -------------------------END OF ACCOUNT CREATION----------------------------
 
-// ------------------------------------------------------------------------------------
+
+// -------------------------USER DROPDOWN CONTROLS-----------------------------
+
+function UserControlListener(e) {
+  $("#dropItemsA").unbind();
+  $("[ddcommand]").on("click", function(e) {
+    var userControlOption = e.currentTarget.innerHTML;
+    console.log(userControlOption);
+  })
+}
+
+
 
 $("#logoutBtn").on('click', logoutBtnLogout)
 

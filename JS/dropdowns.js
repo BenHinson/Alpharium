@@ -70,7 +70,7 @@ function openDropdown(dropdown) {
 
     var dropdownPosition = dropdown.getBoundingClientRect();
     if (dropdownSearch) {
-      $("#dropItemsOL").css({"margin-top": "64px", "left":dropdownPosition.left});
+      $("#dropItemsOL").css({"margin-top": "54px", "left":dropdownPosition.left});
       $("#objectDropdown").css({"left": "64px", "left":dropdownPosition.left});
       var searchBarParent = document.getElementById('objectDropdown');
       var searchBarChild = document.createElement('input');
@@ -115,12 +115,18 @@ function openDropdown(dropdown) {
       if (dropdownType == "text") {
         var dropdownContent = dropTypeProperties.get('properties.content');
         dropdownContentSplit = dropdownContent.split(',');
+        var dropdownOnclick  = dropTypeProperties.get('properties.onclick');
         dropdownContentSplit.forEach(function(object) {
           var thisAParent = document.getElementById('dropItemsOL');
           var thisLIParent = document.createElement('li');thisLIParent.setAttribute("id", object+"LI");
           thisAParent.appendChild(thisLIParent);
           var thisLIChild = document.getElementById(object+'LI');
-          var thisAChild = document.createElement('a');thisAChild.innerHTML = object;thisAChild.setAttribute("id", "dropItemsA");thisAChild.setAttribute("onclick", thisDropDown+"Selected(this)");thisAChild.setAttribute("dontClose", "true");
+          var thisAChild = document.createElement('a');thisAChild.innerHTML = object;thisAChild.setAttribute("id", "dropItemsA");
+          if (!dropdownOnclick) {
+            thisAChild.setAttribute("onclick", thisDropDown+"Selected(this)");
+          }
+          thisAChild.setAttribute("DDCommand", "true");
+          thisAChild.setAttribute("dontClose", "true");
           thisLIChild.appendChild(thisAChild);
         })
       } else {
@@ -148,6 +154,9 @@ function openDropdown(dropdown) {
       dropdownOpen = !dropdownOpen;
       if (dropdownOrder == "alphabetical") {
         sortListAlphabetical();
+      }
+      if (dropdownOnclick) {
+        window[thisDropDown+"Listener"](this);
       }
       dropdownOpenCloser();
     })
