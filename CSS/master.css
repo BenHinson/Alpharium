@@ -766,6 +766,13 @@ html {
   background-color: #1e567c;
 }
 
+.dropdownMoreIcon {
+  position: absolute;
+  right: 0;
+  padding: 8px;
+  font-size: 14px;
+}
+
 #AlphaDrive {
   position: fixed;
   right: 0;

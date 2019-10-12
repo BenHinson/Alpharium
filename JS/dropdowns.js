@@ -4,6 +4,10 @@ var path = require('path');
 var dropdownOpen = false;
 var selectedColumn = false;  // false = left column
 
+setTimeout(function() {
+  dropdownMainRefresh();
+}, 100);
+
 function readDropdownFolder() {
   window.dropdownFileLocation = path.join(__dirname, '../../Dropdowns');
   fs.readdir(dropdownFileLocation, function(err, items) {
@@ -130,6 +134,8 @@ function openDropdown(dropdown) {
               var nextDropOption = dropdownContentSplit[index + 1];
               if (nextDropOption.indexOf('>') > - 1) {
                 thisAChild.setAttribute("moreOptions", "true");
+                var popoutIcon = document.createElement('i');popoutIcon.setAttribute("class", "dropdownMoreIcon fas fa-angle-right");
+                thisLIChild.appendChild(popoutIcon);
               }
             }
             thisAChild.setAttribute("DDCommand", "true");
@@ -171,15 +177,18 @@ function openDropdown(dropdown) {
       moreOptionsListener();
     })
   } else {
-    var removeNode = document.querySelector("#objectDropdown");
-    removeNode.parentNode.removeChild(removeNode);
-    var removeDropNode2 = document.getElementById("dropItemsOL");
-    while (removeDropNode2.firstChild) {
-      removeDropNode2.removeChild(removeDropNode2.firstChild);
-    }
-    dropdownOpen = !dropdownOpen;
-    $("#popoutItemsOL").empty();
+    closeDropdown();
   }
+}
+function closeDropdown() {
+  var removeNode = document.querySelector("#objectDropdown");
+  removeNode.parentNode.removeChild(removeNode);
+  var removeDropNode2 = document.getElementById("dropItemsOL");
+  while (removeDropNode2.firstChild) {
+    removeDropNode2.removeChild(removeDropNode2.firstChild);
+  }
+  dropdownOpen = !dropdownOpen;
+  $("#popoutItemsOL").empty();
 }
 function dropdownOpenCloser() {
   $(document).on("click",function(e) {
@@ -192,16 +201,7 @@ function dropdownOpenCloser() {
 
     $(document).off("click");
     if (document.querySelector("#objectDropdown")) {
-      var removeNode = document.querySelector("#objectDropdown");
-      removeNode.parentNode.removeChild(removeNode);
-      var removeDropNode2 = document.getElementById("dropItemsOL");
-      while (removeDropNode2.firstChild) {
-        removeDropNode2.removeChild(removeDropNode2.firstChild);
-      }
-      dropdownOpen = !dropdownOpen;
-      if (document.querySelector("#popoutItemsOL")) {
-        $("#popoutItemsOL").empty();
-      }
+      closeDropdown();
     }
   });
 }
@@ -251,7 +251,7 @@ function moreOptionsListener() {
   $("[moreOptions]").on("mouseenter", function(e) {
     if (e.currentTarget.hasAttribute("moreOptions")) {
       var parentPopRaw = e.currentTarget;
-      var parentPopout = e.currentTarget.innerHTML.split(' ').join('');
+      var parentPopout = e.currentTarget.innerHTML.split(' ').join('').replace('<iclass="dropdownMoreIconfasfa-angle-right"></i>','');
       var popoutLocation = parentPopRaw.getBoundingClientRect();
       $("#popoutItemsOL").css({"margin-top": popoutLocation.top, "left":popoutLocation.right, "width":"200px"});
       var moreOptionsOnclick = dropTypeProperties.get('properties.Add'+parentPopout+"onclick");
@@ -270,15 +270,19 @@ function moreOptionsListener() {
         }
         popoutLIParent.appendChild(popoutAChild);
       })
+      $("[popoutOption]").on("mouseleave", function() {
+        var allHover = document.querySelectorAll(":hover"); 
+        var hoveringOver = allHover[allHover.length-1];
+        if (hoveringOver.hasAttribute("popoutOption")) {} else {$("#popoutItemsOL").empty();}
+      })
     }
   })
   $("[moreOptions]").on("mouseleave", function(e) {
-      var allHover = document.querySelectorAll(":hover"); 
-      var hoveringOver = allHover[allHover.length-1];
-      if (hoveringOver.hasAttribute("popoutOption")) {} else {$("#popoutItemsOL").empty();}
+    var allHover = document.querySelectorAll(":hover"); 
+    var hoveringOver = allHover[allHover.length-1];
+    if (hoveringOver.hasAttribute("popoutOption")) {} else {$("#popoutItemsOL").empty();}
   });
 }
-
 // ------------------------------------------------------------
 
 

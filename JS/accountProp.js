@@ -169,23 +169,30 @@ function UserControlListener(e) {
   $("[ddcommand]").on("click", function(e) {
     var userControlOption = e.currentTarget.innerHTML.split(' ').join('');
     window["Dropdown"+userControlOption](e, userControlOption);
+    closeDropdown();
   })
 }
 
 function DropdownAccountInfo(e) {
   console.log(e)
 }
+
 function DropdownLogouttoPin(e) {
-  console.log("dropdown child");
+  // winWidth = window.innerWidth;
+  // var logoutParent = document.getElementById("entireContainer");
+  // var fullscreenToolLoad = '../../Panels/alphaPanelPinLogin/pinLogin.html';
+  // $(logoutParent).append($('<div id="pinLogin" style="position: absolute;"></div>').load(fullscreenToolLoad));
+  // lockingAnimation = new TimelineMax ()
+  // .to("#pinLogin", 0, {left: "-"+winWidth, top: 24})
+  // .to("#bottomnav", 0, {bottom: 24})
+  // .to(["#pinLogin", "#mainHomepage"], 2.5, {x: winWidth});
+  // setTimeout(accountPinLogin, 10)
+  // location.href='../../alphaPanelPinLogin/pinLogin.html'
+  location.href='../Login/login.html';
 }
 
-
-$("#logoutBtn").on('click', logoutBtnLogout)
-
-function logoutBtnLogout() {
-
+function DropdownLogout() {
   warningPanelSetup("Logout", "Are you sure you want to Logout?", "No", "Yes");
-
   setTimeout(function() {
     $("#warningBoxAccept").on('click', accountLogout);
     $("#warningBoxDecline, #warningBoxClose").on('click', function() {
@@ -195,23 +202,6 @@ function logoutBtnLogout() {
     });
   }, 100);
 }
-
-function logoutBtnLogouttoPin() {
-  winWidth = window.innerWidth;
-
-  var logoutParent = document.getElementById("entireContainer");
-
-  var fullscreenToolLoad = '../../Panels/alphaPanelPinLogin/pinLogin.html';
-  $(logoutParent).append($('<div id="pinLogin" style="position: absolute;"></div>').load(fullscreenToolLoad));
-
-  lockingAnimation = new TimelineMax ()
-  .to("#pinLogin", 0, {left: "-"+winWidth, top: 24})
-  .to("#bottomnav", 0, {bottom: 24})
-  .to(["#pinLogin", "#mainHomepage"], 2.5, {x: winWidth});
-
-  setTimeout(accountPinLogin, 10)
-}
-
 
 function accountLogout() {
   properties.set('alphariumproperties.loggedin', '');
