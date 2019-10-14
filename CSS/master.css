@@ -66,7 +66,7 @@ html {
   cursor: pointer;
 }
 
-#colorTheme {
+.navIcon {
   -webkit-app-region: no-drag;
   background-color: transparent;
   border: none;
@@ -80,41 +80,15 @@ html {
   color: #6e6e6e;
 }
 
-.dark-theme #colorTheme {
+.dark-theme .navIcon {
   color: #b4b4b4;
 }
 
-#colorTheme:hover {
+.navIcon:hover {
   color: #1e1e1e;
 }
 
-.dark-theme #colorTheme:hover {
-  color: #fafafa;
-}
-
-#claraAccess {
-  -webkit-app-region: no-drag;
-  background-color: transparent;
-  border: none;
-  text-align: center;
-  font-size: 18;
-  position: flex;
-  vertical-align: middle;
-  right: 0;
-  padding-right: 20px;
-  cursor: pointer;
-  color: #6e6e6e;
-}
-
-.dark-theme #claraAccess {
-  color: #b4b4b4;
-}
-
-#claraAccess:hover {
-  color: #1e1e1e;
-}
-
-.dark-theme #claraAccess:hover {
+.dark-theme .navIcon:hover {
   color: #fafafa;
 }
 
@@ -316,7 +290,9 @@ html {
 }
 
 .homepageBox {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
   -ms-grid-columns: (auto)[100];
@@ -409,7 +385,7 @@ html {
       -ms-flex-pack: center;
           justify-content: center;
   overflow: hidden;
-  width: 60vw;
+  width: 40vw;
   z-index: 2;
 }
 

@@ -87,7 +87,7 @@ html {
   right: 0;
   cursor: pointer;
 }
-#colorTheme {
+.navIcon {
   -webkit-app-region: no-drag;
   background-color: transparent;
   border: none;
@@ -103,31 +103,7 @@ html {
     color: map-get($lightTheme, light6);
   }
 }
-#colorTheme:hover {
-  color: map-get($darkTheme, dark2);
-
-  .dark-theme & {
-    color: map-get($lightTheme, light1);
-  }
-}
-
-#claraAccess {
-  -webkit-app-region: no-drag;
-  background-color: transparent;
-  border: none;
-  text-align: center;
-  font-size: 18;
-  position: flex;
-  vertical-align: middle;
-  right: 0;
-  padding-right: 20px;
-  cursor: pointer;
-  color: map-get($darkTheme, dark7);
-  .dark-theme & {
-    color: map-get($lightTheme, light6);
-  }
-}
-#claraAccess:hover {
+.navIcon:hover {
   color: map-get($darkTheme, dark2);
 
   .dark-theme & {
@@ -308,7 +284,8 @@ html {
 }
 
 .homepageBox {
-  display: block;
+  // display: block;
+  display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
   grid-template-columns: repeat( 100, auto);
@@ -377,7 +354,7 @@ html {
   display: flex;
   justify-content: center;
   overflow: hidden;
-  width: 60vw;
+  width: 40vw;
   // max-width: calc(100vw - (30vw * 2));
   // min-width: calc(100vw - 700px);
   z-index: 2;

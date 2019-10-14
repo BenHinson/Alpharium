@@ -19,7 +19,7 @@ function openThisFile(selectedFilePath) {
   fs.readFile(selectedFilePath, 'utf8', function(err, data) {
     if (err) throw err;
     else {
-      document.getElementById("centralNotePad").innerHTML += (data);
+      document.getElementById("centralNotePad").innerHTML = (data);
       window.selectedFileName = (selectedFilePath.split("\\"))[(selectedFilePath.split("\\")).length - 1];
       document.getElementById("fileTitle").innerHTML = selectedFileName;
       startAutoSave();

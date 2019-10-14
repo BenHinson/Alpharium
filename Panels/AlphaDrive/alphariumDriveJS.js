@@ -14,6 +14,7 @@ var fs = require('fs-extra');
 var path = require('path');
 
 var baseAlphariumFolder = 'C://Alpharium'
+// var baseAlphariumFolder = 'C://My Documents/Temparary'    // Set this to any folder to start from there, and set 'folderPath' to that value.
 var baseUsersFolder = properties.get('alphariumproperties.loggedin');
 
 var folderPath;
@@ -210,8 +211,12 @@ function alphariumFolderOpen(folder, fromRC) {
 
 // ----------------------------------------------------------------
 
-function alphariumFileOpeninNotes(file) {
-  let fileLocation = path.join(folderPath, file.id);
+function alphariumFileOpeninNotes(file, fromRC) {
+  if (!fromRC) {
+    fileLocation = path.join(folderPath, file.id);
+  } else {
+    fileLocation = path.join(folderPath, file.currentTarget.id);
+  }
   thisPanelShortcut = document.getElementById("Notes");
   openThisPanel(thisPanelShortcut);
   setTimeout(function() {

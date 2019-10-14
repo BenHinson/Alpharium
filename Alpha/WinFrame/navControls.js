@@ -18,3 +18,10 @@ function openAlphaDesk() {
     AlphaDesk.show();
   })
 }
+fullscreen = true;
+function toggleFullscreen() {
+  var electron = require('electron');
+  var window = electron.remote.getCurrentWindow();
+  window.setFullScreen(fullscreen);
+  fullscreen = !fullscreen;
+}

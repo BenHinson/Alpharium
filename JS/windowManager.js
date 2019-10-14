@@ -9,5 +9,8 @@ function createNav() {
     navBarParent.insertBefore(navBar, theFirstChild);
     $(function(){$("#windowsFrame").load("../../Alpha/WinFrame/windowsFrame.html") })
   }
+  if (document.body.style.height != "100vh") {
+    document.body.style.height = "100vh";
+  }
 }
 $(document).ready(createNav)
