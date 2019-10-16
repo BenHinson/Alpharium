@@ -107,6 +107,17 @@ function newPanel() {
 
   var fullscreenToolLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
   $(newPanelCreation).load(fullscreenToolLoad);
+
+  panelDots();
+}
+
+// ---------------- PANEL SCROLL ACROSS -----------------------
+
+function panelDots() {
+  console.log(openPanels);
+  console.log(panelCount);
+  console.log(displayedPanel);
+  console.log(displayedPanelId);
 }
 
 
@@ -130,14 +141,16 @@ function panelShortcutClose(Caller, RCCommand, thisObject) {
   var panelToRemove = Caller.target.id;
   var PanelParent = document.querySelector("#centralContentBoxFullscreenMaster");
   var PanelChild = document.querySelector("#generated"+panelToRemove);
-  PanelParent.removeChild(PanelChild);
-  openPanels.pop(panelToRemove);
-  if (displayedPanelId == panelToRemove) {
-    displayedPanelId = undefined;
-    displayedPanel = undefined;
-  }
-  panelCount--;
-  document.getElementById(panelToRemove).style.cssText = "color:";
+  setTimeout(function() {
+    PanelParent.removeChild(PanelChild);
+    openPanels.pop(panelToRemove);
+    if (displayedPanelId == panelToRemove) {
+      displayedPanelId = undefined;
+      displayedPanel = undefined;
+    }
+    panelCount--;
+    document.getElementById(panelToRemove).style.cssText = "color:";
+  }, 50);
 }
 
 

@@ -32,6 +32,19 @@
   background-color: #1e1e1e;
 }
 
+#sideMenu > span {
+  line-height: 30px;
+  text-align: center;
+  display: list-item;
+  font-size: 16px;
+  cursor: pointer;
+  color: #1e1e1e;
+}
+
+.dark-theme #sideMenu > span {
+  color: #e6e6e6;
+}
+
 #centralNotePad {
   position: absolute;
   left: 30px;

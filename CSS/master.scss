@@ -8,7 +8,9 @@ $darkTheme: (
   dark6: rgb(90, 90, 90),
   dark7: rgb(110, 110, 110),
 
-  darkdropdown: rgb(27, 27, 27)
+  darkdropdown: rgb(27, 27, 27),
+
+  darkReimagined: #404040
 );
 
 $lightTheme: (
@@ -226,11 +228,11 @@ html {
   opacity: 1;
 }
 .tooltipLeft .tooltipText {
-  margin-left: -105px;
-  bottom: 31px;
+  margin-left: -20px;
+  bottom: 37px;
 }
 .tooltipLeft .tooltipText::after {
-  left: 13%;
+  left: 17%;
 }
 .tooltipRight .tooltipText {
   margin-left: -100px;
@@ -435,10 +437,11 @@ html {
 
 #bottomuni {
   z-index: 100;
-  left: 20vw;
+  // left: 20vw;
+  left: 50px;
   width: 60vw;
   height: 28px;
-  background-color: map-get($lightTheme, light3);
+  // background-color: map-get($lightTheme, light3);
   display: flex;
   justify-content: left;
   bottom: 0;
@@ -450,9 +453,9 @@ html {
   font-size: 14px;
   overflow: hidden;
 
-  .dark-theme & {
-    background-color: map-get($darkTheme, dark5);
-  }
+  // .dark-theme & {
+  //   background-color: map-get($darkTheme, dark5);
+  // }
 }
 
 #logoutBtn {
@@ -478,22 +481,25 @@ html {
 
 #closeCollumnContent {
   position: fixed;
-  left: calc((100vw / 2) - 30vw - 28px);
-  bottom: 3px;
   z-index: 15;
-  width: 20px;
-  height: 20px;
-  color: map-get($darkTheme, dark1);
+  width: 50px;
+  height: 28px;
+  padding: 4px 0 0;
+  // left: calc((100vw / 2) - 30vw - 28px);
   font-size: 18px;
+  text-align: center;
+  color: map-get($darkTheme, dark1);
+  border: 0 1px 0 0 solid map-get($lightTheme, light8);
   background-color: transparent;
-  border: 0 solid transparent;
   cursor: pointer;
   .dark-theme & {
     color: map-get($lightTheme, light3);
+    border-right: 1px solid map-get($darkTheme, dark7);
   }
 }
 #closeCollumnContent:hover {
-  color: map-get($colorTheme, colorHover);
+  transition: all 0.3s;
+  background: map-get($lightTheme, light6);
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- D R O P D O W N S   S T Y L I N G    dropdownstyle
 

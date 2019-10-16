@@ -61,6 +61,17 @@ $colorTheme: (
     background-color: map-get($darkTheme, dark2);
   }
 }
+#sideMenu > span {
+  line-height: 30px;
+  text-align: center;
+  display: list-item;
+  font-size: 16px;
+  cursor: pointer;
+  color: map-get($darkTheme, dark2);
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
 
 
 #centralNotePad {

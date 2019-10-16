@@ -17,8 +17,14 @@
 <body>
 
   <textarea id="fileTitle" placeholder="Note Title..."></textarea>
-  <div id="sideMenu"></div>
   <textarea id="centralNotePad" placeholder="Write Anything..."></textarea>
+
+  <div id="sideMenu">
+      <span id="saveNote" title="Save"><i class="fas fa-save"></i></span>
+      <span id="openNote" title="Open"><input id="fileInput" onclick="readNote()" type="file" style="display:none;"/><i class="fas fa-file-upload"></i></span>
+      <span id="copyNote" title="Copy"><i class="far fa-copy"></i></span>
+      <span id="pasteNote" title="Paste"><i class="fas fa-paste"></i></span>
+  </div>
 
 </body>
 </html>

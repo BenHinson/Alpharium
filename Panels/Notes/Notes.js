@@ -47,6 +47,42 @@ function saveThisFile() {
   });
 }
 
+
+// ---------- SIDE MENU ICONS ---------------------
+
+sideMenuListener();
+function sideMenuListener() {
+  $("span[id*='Note']").on("click", function(e) {
+    var noteCommand = e.currentTarget.id;
+    window[noteCommand](e);
+  })
+}
+
+
+function openNote(e) {
+  document.getElementById('fileInput').click();
+}
+function readNote() {
+	readFile = function(e) {
+		var file = e.target.files[0];
+		if (!file) {return;}
+		var reader = new FileReader();
+    reader.onload = function(e) {
+      var contents = e.target.result;
+      document.getElementById('centralNotePad').innerHTML = contents;
+    };
+		reader.readAsText(file)
+	}
+}
+
+
+
+
+
+
+
+
+
 $(document).ready(objectSize);
 
 
