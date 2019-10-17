@@ -60,26 +60,24 @@ function sideMenuListener() {
 
 
 function openNote(e) {
-  document.getElementById('fileInput').click();
-}
-function readNote() {
 	readFile = function(e) {
 		var file = e.target.files[0];
 		if (!file) {return;}
 		var reader = new FileReader();
-    reader.onload = function(e) {
-      var contents = e.target.result;
+		reader.onload = function(e) {
+			var contents = e.target.result;
       document.getElementById('centralNotePad').innerHTML = contents;
-    };
+			document.body.removeChild(fileInput)
+		}
 		reader.readAsText(file)
 	}
+	fileInput = document.createElement("input");
+	fileInput.type='file';
+	fileInput.style.display='none';
+	fileInput.onchange=readFile;
+  document.body.appendChild(fileInput)
+  fileInput.click();
 }
-
-
-
-
-
-
 
 
 

@@ -57,15 +57,17 @@ var openPanels = [];
 var panelCount = 0;
 
 
-function openThisPanel(thisPanelShortcut) {
+function openThisPanel(thisPanelShortcut, openNow) {
   document.getElementById("centralContentBoxFullscreenMaster").style.display="grid";
   window.thisPanelName = thisPanelShortcut.id;
     if (openPanels.includes(thisPanelName)) {
         if (thisPanelName === displayedPanelId) {
-          document.getElementById("generated"+thisPanelName).style.display="none";
-          displayedPanelId = undefined;
-          displayedPanel = undefined;
-          thisPanelShortcut.style.cssText = "background-color: ; color: cyan";
+          if (openNow != "openNow") {
+            document.getElementById("generated"+thisPanelName).style.display="none";
+            displayedPanelId = undefined;
+            displayedPanel = undefined;
+            thisPanelShortcut.style.cssText = "background-color: ; color: cyan";
+          }
         } else {
           if (displayedPanelId) {
             document.getElementById(displayedPanelId).style.cssText = "background-color: ; color: cyan";
@@ -108,17 +110,17 @@ function newPanel() {
   var fullscreenToolLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
   $(newPanelCreation).load(fullscreenToolLoad);
 
-  panelDots();
+  // panelDots();
 }
 
 // ---------------- PANEL SCROLL ACROSS -----------------------
 
-function panelDots() {
-  console.log(openPanels);
-  console.log(panelCount);
-  console.log(displayedPanel);
-  console.log(displayedPanelId);
-}
+// function panelDots() {
+  // console.log(openPanels);
+  // console.log(panelCount);
+  // console.log(displayedPanel);
+  // console.log(displayedPanelId);
+// }
 
 
 // ---------------- RIGHT CLICK CONTROLS ----------------------

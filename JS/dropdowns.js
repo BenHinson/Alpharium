@@ -368,8 +368,7 @@ function moveTool (thisTool) {
 function WebpagesSelected(weblink) {
   let link = weblink.innerHTML;
   // require('electron').shell.openExternal('www.'+link);
-  thisPanelShortcut = document.getElementById("Internet");
-  openThisPanel(thisPanelShortcut);
+  openThisPanel(document.getElementById("Internet"));
   setTimeout(function() {
     $("#searchPageBackgroundMain").html('<webview style="height:calc(100% - 24px); width: 100vw;" src="' + 'https://www.'+link+ '" />');
   },10)

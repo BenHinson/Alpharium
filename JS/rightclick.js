@@ -74,13 +74,19 @@ function rightClickCreator(e, thisObject) {
 }
 
 
-
-
-
 function homepageBoxDemo(thisObject, Caller, key, Command) {
   // console.log(thisObject, Caller, key, Command);
   console.log(thisObject);  // Callers CurrentTarget rightclick.config key
   console.log(Caller);  // The Right-Click Caller Raw
   console.log(key)      // The key caller, (key in prop file)
   console.log(Command);  // The Option Selected
+}
+
+function internetGoogle() {
+  openThisPanel(document.getElementById("Internet"), "openNow");
+  setTimeout(function() {$("#searchPageBackgroundMain").html('<webview style="height:calc(100% - 24px); width: 100vw;" src="' + 'https://www.google.com" />');},10)
+}
+function internetDuckDuckGo() {
+  openThisPanel(document.getElementById("Internet"), "openNow");
+  setTimeout(function() {$("#searchPageBackgroundMain").html('<webview style="height:calc(100% - 24px); width: 100vw;" src="' + 'https://www.duckduckgo.com" />');},10)
 }
