@@ -104,7 +104,7 @@ function accountPinLogin () {
     document.getElementById('pinEntryBox').placeholder = "Pin";
     document.getElementById('pinFirstMessage').innerHTML = alreadyLoggedIn;
     document.getElementById('pinSecondMessage').innerHTML = "Change Account";
-    $("#pinSecondMessage").on('click', accountLogout);
+    $("#pinSecondMessage").on('click', DropdownLogout);
   
     $("#pinEntryBox").keypress(function(event) {
       if (event.keyCode === 13) {pinReader()}});
@@ -167,6 +167,8 @@ function createAccountProperties() {
 function UserControlListener(e) {
   $("#dropItemsA").unbind();
   $("[ddcommand]").on("click", function(e) {
+    e.stopImmediatePropagation();
+    e.preventDefault();
     var userControlOption = e.currentTarget.innerHTML.split(' ').join('');
     window["Dropdown"+userControlOption](e, userControlOption);
     closeDropdown();
@@ -191,19 +193,19 @@ function DropdownLogouttoPin(e) {
   location.href='../Login/login.html';
 }
 
-function DropdownLogout() {
-  warningPanelSetup("Logout", "Are you sure you want to Logout?", "No", "Yes");
-  setTimeout(function() {
-    $("#warningBoxAccept").on('click', accountLogout);
-    $("#warningBoxDecline, #warningBoxClose").on('click', function() {
-      var removeNode = document.querySelector("#warningCentralPanel");
-      removeNode.parentNode.removeChild(removeNode);
-      logoutWarningOpen = !logoutWarningOpen;
-    });
-  }, 100);
-}
+// function DropdownLogout() {
+  // warningPanelSetup("Logout", "Are you sure you want to Logout?", "No", "Yes");
+  // setTimeout(function() {
+  //   $("#warningBoxAccept").on('click', accountLogout);
+  //   $("#warningBoxDecline, #warningBoxClose").on('click', function() {
+  //     var removeNode = document.querySelector("#warningCentralPanel");
+  //     removeNode.parentNode.removeChild(removeNode);
+  //     logoutWarningOpen = !logoutWarningOpen;
+  //   });
+  // }, 100);
+// }
 
-function accountLogout() {
+function DropdownLogout() {
   properties.set('alphariumproperties.loggedin', '');
   properties.save(__dirname + '/../../Alpha/Properties/user.properties', function then (err, data) {});
   if (document.getElementById('windowTitleUsername')){

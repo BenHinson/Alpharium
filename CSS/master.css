@@ -528,7 +528,7 @@ html {
   color: #5a6e78;
 }
 
-#closeCollumnContent {
+.panelViewer {
   position: fixed;
   z-index: 15;
   width: 50px;
@@ -537,17 +537,17 @@ html {
   font-size: 18px;
   text-align: center;
   color: #161616;
-  border: 0 1px 0 0 solid #969696;
+  border-right: 1px solid #969696;
   background-color: transparent;
   cursor: pointer;
 }
 
-.dark-theme #closeCollumnContent {
+.dark-theme .panelViewer {
   color: #e6e6e6;
   border-right: 1px solid #6e6e6e;
 }
 
-#closeCollumnContent:hover {
+.panelViewer:hover {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   background: #b4b4b4;

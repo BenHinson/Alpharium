@@ -173,8 +173,8 @@ function openDropdown(dropdown) {
       if (dropdownOnclick) {
         window[thisDropDown+"Listener"](this);
       }
-      dropdownOpenCloser();
       moreOptionsListener();
+      dropdownOpenCloser();
     })
   } else {
     closeDropdown();

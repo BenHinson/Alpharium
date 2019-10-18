@@ -42,6 +42,9 @@ function readPanelFolder() {
       }
     }
   })
+
+  
+  $("#alphaPanelViewer").on("click", function() {openPanelManager()});
 }
 
 
@@ -57,16 +60,22 @@ var openPanels = [];
 var panelCount = 0;
 
 
-function openThisPanel(thisPanelShortcut, openNow) {
+function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
   document.getElementById("centralContentBoxFullscreenMaster").style.display="grid";
   window.thisPanelName = thisPanelShortcut.id;
     if (openPanels.includes(thisPanelName)) {
         if (thisPanelName === displayedPanelId) {
           if (openNow != "openNow") {
-            document.getElementById("generated"+thisPanelName).style.display="none";
-            displayedPanelId = undefined;
-            displayedPanel = undefined;
-            thisPanelShortcut.style.cssText = "background-color: ; color: cyan";
+            if (panelOverlay != "displayOntop") {
+              document.getElementById("generated"+thisPanelName).style.display="none";
+              displayedPanelId = undefined;
+              displayedPanel = undefined;
+              thisPanelShortcut.style.cssText = "background-color: ; color: cyan";
+            } else {
+              displayedPanelId = undefined;
+              displayedPanel = undefined;
+              thisPanelShortcut.style.cssText = "background-color: ; color: cyan";
+            }
           }
         } else {
           if (displayedPanelId) {
@@ -104,7 +113,9 @@ function newPanel() {
   newPanelCreation.setAttribute("id", "generated"+thisPanelName);
   newPanelCreation.setAttribute("class", "centralContentBoxFullscreenMaster");
   newPanelCreation.style.zIndex = "100";
-  newPanelCreation.style.background = "rgb(90, 90, 90)";
+  if ($("#"+thisPanelName).attr("Custom") != "transparent") {
+    newPanelCreation.style.background = "rgb(90, 90, 90)";
+  }
   newPanelCreator.appendChild(newPanelCreation);
 
   var fullscreenToolLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
@@ -121,6 +132,9 @@ function newPanel() {
   // console.log(displayedPanel);
   // console.log(displayedPanelId);
 // }
+function openPanelManager() {
+  console.log("opening panel viewer.");
+}
 
 
 // ---------------- RIGHT CLICK CONTROLS ----------------------
