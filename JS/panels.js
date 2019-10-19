@@ -1,6 +1,7 @@
 var fs = require('fs-extra');
 var path = require('path');
 var PropertiesReader = require('properties-reader');
+const html2canvas = require('../../node_modules/html2canvas');
 
 ///////////////////////////////////////
 // LOADING OF PANEL FOLDER AND IGNORING 'alpha' in name
@@ -44,7 +45,7 @@ function readPanelFolder() {
   })
 
   
-  $("#alphaPanelViewer").on("click", function() {openPanelManager()});
+  // $("#alphaPanelViewer").on("click", function() {openPanelManager()});
 }
 
 
@@ -61,6 +62,11 @@ var panelCount = 0;
 
 
 function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
+  if (thisPanelShortcut.id == "alphaPanelViewer") {
+    if (openPanels.includes("alphaPanelViewer")) {
+      panelShortcutClose("alphaPanelViewer");
+    } else {openPanelManager();}
+  }
   document.getElementById("centralContentBoxFullscreenMaster").style.display="grid";
   window.thisPanelName = thisPanelShortcut.id;
     if (openPanels.includes(thisPanelName)) {
@@ -90,19 +96,19 @@ function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
     } else {
       newPanel();
       document.getElementById("generated"+thisPanelName).style.display="block";
-      // thisPanelShortcut.style.borderColor="cyan";
-      // document.getElementById(thisPanelName).style.cssText = "background-color: rgba(173, 173, 168, 0.85); color: cyan"; 
       thisPanelShortcut.style.cssText = "background-color: rgba(173, 173, 168, 0.85); color: cyan";
       openPanels.push(thisPanelName);
-      if (displayedPanel == null) {
-        displayedPanel = document.getElementById("generated"+thisPanelName);
-        displayedPanelId = thisPanelName;
-      } else {
-        displayedPanel.style.display="none";
-        displayedPanel = document.getElementById("generated"+thisPanelName);
-        document.getElementById(displayedPanelId).style.cssText = "background-color:; color: cyan";
-        displayedPanelId = thisPanelName;
-      }
+      setTimeout(function() {
+        if (displayedPanel == null) {
+          displayedPanel = document.getElementById("generated"+thisPanelName);
+          displayedPanelId = thisPanelName;
+        } else {
+          displayedPanel.style.display="none";
+          displayedPanel = document.getElementById("generated"+thisPanelName);
+          document.getElementById(displayedPanelId).style.cssText = "background-color:; color: cyan";
+          displayedPanelId = thisPanelName;
+        }
+      },20);
     }
 }
 
@@ -120,8 +126,10 @@ function newPanel() {
 
   var fullscreenToolLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
   $(newPanelCreation).load(fullscreenToolLoad);
+}
 
-  // panelDots();
+function hidePanel() {
+
 }
 
 // ---------------- PANEL SCROLL ACROSS -----------------------
@@ -132,8 +140,53 @@ function newPanel() {
   // console.log(displayedPanel);
   // console.log(displayedPanelId);
 // }
+
+
+// ---------------------- PANEL VIEWER ------------------------
+
 function openPanelManager() {
-  console.log("opening panel viewer.");
+  if (displayedPanelId != "alphaPanelViewer") {
+    var counter = 0;
+    $("#panelContainer").empty();
+    setTimeout(function() {
+      if (panelCount == 1) {
+        noPanelsWarning = document.createElement('h2');
+        noPanelsWarning.innerHTML = "No Panels are Currently Open";
+        noPanelsWarning.setAttribute("class", "panelWarningMsg");
+        document.getElementById("panelContainer").appendChild(noPanelsWarning);
+      } else {
+      openPanels.forEach(function(panel) {
+        if (panel != "alphaPanelViewer") {
+          counter++;
+          var panelContainer = document.getElementById("panelContainer");
+          panelMini = document.createElement('div');
+          panelMini.setAttribute("class", "miniPanel");
+          panelMini.setAttribute("id", "panel"+counter);
+          panelContainer.appendChild(panelMini);
+
+          if (panel == "Internet") {
+            panelMini.innerHTML = "Preview Not Supported";
+          } else {
+            createPanelImage(panel, counter);
+          }
+        }
+      })
+
+      $('.miniPanel').css({width: 'calc(100vw / '+(panelCount - 0.5)+')', height: 'calc(100vh / '+(panelCount - 0.5)+')'});
+      panelContainerHeight = $("#panelContainer").height();
+      $('#panelContainer').css({top: 'calc(50% - ('+panelContainerHeight+'px) / 2)'});
+      }
+    }, 10);
+  }
+}
+
+function createPanelImage(panel, counter) {
+  document.querySelector("#generated"+panel).style.display = "block";
+  html2canvas(document.getElementById("generated"+panel), {
+    }).then(function (canvas) {
+      $("#panel"+counter).append(canvas);
+  });
+  document.querySelector("#generated"+panel).style.display = "none";
 }
 
 
@@ -153,8 +206,12 @@ function panelShortcutOpeninNewWindow(Caller, RCCommand, thisObject) {
   }, 300);
 }
 
-function panelShortcutClose(Caller, RCCommand, thisObject) {
-  var panelToRemove = Caller.target.id;
+function panelShortcutClose(Caller, RCCommand) {
+  if (RCCommand) {
+    var panelToRemove = Caller.target.id;
+  } else {
+    var panelToRemove = Caller;
+  }
   var PanelParent = document.querySelector("#centralContentBoxFullscreenMaster");
   var PanelChild = document.querySelector("#generated"+panelToRemove);
   setTimeout(function() {
@@ -166,7 +223,7 @@ function panelShortcutClose(Caller, RCCommand, thisObject) {
     }
     panelCount--;
     document.getElementById(panelToRemove).style.cssText = "color:";
-  }, 50);
+  }, 100);
 }
 
 

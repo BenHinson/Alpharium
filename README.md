@@ -13,32 +13,28 @@ Alpha Drive, on startup, creates a Folder 'Alpharium' within the users C: drive,
 
 
 
-ISSUES AND FUTURE IMPROVEMENTS -------------------------------
-
-Window Frame Controls on Light-Theme dont show up too clearly.
-
-Randomly Typing backwards on Browser Webview.
+MAJOR ADDITIONS -------------------------------
 
 Multi-Account support with quick-switch.
 
-Dropdown menu for User, containing: Logout Options/User Switch/Settings/User Info/Startup Settings.
+Multi Canvas Support
 
 Horizontal scroll for Panels at bottom (arrow on right side).
 
-Panel switcher (multi dots at bottom of page, above panels, new dot for each open panel).
+Split Screen for Panels
 
 Long hover at side of page displays slice of next panel along, when clicked, panel swipes across.
 
 On Login, open previous panels/tools etc from last logout.
 
-Panel View - Displays all open panel in a line, with controls to close / duplicate etc.
+Panel View - Displays all open panela in a line, with controls to close / duplicate etc.
 
 Add Tabs to panels for quick switching between same panel.
 
 Central Box on Homepage can contain 'programs' and File/Folder links.
 
+FEATURE ADDITIONS -----------------------------
+
 Add Video Player / Image Viewer panels.
 
 Music Player tool.
-
-Odd Issue with rightclick not being removed after closing panel.

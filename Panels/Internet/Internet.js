@@ -29,7 +29,7 @@ function searchLocation() {
   } else {
     var userSearch = (`https://www.`+location+`.com/?q=`+searchInput);
   }
-  $("#searchPageBackgroundMain").html('<webview partition="persist:googlepluswidgets" autosize="on" style="width:100vw;height:calc(100vh - 24px);" src="'+userSearch+'"/>');
+  $("#searchPageBackgroundMain").html('<webview id="internetWebview" partition="persist:googlepluswidgets" autosize="on" style="width:100vw;height:calc(100vh - 24px);" src="'+userSearch+'"/>');
 }
 
 $(document).ready(listeners)

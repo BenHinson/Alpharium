@@ -9,6 +9,7 @@ setTimeout(function() {
 }, 100);
 
 function readDropdownFolder() {
+  setTimeout(function() {
   window.dropdownFileLocation = path.join(__dirname, '../../Dropdowns');
   fs.readdir(dropdownFileLocation, function(err, items) {
     for (var i=0; i<items.length; i++) {
@@ -52,7 +53,8 @@ function readDropdownFolder() {
       dropInfoChild.style.borderBottom = "1px solid "+dropdownColour;
       dropInfoParent.appendChild(dropInfoChild);
     }
-  })
+  }) 
+  }, 10);
 }
 
 function changeColumn() {selectedColumn = !selectedColumn;};
