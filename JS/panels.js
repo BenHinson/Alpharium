@@ -62,54 +62,41 @@ var panelCount = 0;
 
 
 function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
-  if (thisPanelShortcut.id == "alphaPanelViewer") {
+  window.thisPanelName = thisPanelShortcut.id;
+  if (thisPanelName == "alphaPanelViewer") {
     if (openPanels.includes("alphaPanelViewer")) {
       panelShortcutClose("alphaPanelViewer");
     } else {openPanelManager();}
   }
-  document.getElementById("centralContentBoxFullscreenMaster").style.display="grid";
-  window.thisPanelName = thisPanelShortcut.id;
-    if (openPanels.includes(thisPanelName)) {
-        if (thisPanelName === displayedPanelId) {
-          if (openNow != "openNow") {
-            if (panelOverlay != "displayOntop") {
-              document.getElementById("generated"+thisPanelName).style.display="none";
-              displayedPanelId = undefined;
-              displayedPanel = undefined;
-              thisPanelShortcut.style.cssText = "background-color: ; color: cyan";
-            } else {
-              displayedPanelId = undefined;
-              displayedPanel = undefined;
-              thisPanelShortcut.style.cssText = "background-color: ; color: cyan";
-            }
-          }
-        } else {
-          if (displayedPanelId) {
-            document.getElementById(displayedPanelId).style.cssText = "background-color: ; color: cyan";
-            displayedPanel.style.display="none";
-          }
-          displayedPanel = document.getElementById("generated"+thisPanelName);
-          document.getElementById("generated"+thisPanelName).style.display="block";
-          thisPanelShortcut.style.cssText = "background-color: rgba(173, 173, 168, 0.85); color: cyan";
-          displayedPanelId = thisPanelName;
-        }
+  if (openPanels.includes(thisPanelName)) {
+    if (displayedPanelId == thisPanelName) {
+      minimizePanel(displayedPanel, thisPanelShortcut);
+      displayedPanel = undefined;
+      displayedPanelId = undefined;
     } else {
-      newPanel();
-      document.getElementById("generated"+thisPanelName).style.display="block";
-      thisPanelShortcut.style.cssText = "background-color: rgba(173, 173, 168, 0.85); color: cyan";
-      openPanels.push(thisPanelName);
-      setTimeout(function() {
-        if (displayedPanel == null) {
-          displayedPanel = document.getElementById("generated"+thisPanelName);
-          displayedPanelId = thisPanelName;
-        } else {
-          displayedPanel.style.display="none";
-          displayedPanel = document.getElementById("generated"+thisPanelName);
-          document.getElementById(displayedPanelId).style.cssText = "background-color:; color: cyan";
-          displayedPanelId = thisPanelName;
-        }
-      },20);
+      displayPanel(thisPanelShortcut);
     }
+  } else {
+    document.getElementById("centralContentBoxFullscreenMaster").style.display="grid";
+    newPanel();
+    openPanels.push(thisPanelName);
+    displayPanel(thisPanelShortcut);
+  }
+}
+
+function displayPanel(thisPanelShortcut) {
+  if (displayedPanel != null) {
+    minimizePanel(displayedPanel)
+  }
+  thisPanelShortcut.style.cssText = "background-color: rgba(173, 173, 168, 0.85); color: cyan;";
+  displayedPanel = document.getElementById("generated"+thisPanelName);
+  displayedPanel.style.cssText = "display: block; z-index: 100";
+  displayedPanelId = thisPanelName;
+}
+
+function minimizePanel(displayedPanel) {
+  displayedPanel.style.cssText = "display: none";
+  document.getElementById(displayedPanelId).style.cssText = "background-color:; color: cyan";
 }
 
 function newPanel() {
@@ -126,10 +113,6 @@ function newPanel() {
 
   var fullscreenToolLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
   $(newPanelCreation).load(fullscreenToolLoad);
-}
-
-function hidePanel() {
-
 }
 
 // ---------------- PANEL SCROLL ACROSS -----------------------
@@ -207,11 +190,8 @@ function panelShortcutOpeninNewWindow(Caller, RCCommand, thisObject) {
 }
 
 function panelShortcutClose(Caller, RCCommand) {
-  if (RCCommand) {
-    var panelToRemove = Caller.target.id;
-  } else {
-    var panelToRemove = Caller;
-  }
+  if (RCCommand) {var panelToRemove = Caller.target.id;
+  } else {var panelToRemove = Caller;}
   var PanelParent = document.querySelector("#centralContentBoxFullscreenMaster");
   var PanelChild = document.querySelector("#generated"+panelToRemove);
   setTimeout(function() {
