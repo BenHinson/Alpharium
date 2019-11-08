@@ -1,9 +1,7 @@
 function preStart() {
     TweenMax.to("#pressanyKey", 3, {alpha:0.5, repeat:-1, yoyo:true, ease:Sine.easeInOut});
 }
-
 var helpOpen = false;
-
 function showHelp () {
     if (!helpOpen) {
         TweenMax.to(["#forgotPw", "#createAccount", "#addHelp"], 1, {visibility: 'visible', opacity: '1'})
@@ -27,7 +25,6 @@ function openLogin() {
         .to(["#loginBtn", "#loginHelp"], 1,{visibility: 'visible', opacity: '1'});
 }
 
-
 function closeLogin() {
 
     var username = document.getElementById("usernameLogin").value;
@@ -50,13 +47,13 @@ function quickCloseLogin(alreadyLoggedIn) {
     slowWindowOpen();
 }
 
+
 function slowWindowOpen() {
     setTimeout(function() {location.href='../Homepage/homepage.html'}, 6000)}
 function windowOpen() {
     setTimeout(function() {location.href='../Homepage/homepage.html'}, 8000)}
 
 function createAccount() {
-    // setTimeout(function() {window.open("createAccount.html", "Create Account", "height=600,width=400,menubar=0,resizeable=no,scrollbars=no,toolbar=no,location=yes")}, 200)
     const { BrowserWindow } = require('electron').remote
     let createAccountWindow = new BrowserWindow({ width: 400, height: 550, frame: false, webPreferences: {experimentalFeatures: true,nodeIntegration: true,webviewTag: true}})
     createAccountWindow.on('closed', () => {

@@ -15,6 +15,7 @@ function createWindow () {
     frame: false,
     show:false,
     center:true,
+    backgroundColor: '#333333',
 
     // transparent : true,
 

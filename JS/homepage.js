@@ -71,4 +71,8 @@ function userSettingsAnimationSetup() {
 //     setTimeout(function() {window.open("../FileManagerCode/filePage.html", "Alpha Drive", "height=700,width=1000,location=yes")}, 200)
 // }
 
+function openInternetWebview(userSearch) {
+    $("#searchPageBackgroundMain").html('<webview id="internetWebview" partition="persist:googlepluswidgets" autosize="on" style="height:100%; width: 100vw;" src="'+userSearch+'"/>');
+}
+
 $(document).ready(userSettingsAnimationSetup)

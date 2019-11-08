@@ -7,7 +7,15 @@ if (localStorage.getItem('InternetSearchLocation')) {
   $("#"+storedLocation).addClass("checked");
 }
 
+function objectSize() {
+  window.bottomnav = document.getElementById('bottomnav');
+  if (!bottomnav) {
+    $("#searchPageBackgroundMain").css("height", "calc(100vh - 24px)")
+  }
+}
+
 function listeners() {
+  objectSize();
   $("#searchPageSearchBox").keypress(function(event) {
     if (event.keyCode === 13) {searchLocation();}
   }); $("#searchPageEnterSearch").on("click", searchLocation);
@@ -29,7 +37,10 @@ function searchLocation() {
   } else {
     var userSearch = (`https://www.`+location+`.com/?q=`+searchInput);
   }
-  $("#searchPageBackgroundMain").html('<webview id="internetWebview" partition="persist:googlepluswidgets" autosize="on" style="width:100vw;height:calc(100vh - 24px);" src="'+userSearch+'"/>');
+  // $("#searchPageBackgroundMain").html('<webview id="internetWebview" partition="persist:googlepluswidgets" autosize="on" style="width:100vw;height:calc(100vh - 24px);" src="'+userSearch+'"/>');
+  // $("#searchPageBackgroundMain").html('<webview id="internetWebview" partition="persist:googlepluswidgets" autosize="on" style="height:calc(100% - 28px); width: 100vw;" src="'+userSearch+'"/>');
+  
+  openInternetWebview(userSearch);
 }
 
 $(document).ready(listeners)

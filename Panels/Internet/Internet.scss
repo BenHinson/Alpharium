@@ -63,7 +63,7 @@ $colorTheme: (
   background-color: map-get($lightTheme, light3);
   overflow: hidden;
   width: 100vw;
-  height: 100%;
+  height: calc(100% - 52px);
   position: fixed;
   .dark-theme & {
     background-color: map-get($darkTheme, dark0);

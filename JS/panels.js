@@ -59,15 +59,18 @@ var displayedPanelId
 var displayedPanel
 var openPanels = [];
 var panelCount = 0;
+var previousPanel;
 
 
 function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
   window.thisPanelName = thisPanelShortcut.id;
-  if (thisPanelName == "alphaPanelViewer") {
-    if (openPanels.includes("alphaPanelViewer")) {
-      panelShortcutClose("alphaPanelViewer");
-    } else {openPanelManager();}
+
+  if (openPanels.includes("alphaPanelViewer")) {
+    panelShortcutClose("alphaPanelViewer");
+  } else if (thisPanelName == "alphaPanelViewer") {
+    openPanelManager();
   }
+
   if (openPanels.includes(thisPanelName)) {
     if (displayedPanelId == thisPanelName) {
       minimizePanel(displayedPanel, thisPanelShortcut);
@@ -92,9 +95,11 @@ function displayPanel(thisPanelShortcut) {
   displayedPanel = document.getElementById("generated"+thisPanelName);
   displayedPanel.style.cssText = "display: block; z-index: 100";
   displayedPanelId = thisPanelName;
+  previousPanel = displayedPanelId;
 }
 
 function minimizePanel(displayedPanel) {
+  previousPanel = displayedPanelId;
   displayedPanel.style.cssText = "display: none";
   document.getElementById(displayedPanelId).style.cssText = "background-color:; color: cyan";
 }
@@ -128,39 +133,79 @@ function newPanel() {
 // ---------------------- PANEL VIEWER ------------------------
 
 function openPanelManager() {
-  if (displayedPanelId != "alphaPanelViewer") {
-    var counter = 0;
-    $("#panelContainer").empty();
-    setTimeout(function() {
-      if (panelCount == 1) {
-        noPanelsWarning = document.createElement('h2');
-        noPanelsWarning.innerHTML = "No Panels are Currently Open";
-        noPanelsWarning.setAttribute("class", "panelWarningMsg");
-        document.getElementById("panelContainer").appendChild(noPanelsWarning);
-      } else {
-      openPanels.forEach(function(panel) {
-        if (panel != "alphaPanelViewer") {
-          counter++;
+  var counter = 0;
+  $("#panelContainer").empty().css({top: ''});
+  $("#panelContainer2").empty().css({bottom: ''});
+  setTimeout(function() {
+    if (panelCount == 1) {
+      noPanelsWarning = document.createElement('h2');
+      noPanelsWarning.innerHTML = "No Panels are Currently Open";
+      noPanelsWarning.setAttribute("class", "panelWarningMsg");
+      document.getElementById("panelContainer").appendChild(noPanelsWarning);
+    } else {
+    openPanels.forEach(function(panel) {
+      if (panel != "alphaPanelViewer") {
+        counter++;
+        if (openPanels.length >= 3 && counter >= 3) {
+          var panelContainer = document.getElementById("panelContainer2");
+        } else {
           var panelContainer = document.getElementById("panelContainer");
-          panelMini = document.createElement('div');
-          panelMini.setAttribute("class", "miniPanel");
-          panelMini.setAttribute("id", "panel"+counter);
-          panelContainer.appendChild(panelMini);
-
-          if (panel == "Internet") {
-            panelMini.innerHTML = "Preview Not Supported";
-          } else {
-            createPanelImage(panel, counter);
-          }
         }
-      })
+        panelMiniCont = document.createElement('div');
+        panelMiniCont.setAttribute("class", "miniPanelContainer");
+        panelMiniCont.setAttribute("id", "miniPanel"+counter);
+        panelContainer.appendChild(panelMiniCont);
 
+        panelMiniControl = document.createElement('div');
+        panelMiniControl.setAttribute("class", "miniPanelControls");
+        panelMiniControl.setAttribute("id", "miniControls"+counter);
+        panelMiniCont.appendChild(panelMiniControl);
+
+        panelMiniName = document.createElement('span');
+        panelMiniName.setAttribute("class", "miniPanelName");
+        panelMiniName.setAttribute("id", "miniName"+counter);
+        panelMiniControl.appendChild(panelMiniName);
+
+        panelMiniClose = document.createElement('i');
+        panelMiniClose.setAttribute("class", "miniPanelClose far fa-times-circle");
+        panelMiniClose.setAttribute("id", "miniClose"+counter);
+        panelMiniClose.setAttribute("onclick", "panelShortcutClose('"+panel+"')");
+        panelMiniControl.appendChild(panelMiniClose);
+
+        panelMini = document.createElement('div');
+        panelMini.setAttribute("class", "miniPanel");
+        panelMini.setAttribute("id", "panel"+counter);
+        panelMini.setAttribute("onclick", 'panelShortcutOpen('+panel+', "panelViewer")');
+        panelMiniCont.appendChild(panelMini);
+
+        document.getElementById("miniName"+counter).innerHTML = panel;
+
+        if (panel == "Internet") {
+          panelMini.innerHTML = "Preview Not Supported";
+        } else {
+          createPanelImage(panel, counter);
+        }
+      }
+    })
+
+    if (panelCount <= 3) {
       $('.miniPanel').css({width: 'calc(100vw / '+(panelCount - 0.5)+')', height: 'calc(100vh / '+(panelCount - 0.5)+')'});
       panelContainerHeight = $("#panelContainer").height();
       $('#panelContainer').css({top: 'calc(50% - ('+panelContainerHeight+'px) / 2)'});
-      }
-    }, 10);
-  }
+    }
+    else if (panelCount <= 7) {
+      $('.miniPanel').css({width: 'calc(100vw / '+(panelCount - (counter / 2))+')', height: 'calc(100vh / '+(panelCount - (counter / 2))+')'});
+      panelContainerHeight = $("#panelContainer").height();
+      $('#panelContainer').css({top: 'calc(((100vh -'+(panelContainerHeight * 2)+') / 2) - 24px)'});
+      $('#panelContainer2').css({bottom: 'calc(((100vh -'+(panelContainerHeight * 2)+') / 2) - 10px)'});
+    }
+
+    // $('.miniPanel').css({width: 'calc(100vw / '+(panelCount - 0.5)+')', height: 'calc(100vh / '+(panelCount - 0.5)+')'});
+    // panelContainerHeight = $("#panelContainer").height();
+    // $('#panelContainer').css({top: 'calc(50% - ('+panelContainerHeight+'px) / 2)'});
+
+    }
+  }, 20);
 }
 
 function createPanelImage(panel, counter) {
@@ -177,7 +222,11 @@ function createPanelImage(panel, counter) {
 
 
 function panelShortcutOpen(thisObject, Caller, key, Command) {
-  thisPanelShortcut = thisObject.target;
+  if (Caller == "panelViewer") {
+    thisPanelShortcut = thisObject;
+  } else {
+    thisPanelShortcut = thisObject.target;
+  }
   openThisPanel(thisPanelShortcut);
 }
 
@@ -196,7 +245,10 @@ function panelShortcutClose(Caller, RCCommand) {
   var PanelChild = document.querySelector("#generated"+panelToRemove);
   setTimeout(function() {
     PanelParent.removeChild(PanelChild);
-    openPanels.pop(panelToRemove);
+    openPanels = openPanels.filter(item => item != panelToRemove);
+    if (displayedPanelId == 'alphaPanelViewer') {
+      openPanelManager();
+    }
     if (displayedPanelId == panelToRemove) {
       displayedPanelId = undefined;
       displayedPanel = undefined;

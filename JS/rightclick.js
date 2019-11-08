@@ -10,6 +10,7 @@ setTimeout(function() {
 
 
 function initRightClick() {
+  $("[rc-name] .centralContentBoxFullscreenMaster").on("contextmenu", function(e) {e.stopPropagation();})
   $("[rc-name]").on("contextmenu", function(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
@@ -84,9 +85,13 @@ function homepageBoxDemo(thisObject, Caller, key, Command) {
 
 function internetGoogle() {
   openThisPanel(document.getElementById("Internet"), "openNow");
-  setTimeout(function() {$("#searchPageBackgroundMain").html('<webview style="height:calc(100% - 24px); width: 100vw;" src="' + 'https://www.google.com" />');},10)
+  setTimeout(function() {
+    openInternetWebview('https://www.google.com');
+  }, 10)
 }
 function internetDuckDuckGo() {
   openThisPanel(document.getElementById("Internet"), "openNow");
-  setTimeout(function() {$("#searchPageBackgroundMain").html('<webview style="height:calc(100% - 24px); width: 100vw;" src="' + 'https://www.duckduckgo.com" />');},10)
+  setTimeout(function() {
+    openInternetWebview('https://www.duckduckgo.com');
+  }, 10)
 }

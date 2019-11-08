@@ -169,14 +169,87 @@ function UserControlListener(e) {
   $("[ddcommand]").on("click", function(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
-    var userControlOption = e.currentTarget.innerHTML.split(' ').join('');
-    window["Dropdown"+userControlOption](e, userControlOption);
-    closeDropdown();
+
+    var userControlOption = e.currentTarget.textContent.split(' ').join('');
+    if (userControlOption.endsWith("Add")){
+      removeAddFromEnd = userControlOption.lastIndexOf("Add");
+      userControlOption = userControlOption.substring(0, removeAddFromEnd);
+    }
+
+    if (e.currentTarget.hasAttribute("customSpecific")) {
+      window[parentPopout+"Listener"](e.currentTarget);
+    } else {
+      window["Dropdown"+userControlOption](e, userControlOption);
+    }
+    var UserControlProperties = PropertiesReader(dropdownFileLocation+'/UserControl/UserControl.properties');
+    if (UserControlProperties.get('properties.Add'+userControlOption+'CloseDrop') == null) {
+      closeDropdown();
+    }
   })
 }
 
 function DropdownAccountInfo(e) {
-  console.log(e)
+  console.log(e);
+}
+
+function DropdownAddNewUser(e) {
+  $(e.currentTarget).unbind();
+  addAccountContainer = e.currentTarget;
+  e.currentTarget.style.height = "160px"
+
+  var addAccountSwitchContainer = document.createElement('div');addAccountSwitchContainer.setAttribute("id", "addAccountContainer")
+  e.currentTarget.appendChild(addAccountSwitchContainer);
+
+  var inputLoginName = document.createElement('input');inputLoginName.setAttribute("id", "addNewSwitchLogin");inputLoginName.setAttribute("class", "newSwitchInput");inputLoginName.placeholder = "Username...";
+  addAccountSwitchContainer.appendChild(inputLoginName);
+
+  var inputLoginPassword = document.createElement('input');inputLoginPassword.setAttribute("type", "password");inputLoginPassword.setAttribute("id", "addNewSwitchPassword");inputLoginPassword.setAttribute("class", "newSwitchInput");inputLoginPassword.placeholder = "Password...";
+  addAccountSwitchContainer.appendChild(inputLoginPassword);
+
+  var inputLoginAccept = document.createElement('button');inputLoginAccept.setAttribute("id", "addNewSwitchAccept");inputLoginAccept.setAttribute("class", "newSwitchAccept");inputLoginAccept.innerHTML = "Add";
+  addAccountSwitchContainer.appendChild(inputLoginAccept);
+
+  borderSwitch = null;
+
+  inputLoginAccept.addEventListener("click", function(e) {
+    submittedUsername = inputLoginName.value;
+    submittedPassword = inputLoginPassword.value;
+    if (submittedUsername == alreadyLoggedIn) {borderSwitch = "#addNewSwitchLogin";} else {
+      switchAccounts = properties.get(alreadyLoggedIn+'.switchAccounts');
+      if (switchAccounts && switchAccounts.includes(submittedUsername)) {borderSwitch = "#addNewSwitchLogin";} else {
+        if (submittedUsername && submittedPassword) {
+          if (properties.get(submittedUsername+'.username')) {
+            if (properties.get(submittedUsername+'.passwordHash') === passwordHash(submittedPassword)) {
+              if (switchAccounts) {properties.set(alreadyLoggedIn+'.switchAccounts', switchAccounts+','+submittedUsername);
+              } else {properties.set(alreadyLoggedIn+'.switchAccounts', submittedUsername);}
+              properties.save(__dirname + '/../../Alpha/Properties/user.properties', function then (err, data) {});
+              submittedUsernameString = [submittedUsername];
+              generateDropdownItems(submittedUsernameString, "First,customSpecific");
+            } else {borderSwitch = "#addNewSwitchPassword";}
+          } else {borderSwitch = "#addNewSwitchLogin";}
+        } else {borderSwitch = ".newSwitchInput";}
+      }
+    }
+    $(".newSwitchInput").css("border-color", "")
+    if (borderSwitch) {
+      $(borderSwitch).css("border-color", "rgb(180, 49, 49)");
+    }
+  })
+}
+
+function SwitchUserListener(e) {
+  accountToSwitch = e.innerHTML;
+  if (accountToSwitch != "Add New User"){
+    accountToSwitch = e.innerHTML;
+    properties.set('alphariumproperties.loggedin', accountToSwitch);
+    properties.save(__dirname + '/../../Alpha/Properties/user.properties', function then (err, data) {});
+    if (document.getElementById('windowTitleUsername')){
+      document.getElementById('windowTitleUsername').innerHTML = (accountToSwitch);
+    }
+    location.href='../Homepage/homepage.html';
+  } else {
+    window["Dropdown"+userControlOption](e, userControlOption);
+  }
 }
 
 function DropdownLogouttoPin(e) {

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Loading</title>
+    <script href="/JS/tools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../CSS/toolStyle/toolStyleTemplate.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+    <script src="../../JS/accountProp.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../Dropdowns/Tools/Loading/loading.css">
+
+  </head>
+
+  <body>
+    <div class="boxFrameTemplate" style="height: 250px;"> <!-- Change the height to the height of the tool you want. -->
+      <div class="toolBarTemplate" style="height: 250px;">
+        <span onclick="closeThisTool(this)" class="moveToolTemplate" title="Close"><i class="fas fa-times"></i></span>
+        <span onclick="moveTool(this)" class="moveToolTemplate" title="Up"><i class="fas fa-sort-up"></i></span>
+        <span onclick="moveTool(this)" class="moveToolTemplate" title="Down"><i class="fas fa-sort-down"></i></span>
+      </div>
+      <!-- MAIN AREA FOR THE TOOL -->
+      <div class="loadingContainer">
+        <div id="leftLoadingColumn">
+          <div id="rightLoadingColumn">
+            <div id="centralImage"></div>
+          </div>
+        </div>
+      </div>
+      <h3 id="beingLoadedInfo">Navigation Bar</h3>
+  
+    </div>
+  </body>
+</html>

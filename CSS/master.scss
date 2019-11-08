@@ -410,7 +410,7 @@ html {
 }
 .userDropIcon {
   height: 21px;
-  width: 10px;
+  width: 16px;
   font-size: 16px;
   margin: 2px 0 0 6px;
   color: map-get($darkTheme, dark2);
@@ -418,9 +418,6 @@ html {
     color: map-get($lightTheme, light2);
   }
 }
-
-
-
 
 #bottomnav {
   background-color: map-get($lightTheme, light2);
@@ -661,6 +658,63 @@ html {
   font-size: 14px;
 }
 
+#addAccountContainer {
+  position: absolute;
+  margin-top: 8px;
+  border-top: 1px solid map-get($darkTheme, dark6);
+  display: grid;
+  width: 200px;
+  height: 129px;
+  left: 0px;
+  padding: 10px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  cursor: default;
+  &:hover {
+    background-color: map-get($lightTheme, light3);
+    .dark-theme & {
+      background-color: map-get($darkTheme, darkdropdown);
+    }
+  }
+}
+
+
+.newSwitchInput {
+  position: inline-block;
+  height: 26px;
+  width: 160px;
+  margin: 0 0 10px 10px;
+  padding: 5px;
+  border: 2px solid map-get($lightTheme, light7);
+  border-radius: 5px;
+  background: transparent;
+  font-size: 14px;
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+    border: 2px solid map-get($darkTheme, dark4);
+  }
+}
+
+.newSwitchAccept {
+  position: inline-block;
+  height: 24px;
+  width: 160px;
+  margin: 5px 0 10px 10px;
+  padding: 4px;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background: #58a053;
+  color: whitesmoke;
+  transform: translateY(var(--y));
+  transition: transform .3s ease;
+  cursor: pointer;
+  &:hover {
+      --y: -2px;
+  }
+}
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- F I L E   P A G E      alphadrivestyle
 
@@ -690,18 +744,16 @@ html {
 
 
 #rightClickContainer {
-  z-index: 999;
-  display:none;
+  display: none;
   position: fixed;
-  width:180px;
-  background:map-get($lightTheme, light2);
-  // border: 1px solid map-get($darkTheme, dark7);
-  box-shadow: 1px 2px 2px rgba(180, 180, 180, 0.7);
-  border-radius: 4px;
-  cursor: pointer;
   user-select: none;
+  z-index: 999;
+  width: 180px;
+  border-radius: 4px;
+  padding: 4px 2px 4px 2px;
+  box-shadow: 1px 2px 2px rgba(180, 180, 180, 0.7);
+  background:map-get($lightTheme, light2);
   .dark-theme & {
-    // border: 1px solid map-get($lightTheme, light8);
     box-shadow: 1px 2px 2px rgb(10, 10, 10);
     background: map-get($darkTheme, dark2);
     color: map-get($lightTheme, light1);
@@ -711,6 +763,7 @@ html {
     font-family: 'Segoe UI';
     list-style: none;
     padding: 4px 10px 4px 10px;
+    cursor: pointer;
   }
 }
 #rightClickContainer li:hover {
@@ -750,7 +803,7 @@ html {
 
 #loginLeft {
   position: absolute;
-  left: -48px;
+  left: -47px;
   width: 82px;
   height: 120px;
   border: 1px solid map-get($darkTheme, dark3);
@@ -766,7 +819,7 @@ html {
 
 #loginRight {
   position: absolute;
-  right: -48px;
+  right: -47px;
   width: 82px;
   height: 120px;
   border: 1px solid map-get($darkTheme, dark3);
@@ -966,43 +1019,6 @@ html {
   }
 }
 
-#welcomeUser {
-  font-family: 'Agency FB', arial;
-  letter-spacing: 3px;
-  font-weight: 100;
-  color: map-get($darkTheme, dark0);
-  // color: map-get($lightTheme, light1);
-  font-size: 16px;
-  z-index: 5;
-  position: absolute;
-  margin-top: 40vh;
-  visibility: hidden;
-  opacity: 0;
-
-  .dark-theme & {
-    color: map-get($lightTheme, light1);
-  }
-}
-
-#welcomeUsername {
-  font-family: 'Agency FB', arial;
-  letter-spacing: 1px;
-  font-weight: 100;
-  text-align: center;
-  color: map-get($darkTheme, dark0);
-  // color: map-get($lightTheme, light1);
-  font-size: 16px;
-  z-index: 5;
-  position: absolute;
-  margin-top: 50vh;
-  visibility: hidden;
-  opacity: 0;
-  user-select: none;
-
-  .dark-theme & {
-    color: map-get($lightTheme, light1);
-  }
-}
 .loginHelpOption {
   position: absolute;
   visibility: hidden;
@@ -1270,6 +1286,46 @@ html {
   text-decoration: underline;
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------      L O A D I N G  P A G E     loadingpage
+
+#welcomeUser {
+  font-family: 'Agency FB', arial;
+  letter-spacing: 3px;
+  font-weight: 100;
+  color: map-get($darkTheme, dark0);
+  // color: map-get($lightTheme, light1);
+  font-size: 16px;
+  z-index: 5;
+  position: absolute;
+  margin-top: 40vh;
+  visibility: hidden;
+  opacity: 0;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
+#welcomeUsername {
+  font-family: 'Agency FB', arial;
+  letter-spacing: 1px;
+  font-weight: 100;
+  text-align: center;
+  color: map-get($darkTheme, dark0);
+  // color: map-get($lightTheme, light1);
+  font-size: 16px;
+  z-index: 5;
+  position: absolute;
+  margin-top: 50vh;
+  visibility: hidden;
+  opacity: 0;
+  user-select: none;
+
+  .dark-theme & {
+    color: map-get($lightTheme, light1);
+  }
+}
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- W A R N I N G   B O X      warningboxstyle
 
@@ -1381,8 +1437,46 @@ html {
 .panelContainer {
   display: flex;
   position: absolute;
+  justify-content: space-evenly;
   width: 100%;
-  justify-content: space-around;
+}
+.miniPanelContainer {
+  background: transparent;
+}
+.miniPanelControls {
+  display: flex;
+}
+.miniPanelName {
+  background: transparent;
+  vertical-align: middle;
+  font-size: 14px;
+  text-align: left;
+  font-weight: 500;
+  font-family: 'Segoe UI';
+  user-select: none;
+  height: 24px;
+  flex: 1;
+  padding-left: 10px;
+  color: map-get($darkTheme, dark3);
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+.miniPanelClose {
+  height: 24px;
+  width: 24px;
+  padding: 2px;
+  font-size: 20px;
+  transition: 0.3;
+  cursor: pointer;
+  color: map-get($darkTheme, dark3);
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+}
+.miniPanelClose:hover {
+  font-size: 22px;
+  padding: 1px;
 }
 .miniPanel {
   display: inline-block;
@@ -1399,10 +1493,14 @@ html {
   user-select: none;
   word-wrap: break-word;
   line-height: 100px;
+  cursor: pointer;
   color: map-get($darkTheme, dark6);
   .dark-theme & {
     color: map-get($lightTheme, light7);
   }
+}
+.miniPanel:hover {
+  border: 2px solid #c4c4c4;
 }
 canvas {
   max-width: 100%;
