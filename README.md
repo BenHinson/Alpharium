@@ -15,8 +15,6 @@ Alpha Drive, on startup, creates a Folder 'Alpharium' within the users C: drive,
 
 MAJOR ADDITIONS -------------------------------
 
-Multi-Account support with quick-switch.
-
 Multi Canvas Support
 
 Horizontal scroll for Panels at bottom (arrow on right side).
@@ -26,8 +24,6 @@ Split Screen for Panels
 Long hover at side of page displays slice of next panel along, when clicked, panel swipes across.
 
 On Login, open previous panels/tools etc from last logout.
-
-Panel View - Displays all open panela in a line, with controls to close / duplicate etc.
 
 Add Tabs to panels for quick switching between same panel.
 

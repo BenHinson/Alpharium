@@ -39,10 +39,12 @@ function initRightClick() {
 }
 
 function startFocusOut() {
-  $(document).on("click",function(){
-    $("#rightClickContainer").hide();
-    $(document).off("click");
-  });
+  setTimeout(function() {
+    $(document).on("click",function(){
+      $("#rightClickContainer").hide();
+      $(document).off("click");
+    });
+  },20)
 }
 
 

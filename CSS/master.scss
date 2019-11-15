@@ -31,6 +31,7 @@ $colorTheme: (
   colorHover: rgb(90, 110, 120),
   colorError: rgb(255, 88, 88),
   colorGreen: rgb(17, 94, 17),
+  colorBrightBlue:rgb(0, 140, 255),
 );
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- W I N D O W S   F R A M E      windowstyle
@@ -204,7 +205,7 @@ html {
   left: 50%;
   margin-left: -60px;
   color: white;
-  background-color: map-get($darkTheme, dark3);
+  background-color: map-get($lightTheme, light8);
   .dark-theme & {
     color: black;
     background-color: map-get($lightTheme, light4);
@@ -219,7 +220,7 @@ html {
   margin-left: -8px;
   border-width: 8px;
   border-style: solid;
-  border-color: map-get($darkTheme, dark3) transparent transparent transparent;
+  border-color: map-get($darkTheme, dark7) transparent transparent transparent;
   .dark-theme & {
     border-color: map-get($lightTheme, light4) transparent transparent transparent;
   }
@@ -243,6 +244,51 @@ html {
   left: 83%;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- P A N E L  S E C U R E   panelsecure
+
+.panelSecureContainer {
+  position: absolute;
+  width: 150px;
+  height: 28px;
+  border-radius: 6px;
+  padding: 2px;
+  z-index: 998;
+  bottom: 34px;
+  left: calc(50vw - 75px);
+  color: white;
+  background-color: map-get($lightTheme, light8);
+  .dark-theme & {
+    color: whitesmoke;
+    background-color: map-get($darkTheme, dark4);
+  }
+}
+.panelSecureIcon {
+  position: relative;
+  left: 0;
+  padding: 5px 3px 0 6px;
+  font-size: 14px;
+}
+.panelSecureInput {
+  height: 20px;
+  width: 118px;
+  margin: 2px 0 0 4px;
+  padding: 6px;
+  border: none;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+  background-color: map-get($lightTheme, light7);
+  .dark-theme & {
+    color: whitesmoke;
+    background-color: map-get($darkTheme, dark5);
+  }
+}
+.panelSecureInput::placeholder {
+  font-size: 13px;
+  font-style: italic;
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- B U T T O N   S T Y L E S   buttonstyle
 
@@ -254,10 +300,9 @@ html {
   position: relative;
   width: 50px;
   height: 28px;
-  margin: 0px 0px 1px 0px;
   color: map-get($darkTheme, dark1);
   text-align: center;
-  font-size: 16px;
+  font-size: 17px;
   padding-top: 5px;
   cursor: pointer;
   transition: background 0.3s;
@@ -269,6 +314,10 @@ html {
 .homeShortcutCircle:hover {
   transition: all 0.3s;
   background: map-get($lightTheme, light6);
+}
+
+#alphaPanelViewer {
+  font-size: 22px;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- M A I N   S T Y L E S   mainpage
@@ -499,8 +548,78 @@ html {
   transition: all 0.3s;
   background: map-get($lightTheme, light6);
 }
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- D R O P D O W N S   S T Y L I N G    dropdownstyle
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- P A N E L   T A B S   paneltabs
+.dropTabSwitcher {
+  display: none;
+  width: 40px;
+  height: 24px;
+  left: 0;
+  padding: 1px 10px 0 10px;
+  border-right: 1px solid map-get($darkTheme, dark7);
+  font-size: 20px;
+  text-align: center;
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+  color: map-get($darkTheme, dark1);
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+  &:hover {
+    color: map-get($colorTheme, colorBrightBlue);
+  }
+}
 
+.tabContainer {
+  display: inline-flex;
+  // position: relative;
+  display: none;
+  height: 24px;
+  top: 0;
+  left: 10px;
+  user-select: all;
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+}
+.panelTabOpen {
+  display: inline-block;
+  min-width: 60px;
+  height: 24px;
+  padding: 1px 0 0 6px;
+  border-right: 1px solid map-get($darkTheme, dark7);
+  font-family: 'Segoe UI';
+  font-size: 15px;
+  line-height: 20px;
+  overflow: hidden;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  user-select: none;
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+  &:hover {
+    background-color: map-get($lightTheme, light8);
+    .dark-theme & {
+      background-color: map-get($darkTheme, dark7);
+    }
+  }
+}
+.newPanelTab {
+  float: right;
+  width: 20px;
+  font-size: 16px;
+  padding: 4px 0 0 10px;
+  background: transparent;
+  color: map-get($darkTheme, dark1);
+  .dark-theme & {
+    color: map-get($lightTheme, light3);
+  }
+  &:hover {
+    color: map-get($colorTheme, colorBrightBlue);
+  }
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- D R O P D O W N S   S T Y L I N G    dropdownstyle
 
 .closeBoxBtn {
   // position: absolute;       ARCHIVE 26.06
@@ -525,7 +644,7 @@ html {
   width: 200px;
   height: 30px;
   position: absolute;
-  z-index: 80;
+  z-index: 101;
   border: none;
   top: 24px;
   background: transparent;
@@ -613,7 +732,7 @@ html {
   box-shadow: 1px 2px 2px rgba(180, 180, 180, 0.5);
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  z-index: 100;
+  z-index: 101;
   .dark-theme & {
     box-shadow: 2px 3px 3px rgb(10, 10, 10);
     color: map-get($lightTheme, light2);
@@ -719,8 +838,6 @@ html {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- F I L E   P A G E      alphadrivestyle
 
 #AlphaDrive {
-  position: fixed;
-  right: 0;
   width: 50px;
   height: 28px;
   color: map-get($darkTheme, dark1);
@@ -1343,7 +1460,7 @@ html {
   overflow: hidden;
 }
 
-#warningBackground {
+.warningBackground {
   width: 100vw;
   height: calc(100vh - 52px);
   background: rgba(0, 0, 0, 0.4);

@@ -190,7 +190,7 @@ html {
   left: 50%;
   margin-left: -60px;
   color: white;
-  background-color: #282828;
+  background-color: #969696;
 }
 
 .dark-theme .tooltip .tooltipText {
@@ -206,7 +206,7 @@ html {
   margin-left: -8px;
   border-width: 8px;
   border-style: solid;
-  border-color: #282828 transparent transparent transparent;
+  border-color: #6e6e6e transparent transparent transparent;
 }
 
 .dark-theme .tooltip .tooltipText::after {
@@ -236,6 +236,70 @@ html {
   left: 83%;
 }
 
+.panelSecureContainer {
+  position: absolute;
+  width: 150px;
+  height: 28px;
+  border-radius: 6px;
+  padding: 2px;
+  z-index: 998;
+  bottom: 34px;
+  left: calc(50vw - 75px);
+  color: white;
+  background-color: #969696;
+}
+
+.dark-theme .panelSecureContainer {
+  color: whitesmoke;
+  background-color: #323232;
+}
+
+.panelSecureIcon {
+  position: relative;
+  left: 0;
+  padding: 5px 3px 0 6px;
+  font-size: 14px;
+}
+
+.panelSecureInput {
+  height: 20px;
+  width: 118px;
+  margin: 2px 0 0 4px;
+  padding: 6px;
+  border: none;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+  background-color: #aaaaaa;
+}
+
+.dark-theme .panelSecureInput {
+  color: whitesmoke;
+  background-color: #464646;
+}
+
+.panelSecureInput::-webkit-input-placeholder {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.panelSecureInput:-ms-input-placeholder {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.panelSecureInput::-ms-input-placeholder {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.panelSecureInput::placeholder {
+  font-size: 13px;
+  font-style: italic;
+}
+
 #panelLocationChild {
   position: fixed;
 }
@@ -244,10 +308,9 @@ html {
   position: relative;
   width: 50px;
   height: 28px;
-  margin: 0px 0px 1px 0px;
   color: #161616;
   text-align: center;
-  font-size: 16px;
+  font-size: 17px;
   padding-top: 5px;
   cursor: pointer;
   -webkit-transition: background 0.3s;
@@ -263,6 +326,10 @@ html {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   background: #b4b4b4;
+}
+
+#alphaPanelViewer {
+  font-size: 22px;
 }
 
 * {
@@ -557,6 +624,92 @@ html {
   background: #b4b4b4;
 }
 
+.dropTabSwitcher {
+  display: none;
+  width: 40px;
+  height: 24px;
+  left: 0;
+  padding: 1px 10px 0 10px;
+  border-right: 1px solid #6e6e6e;
+  font-size: 20px;
+  text-align: center;
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+  color: #161616;
+}
+
+.dark-theme .dropTabSwitcher {
+  color: #e6e6e6;
+}
+
+.dropTabSwitcher:hover {
+  color: #008cff;
+}
+
+.tabContainer {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  display: none;
+  height: 24px;
+  top: 0;
+  left: 10px;
+  -webkit-user-select: all;
+     -moz-user-select: all;
+      -ms-user-select: all;
+          user-select: all;
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+}
+
+.panelTabOpen {
+  display: inline-block;
+  min-width: 60px;
+  height: 24px;
+  padding: 1px 0 0 6px;
+  border-right: 1px solid #6e6e6e;
+  font-family: 'Segoe UI';
+  font-size: 15px;
+  line-height: 20px;
+  overflow: hidden;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.dark-theme .panelTabOpen {
+  color: #e6e6e6;
+}
+
+.panelTabOpen:hover {
+  background-color: #969696;
+}
+
+.dark-theme .panelTabOpen:hover {
+  background-color: #6e6e6e;
+}
+
+.newPanelTab {
+  float: right;
+  width: 20px;
+  font-size: 16px;
+  padding: 4px 0 0 10px;
+  background: transparent;
+  color: #161616;
+}
+
+.dark-theme .newPanelTab {
+  color: #e6e6e6;
+}
+
+.newPanelTab:hover {
+  color: #008cff;
+}
+
 .closeBoxBtn {
   position: relative;
   top: 0;
@@ -578,7 +731,7 @@ html {
   width: 200px;
   height: 30px;
   position: absolute;
-  z-index: 80;
+  z-index: 101;
   border: none;
   top: 24px;
   background: transparent;
@@ -703,7 +856,7 @@ html {
           box-shadow: 1px 2px 2px rgba(180, 180, 180, 0.5);
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  z-index: 100;
+  z-index: 101;
 }
 
 .dark-theme .ItemsOL {
@@ -817,8 +970,6 @@ html {
 }
 
 #AlphaDrive {
-  position: fixed;
-  right: 0;
   width: 50px;
   height: 28px;
   color: #161616;
@@ -1487,7 +1638,7 @@ html {
   overflow: hidden;
 }
 
-#warningBackground {
+.warningBackground {
   width: 100vw;
   height: calc(100vh - 52px);
   background: rgba(0, 0, 0, 0.4);

@@ -7,7 +7,7 @@ let win
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({ 
+  win = new BrowserWindow({
     width: 1250,
     height: 650,
     minWidth: 700,
@@ -31,7 +31,9 @@ function createWindow () {
   // and load the index.html of the app.
   win.loadFile('Alpha/Login/Login.html')
   win.webContents.on('did-finish-load', function() {
-    win.show();
+    win.on('ready-to-show', () => {
+      win.show();
+    })
   })
 
   // Open the DevTools.

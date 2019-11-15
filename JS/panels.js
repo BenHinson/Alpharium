@@ -1,20 +1,22 @@
 var fs = require('fs-extra');
 var path = require('path');
 var PropertiesReader = require('properties-reader');
-const html2canvas = require('../../node_modules/html2canvas');
+var hash = require('object-hash');
+// const html2canvas = require(__dirname + '../../node_modules/html2canvas');
 
 ///////////////////////////////////////
 // LOADING OF PANEL FOLDER AND IGNORING 'alpha' in name
 ///////////////////////////////////////
 
+
 function readPanelFolder() {
-  var panelLocation = path.join(__dirname, '../../Panels');
+  window.panelLocation = path.join(__dirname, '../../Panels');
   fs.readdir(panelLocation, function(err, panel) {
     if (panel.length < 1) {
       document.getElementById("bottomuni").innerHTML = "I Cant Find Any Panels?";
     } else {
       for (var i=0; i<panel.length; i++) {
-        if (panel[i].toLowerCase().indexOf("alpha") === -1) {
+        if (panel[i].indexOf("alpha") === -1) {
           // Loading the Icon from the properties file
           var properties = PropertiesReader(panelLocation+'/'+panel[i]+"/"+panel[i]+".properties");
           window.panelIcon = properties.get('properties.icon');
@@ -38,10 +40,10 @@ function readPanelFolder() {
           tooltipChild.style.bottom = "37px";
           tooltipChild.innerHTML = panel[i];
           tooltipParent.appendChild(tooltipChild);
-
         }
       }
     }
+    panelTabs();
   })
 
   
@@ -64,13 +66,11 @@ var previousPanel;
 
 function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
   window.thisPanelName = thisPanelShortcut.id;
-
   if (openPanels.includes("alphaPanelViewer")) {
     panelShortcutClose("alphaPanelViewer");
   } else if (thisPanelName == "alphaPanelViewer") {
     openPanelManager();
   }
-
   if (openPanels.includes(thisPanelName)) {
     if (displayedPanelId == thisPanelName) {
       minimizePanel(displayedPanel, thisPanelShortcut);
@@ -80,6 +80,13 @@ function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
       displayPanel(thisPanelShortcut);
     }
   } else {
+    if (fs.existsSync((panelLocation+'/'+thisPanelName+"/"+thisPanelName+".properties"))) {
+      var panelProperties = PropertiesReader(panelLocation+'/'+thisPanelName+"/"+thisPanelName+".properties");
+      if (panelProperties.get('secure.'+alreadyLoggedIn)) {
+        panelShortcutSecure(thisPanelShortcut, "alreadySet");
+        return;
+      }
+    }
     document.getElementById("centralContentBoxFullscreenMaster").style.display="grid";
     newPanel();
     openPanels.push(thisPanelName);
@@ -90,15 +97,33 @@ function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
 function displayPanel(thisPanelShortcut) {
   if (displayedPanel != null) {
     minimizePanel(displayedPanel)
+    $(".dropdownMain").show();
+    $('.tabContainer, .dropTabSwitcher').hide();
   }
   thisPanelShortcut.style.cssText = "background-color: rgba(173, 173, 168, 0.85); color: cyan;";
   displayedPanel = document.getElementById("generated"+thisPanelName);
   displayedPanel.style.cssText = "display: block; z-index: 100";
   displayedPanelId = thisPanelName;
   previousPanel = displayedPanelId;
+
+  // Displaying Tabs instead of Dropdowns
+  $(".dropdownMain").hide();
+  $('.tabContainer, .dropTabSwitcher').show();
+
+  // displayedPanel.forEach()
+  console.log(displayedPanel)
+  console.log(displayedPanel.length);
+
+  panelTab = document.createElement('div');
+  panelTab.setAttribute("id", "panelTabOpen");
+  panelTab.setAttribute("class", "panelTabOpen");
+  panelTab.innerHTML = "test";
+  document.getElementById('tabContainer').appendChild(panelTab);
 }
 
 function minimizePanel(displayedPanel) {
+  $(".dropdownMain").show();
+  $('.tabContainer, .dropTabSwitcher').hide();
   previousPanel = displayedPanelId;
   displayedPanel.style.cssText = "display: none";
   document.getElementById(displayedPanelId).style.cssText = "background-color:; color: cyan";
@@ -115,9 +140,25 @@ function newPanel() {
     newPanelCreation.style.background = "rgb(90, 90, 90)";
   }
   newPanelCreator.appendChild(newPanelCreation);
-
   var fullscreenToolLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
   $(newPanelCreation).load(fullscreenToolLoad);
+}
+
+
+function panelTabs() {
+  $(".newPanelTab, .dropTabSwitcher").unbind();
+  $(".newPanelTab").on("click", function() {
+    console.log("Adding A New Tab.")
+  })
+  $(".dropTabSwitcher").on("click", function() {
+    if ($(".dropdownMain").is(':visible')) {
+      $(".dropdownMain").hide();
+      $('.tabContainer').show();
+    } else {
+      $(".dropdownMain").show();
+      $('.tabContainer').hide();
+    }
+  })
 }
 
 // ---------------- PANEL SCROLL ACROSS -----------------------
@@ -199,12 +240,13 @@ function openPanelManager() {
       $('#panelContainer').css({top: 'calc(((100vh -'+(panelContainerHeight * 2)+') / 2) - 24px)'});
       $('#panelContainer2').css({bottom: 'calc(((100vh -'+(panelContainerHeight * 2)+') / 2) - 10px)'});
     }
-
-    // $('.miniPanel').css({width: 'calc(100vw / '+(panelCount - 0.5)+')', height: 'calc(100vh / '+(panelCount - 0.5)+')'});
-    // panelContainerHeight = $("#panelContainer").height();
-    // $('#panelContainer').css({top: 'calc(50% - ('+panelContainerHeight+'px) / 2)'});
-
     }
+    $("#PanelViewerBackground").on("click", function(e) {
+      e.stopImmediatePropagation();
+      if (e.target.id == "PanelViewerBackground" || e.target.id == "panelContainer") {
+        panelShortcutClose('alphaPanelViewer');
+      }
+    })
   }, 20);
 }
 
@@ -246,18 +288,102 @@ function panelShortcutClose(Caller, RCCommand) {
   setTimeout(function() {
     PanelParent.removeChild(PanelChild);
     openPanels = openPanels.filter(item => item != panelToRemove);
-    if (displayedPanelId == 'alphaPanelViewer') {
-      openPanelManager();
-    }
     if (displayedPanelId == panelToRemove) {
       displayedPanelId = undefined;
       displayedPanel = undefined;
+    }
+    if (displayedPanelId == 'alphaPanelViewer') {
+      openPanelManager();
     }
     panelCount--;
     document.getElementById(panelToRemove).style.cssText = "color:";
   }, 100);
 }
 
+function panelShortcutSecure(Caller, RCCommand) {
+
+  if ($("#panelSecureContainer")) {$("#panelSecureContainer").remove()}
+  if (RCCommand == "alreadySet") {securePlaceholder = "Enter Password";} 
+  else {securePlaceholder = "Set a Password";}
+
+  panelSecureEntryContainer = document.createElement('div');
+  panelSecureEntryContainer.setAttribute("class", "panelSecureContainer");
+  panelSecureEntryContainer.setAttribute("id", "panelSecureContainer");
+  panelSecureEntryContainer.setAttribute("dontClose", "true");
+  document.body.appendChild(panelSecureEntryContainer)
+
+  secureIcon = document.createElement('i');
+  secureIcon.setAttribute("class", "panelSecureIcon fas fa-lock");
+  secureIcon.setAttribute("id", "panelSecureIcon");
+  panelSecureEntryContainer.appendChild(secureIcon);
+
+  secureInput = document.createElement('input');
+  secureInput.setAttribute("class", "panelSecureInput");
+  secureInput.setAttribute("id", "panelSecureInput");
+  secureInput.setAttribute("placeholder", securePlaceholder);
+  secureInput.setAttribute("type", "password");
+  panelSecureEntryContainer.appendChild(secureInput);
+
+  secureInput.addEventListener('input', e => {
+    if (secureInput.value != '') {
+      secureIcon.setAttribute("class", "panelSecureIcon fas fa-sign-in-alt");secureIcon.style.cursor = "pointer";
+    } else {
+      secureIcon.setAttribute("class", "panelSecureIcon fas fa-lock");secureIcon.style.cursor = "";
+    }
+  })
+  $(".panelSecureIcon fas fa-sign-in-alt").on("click", function() {panelPasswordManager();})
+  $("#panelSecureInput").keypress(function(e) {if (e.keyCode === 13) {panelPasswordManager();}})
+
+  setTimeout(function() {
+    OffClickRemoveSecureEntry();
+  }, 100);
+
+  function panelPasswordManager() {
+    if (RCCommand == "alreadySet") {
+      panelProperties = PropertiesReader(panelLocation+'/'+Caller.id+"/"+Caller.id+".properties");
+      panelPassword = panelProperties.get('secure.'+alreadyLoggedIn);
+      if (panelPassword == passwordHash($("#panelSecureInput").val())) {
+        panelSecureEntryContainer.remove();
+        document.getElementById("centralContentBoxFullscreenMaster").style.display="grid";
+        newPanel();
+        openPanels.push(Caller.id);
+        displayPanel(Caller);
+      } else {secureInput.style.border = "1px solid red"};
+    } else {
+      panelProperties = PropertiesReader(panelLocation+'/'+Caller.target.id+"/"+Caller.target.id+".properties");
+      panelProperties.set('secure.'+alreadyLoggedIn, passwordHash($("#panelSecureInput").val()));
+      panelProperties.save(panelLocation+'/'+Caller.target.id+"/"+Caller.target.id+".properties", function then (err, data) {
+        panelSecureEntryContainer.remove();
+      });
+    }
+  }
+}
+
+function OffClickRemoveSecureEntry() {
+  $(document).on("click",function(e) {
+    var el = e.target;
+    do {if (el.hasAttribute && el.hasAttribute("dontClose")) {return;}
+    } while (el = el.parentNode);
+    $("#panelSecureContainer").hide();
+    $(document).off("click");
+  });
+}
+
+function homepageBoxPanelView() {
+  openThisPanel($("#alphaPanelViewer")[0]);
+}
+
+
+
+function panelManagerCloseAllPanels(Caller, RCCommand) {
+  var panelBeingRemoved = openPanels;
+  panelBeingRemoved.forEach(function(panel) {
+    panelShortcutClose(panel);
+  })
+}
+function panelManagerViewOpenPanels(Caller, RCCommand) {
+  openThisPanel(Caller.target);
+}
 
 
 
