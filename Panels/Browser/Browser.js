@@ -39,7 +39,6 @@ function searchLocation() {
   }
   // $("#searchPageBackgroundMain").html('<webview id="internetWebview" partition="persist:googlepluswidgets" autosize="on" style="width:100vw;height:calc(100vh - 24px);" src="'+userSearch+'"/>');
   // $("#searchPageBackgroundMain").html('<webview id="internetWebview" partition="persist:googlepluswidgets" autosize="on" style="height:calc(100% - 28px); width: 100vw;" src="'+userSearch+'"/>');
-  
   openInternetWebview(userSearch);
 }
 

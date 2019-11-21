@@ -7,7 +7,7 @@
 }
 
 .dark-theme #databaseBackgroundMain {
-  background-color: #161616;
+  background-color: #202225;
 }
 
 #directoryLocation {
@@ -19,8 +19,8 @@
           box-sizing: border-box;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #1e1e1e;
-  color: #1e1e1e;
+  border-bottom: 1px solid #292b2f;
+  color: #292b2f;
   font-size: 16px;
   font-weight: 400;
   font-family: 'Segoe UI';
@@ -48,7 +48,7 @@
   font-weight: 400;
   letter-spacing: 1px;
   font-family: 'Segoe UI';
-  border-bottom: 1px solid #1e1e1e;
+  border-bottom: 1px solid #292b2f;
   cursor: pointer;
 }
 
@@ -68,7 +68,7 @@
   position: absolute;
   border: none;
   background-color: #bebebe;
-  color: #1e1e1e;
+  color: #292b2f;
   font-size: 12px;
   font-weight: 400;
   font-family: 'Segoe UI';
@@ -80,7 +80,7 @@
 .dark-theme #commandLineBox {
   font-weight: 100;
   color: #fafafa;
-  background-color: #161616;
+  background-color: #202225;
 }
 
 #userCommandLineBox {
@@ -93,7 +93,7 @@
   position: absolute;
   border: none;
   background-color: #bebebe;
-  color: #1e1e1e;
+  color: #292b2f;
   font-size: 16px;
   font-weight: 400;
   font-family: 'Segoe UI';
@@ -105,7 +105,7 @@
 .dark-theme #userCommandLineBox {
   font-weight: 100;
   color: #fafafa;
-  background-color: #161616;
+  background-color: #202225;
 }
 
 #submitUserCommand {
@@ -117,7 +117,7 @@
   right: 20vw;
   background: transparent;
   border: none;
-  color: #161616;
+  color: #202225;
   cursor: pointer;
 }
 
@@ -137,7 +137,7 @@
   margin: 4px;
   width: 70px;
   max-height: 100px;
-  color: #161616;
+  color: #202225;
   font-size: 36px;
   line-height: 40px;
   padding-left: 8px;

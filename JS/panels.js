@@ -62,6 +62,7 @@ var displayedPanel
 var openPanels = [];
 var panelCount = 0;
 var previousPanel;
+var activeTab;
 
 
 function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
@@ -73,9 +74,13 @@ function openThisPanel(thisPanelShortcut, openNow, panelOverlay) {
   }
   if (openPanels.includes(thisPanelName)) {
     if (displayedPanelId == thisPanelName) {
-      minimizePanel(displayedPanel, thisPanelShortcut);
-      displayedPanel = undefined;
-      displayedPanelId = undefined;
+      if (openNow == 'tab') {
+        newTab();
+      } else {
+        minimizePanel(displayedPanel, thisPanelShortcut);
+        displayedPanel = undefined;
+        displayedPanelId = undefined;
+      }
     } else {
       displayPanel(thisPanelShortcut);
     }
@@ -107,18 +112,11 @@ function displayPanel(thisPanelShortcut) {
   previousPanel = displayedPanelId;
 
   // Displaying Tabs instead of Dropdowns
-  $(".dropdownMain").hide();
-  $('.tabContainer, .dropTabSwitcher').show();
-
-  // displayedPanel.forEach()
-  console.log(displayedPanel)
-  console.log(displayedPanel.length);
-
-  panelTab = document.createElement('div');
-  panelTab.setAttribute("id", "panelTabOpen");
-  panelTab.setAttribute("class", "panelTabOpen");
-  panelTab.innerHTML = "test";
-  document.getElementById('tabContainer').appendChild(panelTab);
+  if (displayedPanelId != "alphaPanelViewer") {
+    $(".dropdownMain").hide();
+    $('.tabContainer, .dropTabSwitcher').show();
+    panelTabManager();
+  }
 }
 
 function minimizePanel(displayedPanel) {
@@ -132,33 +130,21 @@ function minimizePanel(displayedPanel) {
 function newPanel() {
   panelCount++;
   var newPanelCreator = document.getElementById('centralContentBoxFullscreenMaster');
+  var newPanelContainer = document.createElement('div');
+  newPanelContainer.setAttribute("id", thisPanelName+"Parent");
+  newPanelContainer.setAttribute("class", "PanelParent");
+  newPanelCreator.appendChild(newPanelContainer);
   var newPanelCreation = document.createElement('div');
   newPanelCreation.setAttribute("id", "generated"+thisPanelName);
   newPanelCreation.setAttribute("class", "centralContentBoxFullscreenMaster");
+  newPanelCreation.setAttribute("tabNumber", newPanelContainer.childNodes.length);
   newPanelCreation.style.zIndex = "100";
   if ($("#"+thisPanelName).attr("Custom") != "transparent") {
     newPanelCreation.style.background = "rgb(90, 90, 90)";
   }
-  newPanelCreator.appendChild(newPanelCreation);
+  newPanelContainer.appendChild(newPanelCreation);
   var fullscreenToolLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
   $(newPanelCreation).load(fullscreenToolLoad);
-}
-
-
-function panelTabs() {
-  $(".newPanelTab, .dropTabSwitcher").unbind();
-  $(".newPanelTab").on("click", function() {
-    console.log("Adding A New Tab.")
-  })
-  $(".dropTabSwitcher").on("click", function() {
-    if ($(".dropdownMain").is(':visible')) {
-      $(".dropdownMain").hide();
-      $('.tabContainer').show();
-    } else {
-      $(".dropdownMain").show();
-      $('.tabContainer').hide();
-    }
-  })
 }
 
 // ---------------- PANEL SCROLL ACROSS -----------------------
@@ -221,7 +207,7 @@ function openPanelManager() {
 
         document.getElementById("miniName"+counter).innerHTML = panel;
 
-        if (panel == "Internet") {
+        if (panel == "Browser") {
           panelMini.innerHTML = "Preview Not Supported";
         } else {
           createPanelImage(panel, counter);
@@ -275,16 +261,24 @@ function panelShortcutOpen(thisObject, Caller, key, Command) {
 function panelShortcutOpeninNewWindow(Caller, RCCommand, thisObject) {
   var thisPanelName = Caller.target.id;
   var fullscreenPanelLoad = '../../Panels/'+thisPanelName+'/'+thisPanelName+'.html';
-  setTimeout(function() {
-    let thisNewPanelWindow = window.open(fullscreenPanelLoad, "", "height=650px,width=850px");
-  }, 300);
+  const { BrowserWindow } = require('electron').remote
+  let newChildWindow = new BrowserWindow({ width: 1000, height: 800, frame: false, webPreferences: {experimentalFeatures: true,nodeIntegration: true,webviewTag: true}})
+  newChildWindow.on('closed', () => {
+    newChildWindow = null
+  })
+  newChildWindow.loadURL(`file://${__dirname}/`+fullscreenPanelLoad)
+  newChildWindow.webContents.on('did-finish-load', function() {
+    newChildWindow.show();
+  })
 }
+
 
 function panelShortcutClose(Caller, RCCommand) {
   if (RCCommand) {var panelToRemove = Caller.target.id;
   } else {var panelToRemove = Caller;}
   var PanelParent = document.querySelector("#centralContentBoxFullscreenMaster");
-  var PanelChild = document.querySelector("#generated"+panelToRemove);
+  var PanelChild = document.getElementById(panelToRemove+"Parent");
+  if (panelToRemove == displayedPanelId) {$(".dropdownMain").show();$('.tabContainer, .dropTabSwitcher').hide();}
   setTimeout(function() {
     PanelParent.removeChild(PanelChild);
     openPanels = openPanels.filter(item => item != panelToRemove);

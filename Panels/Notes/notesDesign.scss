@@ -1,4 +1,18 @@
 $darkTheme: (
+  dark0: rgb(15, 15, 15),
+  dark1: #202225,
+  dark2: #292b2f,
+  dark3: #36393f,
+  dark4: #2f3136,
+  dark5: rgb(60, 63, 70),
+  dark6: rgb(75, 80, 90),
+  dark7: rgb(91, 97, 109),
+  dark8: #b9bbbe,
+
+  darkdropdown: rgb(23, 24, 27),
+  darkReimagined: #404040,
+);
+$darkThemeOLD: (
   dark0: rgb(5, 5, 5),
   dark1: rgb(22, 22, 22),
   dark2: rgb(30, 30, 30),
@@ -8,7 +22,9 @@ $darkTheme: (
   dark6: rgb(90, 90, 90),
   dark7: rgb(110, 110, 110),
 
-  darkdropdown: rgb(27, 27, 27)
+  darkdropdown: rgb(27, 27, 27),
+
+  darkReimagined: #404040
 );
 
 $lightTheme: (
@@ -54,14 +70,15 @@ $colorTheme: (
   left: 0;
   bottom: 0px;
   height: calc(100vh - 82px);
-  width: 30px;
-  border-right: 1px solid rgb(88, 88, 88);
-  background-color: map-get($lightTheme, light8);
+  width: 50px;
+  padding-top: 10px;
+  background-color: map-get($lightTheme, light5);
   .dark-theme & {
-    background-color: map-get($darkTheme, dark2);
+    background-color: map-get($darkTheme, dark4);
   }
 }
 #sideMenu > span {
+  width: 30px;
   line-height: 30px;
   text-align: center;
   display: list-item;
@@ -92,6 +109,8 @@ $colorTheme: (
   border: none;
   line-height: 22px;
   outline: none;
+  border-top-left-radius: 20px;
+  z-index: 5;
   .dark-theme & {
     background-color: map-get($darkTheme, dark1);
     color: map-get($lightTheme, light1);

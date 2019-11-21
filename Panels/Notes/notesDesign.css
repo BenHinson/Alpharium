@@ -9,13 +9,13 @@
   outline: none;
   border: none;
   resize: none;
-  color: #1e1e1e;
+  color: #292b2f;
   background-color: #bebebe;
 }
 
 .dark-theme #fileTitle {
   color: #e6e6e6;
-  background-color: #323232;
+  background-color: #2f3136;
 }
 
 #sideMenu {
@@ -23,22 +23,23 @@
   left: 0;
   bottom: 0px;
   height: calc(100vh - 82px);
-  width: 30px;
-  border-right: 1px solid #585858;
-  background-color: #969696;
+  width: 50px;
+  padding-top: 10px;
+  background-color: #bebebe;
 }
 
 .dark-theme #sideMenu {
-  background-color: #1e1e1e;
+  background-color: #2f3136;
 }
 
 #sideMenu > span {
+  width: 30px;
   line-height: 30px;
   text-align: center;
   display: list-item;
   font-size: 16px;
   cursor: pointer;
-  color: #1e1e1e;
+  color: #292b2f;
 }
 
 .dark-theme #sideMenu > span {
@@ -53,7 +54,7 @@
   font-weight: 400;
   letter-spacing: 1px;
   font-size: 16px;
-  color: #161616;
+  color: #202225;
   background-color: #aaaaaa;
   width: calc(100vw - 30px);
   height: calc(100vh - 82px);
@@ -63,10 +64,12 @@
   border: none;
   line-height: 22px;
   outline: none;
+  border-top-left-radius: 20px;
+  z-index: 5;
 }
 
 .dark-theme #centralNotePad {
-  background-color: #161616;
+  background-color: #202225;
   color: #fafafa;
 }
 /*# sourceMappingURL=notesDesign.css.map */

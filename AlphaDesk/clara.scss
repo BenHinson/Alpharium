@@ -1,14 +1,30 @@
 $darkTheme: (
-  dark0: rgb(5, 5, 10),
-  dark1: rgb(22, 22, 27),
-  dark2: rgb(32, 32, 37),
-  dark3: rgb(50, 50, 55),
-  dark4: rgb(61, 61, 66),
-  dark5: rgb(82, 82, 87),
-  dark6: rgb(97, 97, 102),
-  dark7: rgb(110, 110, 115),
+  dark0: rgb(15, 15, 15),
+  dark1: #202225,
+  dark2: #292b2f,
+  dark3: #36393f,
+  dark4: #2f3136,
+  dark5: rgb(60, 63, 70),
+  dark6: rgb(75, 80, 90),
+  dark7: rgb(91, 97, 109),
+  dark8: #b9bbbe,
 
-  darkdropdown: rgb(27, 27, 32)
+  darkdropdown: rgb(23, 24, 27),
+  darkReimagined: #404040,
+);
+$darkThemeOLD: (
+  dark0: rgb(5, 5, 5),
+  dark1: rgb(22, 22, 22),
+  dark2: rgb(30, 30, 30),
+  dark3: rgb(40, 40, 40),
+  dark4: rgb(50, 50, 50),
+  dark5: rgb(70, 70, 70),
+  dark6: rgb(90, 90, 90),
+  dark7: rgb(110, 110, 110),
+
+  darkdropdown: rgb(27, 27, 27),
+
+  darkReimagined: #404040
 );
 
 $lightTheme: (

@@ -45,11 +45,11 @@ html {
   margin-right: 10px;
   font-size: 14px;
   line-height: 23px;
-  color: #323237;
+  color: #36393f;
 }
 
 .dark-theme #colorTheme {
-  background-color: #202025;
+  background-color: #292b2f;
   color: #e0e0db;
 }
 
@@ -71,11 +71,11 @@ html {
   margin-right: 10px;
   font-size: 12px;
   line-height: 23px;
-  color: #323237;
+  color: #36393f;
 }
 
 .dark-theme .drag-button {
-  background-color: #202025;
+  background-color: #292b2f;
   color: #e0e0db;
 }
 
@@ -92,11 +92,11 @@ html {
   border-radius: 10px;
   margin-right: 10px;
   font-size: 12px;
-  color: #323237;
+  color: #36393f;
 }
 
 .dark-theme .minimize-button {
-  background-color: #202025;
+  background-color: #292b2f;
   color: #e0e0db;
 }
 
@@ -119,11 +119,11 @@ html {
   margin-right: 10px;
   font-size: 16px;
   line-height: 23px;
-  color: #323237;
+  color: #36393f;
 }
 
 .dark-theme .close-button {
-  background-color: #202025;
+  background-color: #292b2f;
   color: #e0e0db;
 }
 
@@ -146,7 +146,7 @@ html {
 }
 
 .dark-theme .title-bar-search {
-  background-color: #202025;
+  background-color: #292b2f;
   color: #e0e0db;
 }
 
@@ -157,7 +157,7 @@ html {
   border: none;
   margin-left: 10px;
   background-color: #e0e0db;
-  color: #16161b;
+  color: #202225;
   font-family: 'Segoe UI';
   letter-spacing: 1px;
   font-size: 15px;
@@ -167,24 +167,24 @@ html {
 }
 
 .dark-theme #searchNavigator {
-  background-color: #202025;
+  background-color: #292b2f;
   color: #e0e0db;
 }
 
 .placeholder::-webkit-input-placeholder {
-  color: #525257;
+  color: #3c3f46;
 }
 
 .placeholder:-ms-input-placeholder {
-  color: #525257;
+  color: #3c3f46;
 }
 
 .placeholder::-ms-input-placeholder {
-  color: #525257;
+  color: #3c3f46;
 }
 
 .placeholder::placeholder {
-  color: #525257;
+  color: #3c3f46;
 }
 
 .dark-theme .placeholder::-webkit-input-placeholder {
@@ -208,7 +208,7 @@ html {
   left: 10px;
   top: 3px;
   font-size: 16px;
-  color: #16161b;
+  color: #202225;
 }
 
 .dark-theme #searchSearchIcon {
@@ -233,7 +233,7 @@ html {
 }
 
 .dark-theme .centerTriangle {
-  fill: #202025;
+  fill: #292b2f;
 }
 
 .leftTriangle {
@@ -246,7 +246,7 @@ html {
 }
 
 .dark-theme .leftTriangle {
-  fill: #323237;
+  fill: #36393f;
 }
 
 .leftTriangle2 {
@@ -259,7 +259,7 @@ html {
 }
 
 .dark-theme .leftTriangle2 {
-  fill: #3d3d42;
+  fill: #2f3136;
 }
 
 .rightTriangle {
@@ -272,7 +272,7 @@ html {
 }
 
 .dark-theme .rightTriangle {
-  fill: #323237;
+  fill: #36393f;
 }
 
 .rightTriangle2 {
@@ -285,7 +285,7 @@ html {
 }
 
 .dark-theme .rightTriangle2 {
-  fill: #3d3d42;
+  fill: #2f3136;
 }
 
 #shortcutMain {
@@ -303,18 +303,18 @@ html {
   height: 40px;
   border-radius: 30px;
   background: #bdbdb8;
-  border: 1px solid #3d3d42;
+  border: 1px solid #2f3136;
   text-align: center;
   vertical-align: bottom;
   font-size: 26px;
   line-height: 36px;
-  color: #3d3d42;
+  color: #2f3136;
   z-index: 5;
   outline: none;
 }
 
 .dark-theme .shortcutItem {
-  background: #202025;
+  background: #292b2f;
   border: 1px solid #bdbdb8;
   color: #a8a8a3;
 }
@@ -346,7 +346,7 @@ html {
   height: 30px;
   width: 30px;
   border-radius: 30px;
-  border: 1px solid #202025;
+  border: 1px solid #292b2f;
   color: #e0e0db;
   background: transparent;
   cursor: pointer;
@@ -354,7 +354,7 @@ html {
 
 .dark-theme .removeShortcut {
   border: 1px solid #bdbdb8;
-  color: #16161b;
+  color: #202225;
 }
 
 .removeShortcut:hover {
@@ -362,7 +362,7 @@ html {
 }
 
 .dark-theme .removeShortcut:hover {
-  background: #616166;
+  background: #4b505a;
 }
 
 #shortcutItemCreate {
@@ -374,12 +374,12 @@ html {
   bottom: -2px;
   left: -2px;
   background: #bdbdb8;
-  color: #05050a;
-  border: 1px solid #05050a;
+  color: #0f0f0f;
+  border: 1px solid #0f0f0f;
 }
 
 .dark-theme #shortcutItemCreate:hover {
-  background: #202025;
+  background: #292b2f;
   color: #e0e0db;
   border: 1px solid #e0e0db;
 }
@@ -391,13 +391,13 @@ html {
   height: 30px;
   background: #bdbdb8;
   border-radius: 20px;
-  color: #3d3d42;
+  color: #2f3136;
   left: -130px;
   top: 140px;
 }
 
 .dark-theme #createShortcutSettings {
-  background: #202025;
+  background: #292b2f;
   color: #a8a8a3;
 }
 
@@ -406,7 +406,7 @@ html {
   left: 12px;
   top: 6px;
   font-size: 18px;
-  color: #202025;
+  color: #292b2f;
 }
 
 .dark-theme #dropdownArrow {
@@ -416,10 +416,10 @@ html {
 #shortcutDropdownType {
   width: 85px;
   height: 30px;
-  border-right: 1px solid #323237;
+  border-right: 1px solid #36393f;
   padding-left: 35px;
   background: #e0e0db;
-  color: #3d3d42;
+  color: #2f3136;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   font-size: 15px;
@@ -429,7 +429,7 @@ html {
 
 .dark-theme #shortcutDropdownType {
   border-right: 1px solid #e0e0db;
-  background: #16161b;
+  background: #202225;
   color: #a8a8a3;
 }
 
@@ -438,7 +438,7 @@ html {
 }
 
 .dark-theme #shortcutDropdownType:hover {
-  background-color: #3d3d42;
+  background-color: #2f3136;
 }
 
 #shortcutDropdownType:hover .dropdownContent {
@@ -459,7 +459,7 @@ html {
 }
 
 .dark-theme .dropdownContent {
-  background-color: #202025;
+  background-color: #292b2f;
 }
 
 .dropdownItem {
@@ -470,7 +470,7 @@ html {
 }
 
 .dark-theme .dropdownItem {
-  background: #16161b;
+  background: #202225;
   color: #a8a8a3;
 }
 
@@ -480,7 +480,7 @@ html {
 }
 
 .dark-theme .dropdownItem:hover {
-  background: #202025;
+  background: #292b2f;
   color: #a8a8a3;
 }
 
@@ -492,16 +492,16 @@ html {
   padding-left: 10px;
   outline: none;
   border: none;
-  border-right: 1px solid #323237;
+  border-right: 1px solid #36393f;
   background-color: #d1d1cc;
-  color: #3d3d42;
+  color: #2f3136;
   font-size: 16px;
   line-height: 28px;
   font-family: 'Segoe UI';
 }
 
 .dark-theme #shortcutLink {
-  background: #202025;
+  background: #292b2f;
   color: #d1d1cc;
   border-right: 1px solid #e0e0db;
 }
@@ -511,7 +511,7 @@ html {
 }
 
 .dark-theme #shortcutLink:hover {
-  background: #323237;
+  background: #36393f;
 }
 
 #shortcutAdd {
@@ -523,13 +523,13 @@ html {
   outline: none;
   border: none;
   background-color: #ecece7;
-  color: #3d3d42;
+  color: #2f3136;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
 
 .dark-theme #shortcutAdd {
-  background: #202025;
+  background: #292b2f;
   color: #d1d1cc;
 }
 
@@ -538,6 +538,6 @@ html {
 }
 
 .dark-theme #shortcutAdd:hover {
-  background: #3d3d42;
+  background: #2f3136;
 }
 /*# sourceMappingURL=clara.css.map */

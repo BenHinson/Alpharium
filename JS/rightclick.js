@@ -2,7 +2,7 @@
 // rc-name="centralContentBox"
 
 var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader(__dirname + '/../../Alpha/Properties/rightclick.config');
+var properties = PropertiesReader(__dirname + '/../../Alpha/rightclick.config');
 
 setTimeout(function() {
   initRightClick();
@@ -55,7 +55,7 @@ function rightClickCreator(e, thisObject) {
   var dropContainer = document.getElementById('rightClickContainer');
   window.options = 0;
   thisObjectSplit.forEach(function(thisObject) {
-    var properties = PropertiesReader(__dirname + '/../../Alpha/Properties/rightclick.config');
+    var properties = PropertiesReader(__dirname + '/../../Alpha/rightclick.config');
     var rightClickItemsRaw = properties.get(thisObject);
     window.rightClickItems = rightClickItemsRaw.split(','); //Splits properties after each ','
     rightClickItems.forEach(function(item) {
@@ -76,7 +76,6 @@ function rightClickCreator(e, thisObject) {
   });
 }
 
-
 function homepageBoxDemo(thisObject, Caller, key, Command) {
   // console.log(thisObject, Caller, key, Command);
   console.log(thisObject);  // Callers CurrentTarget rightclick.config key
@@ -86,13 +85,13 @@ function homepageBoxDemo(thisObject, Caller, key, Command) {
 }
 
 function internetGoogle() {
-  openThisPanel(document.getElementById("Internet"), "openNow");
+  openThisPanel(document.getElementById("Browser"), "tab");
   setTimeout(function() {
     openInternetWebview('https://www.google.com');
   }, 10)
 }
 function internetDuckDuckGo() {
-  openThisPanel(document.getElementById("Internet"), "openNow");
+  openThisPanel(document.getElementById("Browser"), "tab");
   setTimeout(function() {
     openInternetWebview('https://www.duckduckgo.com');
   }, 10)

@@ -1,7 +1,7 @@
 .boxFrameTemplate {
   overflow: hidden;
   margin-top: 14px;
-  border: 1px solid #5a5a5a;
+  border: 1px solid #4b505a;
   width: calc(20vw-8px);
   border-radius: 20px;
 }
@@ -33,12 +33,12 @@
   font-size: 14px;
   text-align: center;
   cursor: pointer;
-  color: #1e1e1e;
+  color: #292b2f;
   background: #f0f0f0;
 }
 
 .dark-theme .moveToolTemplate {
-  background: #1e1e1e;
+  background: #292b2f;
   color: #f0f0f0;
 }
 /*# sourceMappingURL=toolStyleTemplate.css.map */

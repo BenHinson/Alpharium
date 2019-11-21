@@ -5,7 +5,6 @@
 
 // https://www.w3schools.com/tags/ref_canvas.asp
 
-
 var canvas;
 var paint;
 var context;
@@ -18,6 +17,7 @@ var clickColor = new Array();
 var clickX = new Array();
 var clickY = new Array();
 var clickDrag = new Array();
+
 
 
 function init() {

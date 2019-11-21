@@ -76,9 +76,10 @@ function openDropdown(dropdown) {
     ObjectDropdownParent.appendChild(ObjectDropdownChild);
 
     var dropdownPosition = dropdown.getBoundingClientRect();
+    var dropdownOffset = document.getElementById("dropLocationChild").getBoundingClientRect();
     if (dropdownSearch) {
-      $("#dropItemsOL").css({"margin-top": "54px", "left":dropdownPosition.left});
-      $("#objectDropdown").css({"left": "64px", "left":dropdownPosition.left});
+      $("#dropItemsOL").css({"margin-top": "54px", "left":dropdownPosition.left - dropdownOffset.left});
+      $("#objectDropdown").css({"left": "64px", "left":dropdownPosition.left - dropdownOffset.left});
       var searchBarParent = document.getElementById('objectDropdown');
       var searchBarChild = document.createElement('input');
       searchBarChild.setAttribute("type", "text");
@@ -91,7 +92,7 @@ function openDropdown(dropdown) {
       searchBarChild.style.borderBottom = "1px solid "+dropdownBorderColour;
       searchBarParent.appendChild(searchBarChild);
     } else {
-      $("#dropItemsOL").css({"margin-top": "24px", "left":dropdownPosition.left});
+      $("#dropItemsOL").css({"margin-top": "24px", "left":dropdownPosition.left - dropdownOffset.left});
     }
 
     if (dropdownSide == "both") {
@@ -256,7 +257,8 @@ function moreOptionsListener() {
       var parentPopRaw = e.currentTarget;
       window.parentPopout = e.currentTarget.innerHTML.split(' ').join('').replace('<iclass="dropdownMoreIconfasfa-angle-right"></i>','');
       var popoutLocation = parentPopRaw.getBoundingClientRect();
-      $("#popoutItemsOL").css({"margin-top": popoutLocation.top, "left":popoutLocation.right, "width":"200px"});
+      var dropdownOffset = document.getElementById("dropLocationChild").getBoundingClientRect();
+      $("#popoutItemsOL").css({"margin-top": popoutLocation.top, "left":popoutLocation.right - dropdownOffset.left, "width":"200px"});
       var moreOptionsOnclick = dropTypeProperties.get('properties.Add'+parentPopout+"onclick");
       var moreOptions = dropTypeProperties.get('properties.Add'+parentPopout);
       var customDropdown = dropTypeProperties.get('properties.Add'+parentPopout+"Content");
@@ -400,7 +402,7 @@ function moveTool (thisTool) {
 function WebpagesSelected(weblink) {
   let link = weblink.innerHTML;
   // require('electron').shell.openExternal('www.'+link);
-  openThisPanel(document.getElementById("Internet"));
+  openThisPanel(document.getElementById("Browser"));
   setTimeout(function() {
     openInternetWebview('https://www.'+link);
   }, 10)

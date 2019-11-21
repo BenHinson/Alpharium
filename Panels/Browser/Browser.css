@@ -7,7 +7,7 @@
 }
 
 .dark-theme #searchPageBackgroundMain {
-  background-color: #050505;
+  background-color: #202225;
 }
 
 #searchLocationSelectorContainer {
@@ -37,12 +37,12 @@
 }
 
 .dark-theme .searchLocation {
-  border-color: #161616;
+  border-color: #202225;
 }
 
 .searchLocation:hover {
   background-color: #ccc;
-  border: 1px solid #050505;
+  border: 1px solid #0f0f0f;
 }
 
 .dark-theme .searchLocation:hover {
@@ -68,4 +68,4 @@
 #searchLocationSelectorContainer .checked {
   border-color: #2196F3;
 }
-/*# sourceMappingURL=Internet.css.map */
+/*# sourceMappingURL=Browser.css.map */

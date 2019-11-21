@@ -1,4 +1,18 @@
 $darkTheme: (
+  dark0: rgb(15, 15, 15),
+  dark1: #202225,
+  dark2: #292b2f,
+  dark3: #36393f,
+  dark4: #2f3136,
+  dark5: rgb(60, 63, 70),
+  dark6: rgb(75, 80, 90),
+  dark7: rgb(91, 97, 109),
+  dark8: #b9bbbe,
+
+  darkdropdown: rgb(36, 38, 43),
+  darkReimagined: #404040,
+);
+$darkThemeOLD: (
   dark0: rgb(5, 5, 5),
   dark1: rgb(22, 22, 22),
   dark2: rgb(30, 30, 30),
@@ -30,11 +44,18 @@ $colorTheme: (
   colorLightBlue: rgb(64, 130, 184),
   colorHover: rgb(90, 110, 120),
   colorError: rgb(255, 88, 88),
+  colorClose: rgb(209, 54, 54),
   colorGreen: rgb(17, 94, 17),
   colorBrightBlue:rgb(0, 140, 255),
 );
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- W I N D O W S   F R A M E      windowstyle
+
+@media (max-width: 680px) {
+  .dropdownMain .quickAccessInfo { display: none; }
+  .panelTabOpen {min-width: 30px;}
+}
+
 
 html {
   overflow: hidden;
@@ -99,7 +120,7 @@ html {
   position: flex;
   vertical-align: middle;
   right: 0;
-  padding-right: 20px;
+  padding: 0px 8px 0 8px;
   cursor: pointer;
   color: map-get($darkTheme, dark7);
   .dark-theme & {
@@ -346,10 +367,10 @@ html {
   scroll-snap-type: x proximity;
   z-index: 1;
 
-  background:transparent url(../assets/background/crosshatchBackgroundLighter.png) top center;
+  background:transparent url(../assets/background/crosshatchBackgroundLighter.png) top left;
 
   .dark-theme & {
-    background:transparent url(../assets/background/crosshatchBackgroundDarker.png) top left;
+    background:transparent url(../assets/background/crosshatchBackgroundDark.png) top left;
   }
 }
 .homepageBox::-webkit-scrollbar-track {
@@ -379,7 +400,11 @@ html {
   width: 100vw;
   height:  calc(100vh - 52px);
 }
-
+.PanelParent {
+  position: absolute;
+  width: 100vw;
+  height:  calc(100vh - 52px);
+}
 
 
 
@@ -453,9 +478,6 @@ html {
   width: 20px;
   font-size: 20px;
   margin: 2px 0 0 6px;
-}
-@media (max-width: 600px) {
-  .dropdownMain .quickAccessInfo { display: none; }
 }
 .userDropIcon {
   height: 21px;
@@ -572,6 +594,7 @@ html {
 .tabContainer {
   display: inline-flex;
   // position: relative;
+  align-items: stretch;
   display: none;
   height: 24px;
   top: 0;
@@ -582,9 +605,12 @@ html {
 }
 .panelTabOpen {
   display: inline-block;
-  min-width: 60px;
+  position: flex;
+  flex-grow: 1;
+  // min-width: 60px;
+  // max-width: calc((100vw - 250px) / 5);
   height: 24px;
-  padding: 1px 0 0 6px;
+  padding: 1px 6px 0 6px;
   border-right: 1px solid map-get($darkTheme, dark7);
   font-family: 'Segoe UI';
   font-size: 15px;
@@ -606,7 +632,7 @@ html {
 }
 .newPanelTab {
   float: right;
-  width: 20px;
+  width: 30px;
   font-size: 16px;
   padding: 4px 0 0 10px;
   background: transparent;
@@ -616,6 +642,17 @@ html {
   }
   &:hover {
     color: map-get($colorTheme, colorBrightBlue);
+  }
+}
+.panelTabClose {
+  width: 10px;
+  height: 22px;
+  font-size: 12px;
+  position: relative;
+  float: right;
+  margin-left: 15px;
+  &:hover {
+    color: map-get($colorTheme, colorClose);
   }
 }
 
@@ -718,7 +755,7 @@ html {
 #objectSearch::placeholder {
   color: map-get($darkTheme, dark7);
   .dark-theme & {
-    color: map-get($lightTheme, light2);
+    color: map-get($lightTheme, light1);
   }
 }
 
@@ -1312,6 +1349,7 @@ html {
   width: 300px;
   padding: 20px;
   padding-left: 18px;
+  border-radius: 5px;
 
   font-family: 'Segoe UI';
   letter-spacing: 1px;
@@ -1337,6 +1375,7 @@ html {
   background-color: transparent;
   color: map-get($darkTheme, dark2);
   border: 1px solid map-get($darkTheme, dark4);
+  border-radius: 5px;
   height: 42px;
   width: 100px;
   margin-left: 2vw;
