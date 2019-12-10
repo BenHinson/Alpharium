@@ -1,5 +1,11 @@
 # Alpharium
-Windows Application
+
+Alpharium is a Windows application for combining inhouse web-development tools.
+
+https://gyazo.com/3f1382db777329f9f6c3a8e1575b1782
+
+https://gyazo.com/94e07bd921a77fcd14e9c6606f941aaf
+
 
 Account information is saved within the program, hashed, and anything currently works as an email.
 
