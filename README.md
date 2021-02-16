@@ -1,5 +1,7 @@
 # Alpharium
 
+A learning project using electron from 2019.
+
 Alpharium is a Windows application for combining inhouse web-based tools.
 
 ## Screenshots
