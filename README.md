@@ -6,7 +6,7 @@ Alpharium is a Windows application for combining inhouse web-based tools.
 
 ## Screenshots
 
-[homepage](/Assets/showcase/homepage.png)
+![homepage](/Assets/showcase/homepage.png)
 
 Dropdowns Generated from 'Dropdowns' Folder. Full customizable with changing of properties.
 Eg : type / order / location / icon / onclick / content / specific content onclick.
@@ -14,19 +14,19 @@ Eg : type / order / location / icon / onclick / content / specific content oncli
 Panels along the bottom are also generated from the 'Panels' Folder with their own properties.
 Eg : icon / menu / Security keys (specific to each user)
 
-[dropdown](/Assets/showcase/dropdown.png)
+![dropdown](/Assets/showcase/dropdown.png)
 
 Quick Switch Between Users
 Logout to Pin / Logout Completely.
 
 ## Videos
 
-[login](/Assets/showcase/login_video.mp4)
+![login](/Assets/showcase/login_video.mp4)
 
 Light and Dark Theme throughout, animated user interface and multi-account support.
 Account information is saved within the program, hashed, and email is not required.
 
-[demo](/Assets/showcase/demo_video.mp4)
+![demo](/Assets/showcase/demo_video.mp4)
 
 Opening Alpha Drive for the first time generates the folder 'Alpharium' and your accounts name within your C: drive.
 Cross interaction between different panels, and a panel viewer to display current open panels
