@@ -21,12 +21,12 @@ Logout to Pin / Logout Completely.
 
 ## Videos
 
-![login](/Assets/showcase/login_video.mp4)
+[login](/Assets/showcase/login_video.mp4)
 
 Light and Dark Theme throughout, animated user interface and multi-account support.
 Account information is saved within the program, hashed, and email is not required.
 
-![demo](/Assets/showcase/demo_video.mp4)
+[demo](/Assets/showcase/demo_video.mp4)
 
 Opening Alpha Drive for the first time generates the folder 'Alpharium' and your accounts name within your C: drive.
 Cross interaction between different panels, and a panel viewer to display current open panels
