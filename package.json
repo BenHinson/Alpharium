@@ -11,7 +11,7 @@
   "author": "Ben Hinson",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^6.1.12",
+    "electron": "^9.4.0",
     "electron-packager": "^15.2.0"
   },
   "dependencies": {
